@@ -1,0 +1,140 @@
+.admin-main {
+    flex: 10; 
+    padding: 10px;
+    background-image: url('../../../assets/background.jpg'); /* Background image path */
+    background-size: cover; /* Cover the entire container */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent repeating the image */
+
+}
+
+.admin-main-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid gray; 
+}
+
+.admin-main-card {
+    border: 2px solid gray; 
+    width: 22%;
+    margin: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: black; 
+    color: white;
+}
+
+.admin-card-title {
+    font-size: 21px;
+    font-weight: 500;
+    color: white; 
+}
+
+.admin-cart-count {
+    color: white; 
+    font-size: 24px;
+    font-weight: 600;
+    margin: 5px 0;
+}
+
+.admin-card-link-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.admin-card-link {
+    font-size: 17px;
+    background-color: gray; 
+    padding: 5px;
+    border-radius: 10px;
+    font-weight: 500;
+    color: white; 
+}
+
+.admin-card-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 10px;
+    background-color: gray; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: black;
+    border-bottom: 1px solid #eaeaea;
+    margin-bottom: 20px;
+}
+
+.admin-header-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+.admin-header-icons {
+    display: flex;
+    color: white;
+    align-items: center;
+}
+
+.admin-notification-icon,
+.admin-profile-icon {
+    margin-left: 20px;
+    color: white;
+}
+
+/* Profile icon */
+.profile-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
+@media (max-width: 1200px) {
+    .admin-main-card {
+        width: 44%;
+    }
+}
+
+@media (max-width: 520px) {
+    .admin-main-card {
+        width: 100%;
+    }
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+    .admin-main-header {
+        flex-direction: column;
+    }
+
+    .admin-main-card {
+        margin-bottom: 20px;
+    }
+
+    .admin-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .admin-header-icons {
+        margin-top: 10px;
+        justify-content: space-between;
+        width: 100%;
+    }
+}

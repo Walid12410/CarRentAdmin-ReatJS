@@ -1,0 +1,153 @@
+.table-container {
+    display: flex;
+    overflow: hidden;
+    background-image: url('../../../assets/background.jpg'); /* Background image path */
+    background-size: cover; /* Cover the entire container */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent repeating the image */
+}
+
+.table-wrapper {
+    flex: 10;
+    padding: 20px;
+    overflow-y: scroll;
+}
+
+.new-form-button {
+    border: none;
+    background-color: gray;
+    color: white;
+    border-radius: 5px;
+    font-size: 17px;
+    font-weight: 500;
+    padding: 5px 15px;
+    cursor: pointer;
+}
+
+/* Hover effect for the button */
+.new-form-button:hover {
+    background-color: darkgray;
+}
+
+.table-title {
+    font-size: 30px;
+    color: black;
+    margin-bottom: 15px;
+    border-bottom: 2px solid black;
+    padding-bottom: 3px;
+    width: max-content;
+}
+
+.table {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+    background-color: white; /* Set table background to white */
+}
+
+th, td {
+    border: 1px solid lightgray; /* Border color for table cells */
+    padding: 10px;
+}
+
+th {
+    background-color: darkgray; /* Header background color */
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: white; /* Alternating row color */
+}
+
+tr:hover {
+    background-color: #f0f0f0; /* Light gray for hover effect */
+}
+
+.table-image {
+    display: flex;
+    align-items: center;
+}
+
+.table-user-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.table-username {
+    font-weight: 500;
+    font-size: 17px;
+    margin-left: 5px;
+}
+
+.table-button-group{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.table-button-group button{
+    border: none;
+    background-color: var(--green-color);
+    color: var(--white-color);
+    border-radius: 5px;
+    font-size: 17px;
+    font-weight: 500;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.table-button-group button:last-child{
+    background-color: var(--red-color);
+}
+
+.table-button-group button:first-child:hover{
+    background-color: green;
+}
+
+.table-button-group button:last-child:hover{
+    background-color: red;
+}
+
+
+/* tag "a" is Link that is in react */
+
+.table-button-group button a{
+    color: var(--white-color);
+}
+/* Media queries */
+@media (max-width: 720px) {
+    .table-wrapper {
+        padding: 15px;
+    }
+
+    .table-button-group {
+        flex-wrap: wrap;
+    }
+
+    .table-button-group button {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    th, td {
+        padding: 5px;
+    }
+
+    .table-image {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media (max-width: 520px) {
+    .table-wrapper {
+        padding: 5px;
+    }
+
+    th, td {
+        padding: 2px;
+    }
+}

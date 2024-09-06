@@ -1,0 +1,132 @@
+.report-container {
+    min-height: 300px;
+    max-width: 1200px;
+    margin: 70px auto 0 auto;
+    background-color: #ffffff; /* White background for the container */
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2); /* Gray shadow */
+    padding: 20px;
+}
+
+.report-header {
+    height: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 2px solid #cccccc; /* Light gray border */
+}
+
+.recent-Articles {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333333; /* Dark gray for the text */
+}
+
+.view {
+    height: 35px;
+    border-radius: 8px;
+    background-color: #333333; /* Dark gray for the button background */
+    color: white;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    padding: 0 15px;
+}
+
+.report-body {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table thead {
+    background-color: #f8f8f8; /* Light gray background for the header */
+}
+
+.table th, .table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #dddddd; /* Light gray border for rows */
+}
+
+.table th {
+    font-size: 16px;
+    color: #333333; /* Dark gray for header text */
+}
+
+.table td {
+    font-size: 14px;
+    color: #666666; /* Medium gray for table data */
+}
+
+.label-tag {
+    background-color: #cccccc; /* Light gray background for the label */
+    color: #333333; /* Dark gray text color */
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+@media (max-width: 1200px) {
+    .report-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .recent-Articles {
+        font-size: 20px;
+    }
+
+    .view {
+        width: 100px;
+        font-size: 14px;
+    }
+
+    .table td {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .report-header {
+        padding: 15px;
+    }
+
+    .recent-Articles {
+        font-size: 18px;
+    }
+
+    .view {
+        width: 80px;
+        font-size: 13px;
+    }
+
+    .table td {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 480px) {
+    .report-header {
+        padding: 10px;
+    }
+
+    .recent-Articles {
+        font-size: 16px;
+    }
+
+    .view {
+        width: 70px;
+        font-size: 12px;
+    }
+
+    .table td {
+        font-size: 10px;
+    }
+}
