@@ -1,10 +1,10 @@
 .table-container {
     display: flex;
     overflow: hidden;
-    background-image: url('../../../assets/background.jpg'); /* Background image path */
-    background-size: cover; /* Cover the entire container */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Prevent repeating the image */
+    background-image: url('../../../assets/background.jpg');
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat; 
 }
 
 .table-wrapper {
@@ -42,25 +42,25 @@
     width: 100%;
     text-align: left;
     border-collapse: collapse;
-    background-color: white; /* Set table background to white */
+    background-color: white; 
 }
 
 th, td {
-    border: 1px solid lightgray; /* Border color for table cells */
+    border: 1px solid lightgray; 
     padding: 10px;
 }
 
 th {
-    background-color: darkgray; /* Header background color */
+    background-color: darkgray; 
     color: white;
 }
 
 tr:nth-child(even) {
-    background-color: white; /* Alternating row color */
+    background-color: white; 
 }
 
 tr:hover {
-    background-color: #f0f0f0; /* Light gray for hover effect */
+    background-color: #f0f0f0; 
 }
 
 .table-image {
@@ -111,12 +111,11 @@ tr:hover {
 }
 
 
-/* tag "a" is Link that is in react */
 
 .table-button-group button a{
     color: var(--white-color);
 }
-/* Media queries */
+
 @media (max-width: 720px) {
     .table-wrapper {
         padding: 15px;
