@@ -5,7 +5,7 @@ const LatestCar = () => {
         <div className="report-container">
             <div className="report-header">
                 <h1 className="recent-Articles">Latest Car Added</h1>
-                <button className="view">View All</button>
+                <button className="view">View More</button>
             </div>
 
             <div className="report-body">

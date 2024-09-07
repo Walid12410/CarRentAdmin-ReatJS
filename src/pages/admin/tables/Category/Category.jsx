@@ -1,57 +1,58 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import AdminSideBar from "../../sideBar/SideBar";
 import "./category.css";
 import "../table.css";
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCategory } from "../../../../redux/api/categoryApiCall";
 
-const getRandomCategory = () => {
-    const categories = ['Music', 'Sports', 'Technology', 'Fashion', 'Travel', 'Food', 'Health', 'Education'];
-    return categories[Math.floor(Math.random() * categories.length)];
-};
-
-const generateRandomItems = (count) => {
-    return Array.from({ length: count }, (_, i) => ({
-        id: i + 1,
-        title: getRandomCategory()
-    }));
-};
 
 const CategoryTable = () => {
-    // Generate 10 random items for testing
-    const items = generateRandomItems(10);
+
+    const dispatch = useDispatch();
+    const { categories, loading, error } = useSelector(state => state.category);
+
+    useEffect(()=>{
+        dispatch(fetchCategory());
+        window.scrollTo(0, 0);
+    }, [dispatch]);
 
     return (  
         <section className="table-container">
             <AdminSideBar />
             <div className="table-wrapper">
-                    <h1 className="table-title">Categories</h1>
-                    <button className="new-form-button">New Category</button>
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th>Count</th>
-                            <th>Category Title</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {items.map((item) => (
-                            <tr key={item.id}>
-                                <td>{item.id}</td>
-                                <td>
-                                    <b>{item.title}</b>
-                                </td>
-                                <td>
-                                    <div className="table-button-group">
-                                    <button>
-                                        Update Category
-                                    </button>
-                                        <button>Delete Category</button>
-                                    </div>
-                                </td>
+                <h1 className="table-title">Categories</h1>
+                <button className="new-form-button">New Category</button>
+                {loading ? (
+                    <p>Loading...</p>
+                ) : error ? (
+                    <p>Error fetching categories</p>
+                ) : (
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th>Count</th>
+                                <th>Category Title</th>
+                                <th>Action</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {categories?.map((category , index) => (
+                                <tr key={category?._id}>
+                                    <td>{index + 1}</td>
+                                    <td>
+                                        <b>{category?.categoryName}</b>
+                                    </td>
+                                    <td>
+                                        <div className="table-button-group">
+                                            <button>Update Category</button>
+                                            <button>Delete Category</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                )}
             </div>
         </section>
     );

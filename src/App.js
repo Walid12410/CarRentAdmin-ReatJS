@@ -10,6 +10,8 @@ import NotificationTable from "./pages/admin/tables/Notication/Notifcation";
 import CarRentTable from "./pages/admin/tables/CarRent/CarRent";
 import OfferTable from "./pages/admin/tables/Offer/Offer";
 import PromoTable from "./pages/admin/tables/Promo/Promo";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -32,6 +34,7 @@ function App() {
       </Route>
 
     </Routes>
+    <ToastContainer theme="colored" position="top-center"></ToastContainer>
     </BrowserRouter>
   );
 }

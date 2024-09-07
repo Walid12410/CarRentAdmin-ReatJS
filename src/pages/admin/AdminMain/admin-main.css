@@ -69,33 +69,7 @@
     color: white;
 }
 
-.admin-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: black;
-    border-bottom: 1px solid #eaeaea;
-    margin-bottom: 20px;
-}
 
-.admin-header-title {
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
-}
-
-.admin-header-icons {
-    display: flex;
-    color: white;
-    align-items: center;
-}
-
-.admin-notification-icon,
-.admin-profile-icon {
-    margin-left: 20px;
-    color: white;
-}
 
 /* Profile icon */
 .profile-circle {

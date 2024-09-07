@@ -1,18 +1,16 @@
-.table-wrapper {
-    flex: 10;
-    padding: 20px;
-    /* Limit the height to show only 8 rows */
-    max-height: 800px; /* You can adjust this value as needed */
-    overflow-y: auto;  /* Enable vertical scrolling */
-}
-
 .table-container {
     display: flex;
     overflow: hidden;
-    background-image: url('../../../assets/background.jpg');
+    background-image: url('../../../../assets/background.jpg');
     background-size: cover; 
     background-position: center;
     background-repeat: no-repeat; 
+}
+
+.table-wrapper {
+    flex: 10;
+    padding: 20px;
+    overflow-y: scroll;
 }
 
 .new-form-button {
@@ -26,6 +24,7 @@
     cursor: pointer;
 }
 
+/* Hover effect for the button */
 .new-form-button:hover {
     background-color: darkgray;
 }
@@ -46,13 +45,6 @@
     background-color: white; 
 }
 
-thead {
-    position: sticky; 
-    top: 0;
-    background-color: darkgray;
-    z-index: 1;
-}
-
 th, td {
     border: 1px solid lightgray; 
     padding: 10px;
@@ -63,18 +55,6 @@ th {
     color: white;
 }
 
-tbody {
-    display: block;
-    max-height: 900px; /* Height of 8 rows */
-    overflow-y: auto;  
-}
-
-tr {
-    display: table;
-    width: 100%;
-    table-layout: fixed;
-}
-
 tr:nth-child(even) {
     background-color: white; 
 }
@@ -83,13 +63,29 @@ tr:hover {
     background-color: #f0f0f0; 
 }
 
-.table-button-group{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+.table-company-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
-.table-button-group button{
+.table-button-group {
+    display: flex;
+    gap: 10px; /* Adds space between buttons */
+}
+
+.table-company-image {
+    width: 40px;
+    height: 40px;
+}
+
+.new-form-button {
+    margin-bottom: 20px; /* Adds space below the new company button */
+}
+
+
+.table-button-group button {
     border: none;
     background-color: var(--green-color);
     color: var(--white-color);
@@ -100,19 +96,19 @@ tr:hover {
     cursor: pointer;
 }
 
-.table-button-group button:last-child{
+.table-button-group button:last-child {
     background-color: var(--red-color);
 }
 
-.table-button-group button:first-child:hover{
+.table-button-group button:first-child:hover {
     background-color: green;
 }
 
-.table-button-group button:last-child:hover{
+.table-button-group button:last-child:hover {
     background-color: red;
 }
 
-.table-button-group button a{
+.table-button-group button a {
     color: var(--white-color);
 }
 
@@ -132,12 +128,6 @@ tr:hover {
 
     th, td {
         padding: 5px;
-    }
-
-    .table-image {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
     }
 }
 

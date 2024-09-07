@@ -4,26 +4,17 @@ import { ReactComponent as BuildingIcon } from '../../../assets/admin-icon/build
 import { ReactComponent as CarIcon } from '../../../assets/admin-icon/car-front-fill.svg';
 import { ReactComponent as PersonIcon } from '../../../assets/admin-icon/person-circle.svg';
 import { ReactComponent as BookingIcon } from '../../../assets/admin-icon/booking-icon.svg';
-import { ReactComponent as NotificationIcon } from '../../../assets/admin-icon/notification-alert-icon.svg';
-
 import LatestCar from "./latestCar/LatestCar";
+import { useSelector } from "react-redux";
+import AdminHeader from "../../../components/header/HeaderAdmin";
 
 const AdminMain = () => {
+
+
     return (  
         
         <div className="admin-main">
-            <div className="admin-header">
-                <div className="admin-header-title">Admin Dashboard</div>
-                <div className="admin-header-icons">
-                    <div className="admin-notification-icon">
-                        <NotificationIcon width="20" height="20" fill="white" />
-                    </div>
-                    <div className="admin-profile-icon">
-                        <img src="https://via.placeholder.com/40" alt="Profile" className="profile-circle" />
-                    </div>
-                </div>
-            </div>
-
+            <AdminHeader />
             <div className="admin-main-header">
                 <div className="admin-main-card">
                     <h5 className="admin-card-title">
