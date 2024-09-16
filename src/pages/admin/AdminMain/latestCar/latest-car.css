@@ -1,10 +1,10 @@
 .report-container {
-    min-height: 300px;
-    max-width: 1200px;
-    margin: 70px auto 0 auto;
-    background-color: #ffffff; /* White background for the container */
+    min-height: 250px;
+    max-width: 100%;
+    margin-bottom: 30px;
+    background-color: #ffffff;
     border-radius: 10px;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2); /* Gray shadow */
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
     padding: 20px;
 }
 
@@ -15,19 +15,20 @@
     align-items: center;
     justify-content: space-between;
     padding: 20px;
-    border-bottom: 2px solid #cccccc; /* Light gray border */
+    border-bottom: 2px solid #cccccc;
 }
+
 
 .recent-Articles {
     font-size: 24px;
     font-weight: 600;
-    color: #333333; /* Dark gray for the text */
+    color: #333333;
 }
 
 .view {
     height: 35px;
     border-radius: 8px;
-    background-color: #333333; /* Dark gray for the button background */
+    background-color: #333333;
     color: white;
     font-size: 15px;
     border: none;
@@ -47,31 +48,32 @@
 }
 
 .table thead {
-    background-color: #f8f8f8; /* Light gray background for the header */
+    background-color: #f8f8f8;
 }
 
 .table th, .table td {
     padding: 10px;
     text-align: left;
-    border-bottom: 1px solid #dddddd; /* Light gray border for rows */
+    border-bottom: 1px solid #dddddd;
 }
 
 .table th {
     font-size: 16px;
-    color: #333333; /* Dark gray for header text */
+    color: #333333;
 }
 
 .table td {
     font-size: 14px;
-    color: #666666; /* Medium gray for table data */
 }
 
 .label-tag {
-    background-color: #cccccc; /* Light gray background for the label */
-    color: #333333; /* Dark gray text color */
+    background-color: #cccccc;
+    color: #333333;
     padding: 4px 8px;
     border-radius: 4px;
 }
+
+
 
 @media (max-width: 1200px) {
     .report-header {

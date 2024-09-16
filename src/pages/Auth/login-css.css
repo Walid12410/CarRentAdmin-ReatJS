@@ -3,7 +3,7 @@
     padding: 0;
 }
 
-.hero {
+.hero-login {
     height: 100vh;
     width: 100%;
     background-image: url("../../assets/background.jpg");
@@ -15,7 +15,7 @@
     align-items: center;
 }
 
-.form-box {
+.form-box-login {
     width: 380px;
     height: auto;
     background: #fff;
@@ -24,7 +24,9 @@
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
 }
 
-.button-box {
+.button-box-switch {
+    display: flex; /* Use flexbox to arrange children in a row */
+    justify-content: space-between; /* Distribute space between buttons */
     width: 220px;
     margin: 35px auto;
     position: relative;
@@ -32,16 +34,17 @@
     border-radius: 30px;
 }
 
-.toggle-btn {
+.toggle-btn-login {
     padding: 10px 30px;
     cursor: pointer;
     background: transparent;
     border: 0;
     outline: none;
     position: relative;
+    flex: 1; /* Allow buttons to grow and fill the container */
 }
 
-.btn {
+.btn-loginAdminEmployee {
     top: 0;
     left: 0;
     position: absolute;
@@ -52,18 +55,18 @@
     transition: .5s;
 }
 
-.move-right {
+.move-right-login {
     left: 110px; 
 }
 
 
-.input-group {
+.input-group-login {
     width: 280px;
     margin: 20px auto 0;
     transition: 0.5s;
 }
 
-.input-field {
+.input-field-login {
     width: 100%;
     padding: 10px 0;
     margin: 5px 0;
@@ -75,7 +78,7 @@
     background: transparent;
 }
 
-.submit-btn {
+.submit-btn-login {
     width: 85%;
     padding: 10px 30px;
     cursor: pointer;

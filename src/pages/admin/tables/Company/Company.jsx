@@ -1,38 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import AdminSideBar from "../../sideBar/SideBar";
 import './company.css';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAllCompany } from "../../../../redux/api/companyApiCall";
 
 
 const CompaniesTable = () => {
 
-    // Test data for companies
-    const companies = [
-        {
-            _id: '1',
-            companyName: 'Tech Solutions',
-            companyEmail: 'info@techsolutions.com',
-            companyPhoneNumber: '123-456-7890',
-            companyAddress: '123 Tech Avenue',
-            companyCity: 'San Francisco',
-            companyState: 'CA',
-            createdAt: '2021-10-05',
-            imageCompany: 'https://via.placeholder.com/40', // Placeholder image URL
-        },
-        {
-            _id: '2',
-            companyName: 'Design Hub',
-            companyEmail: 'contact@designhub.com',
-            companyPhoneNumber: '987-654-3210',
-            companyAddress: '456 Creative Road',
-            companyCity: 'Los Angeles',
-            companyState: 'CA',
-            createdAt: '2022-03-15',
-            imageCompany: 'https://via.placeholder.com/40',
-        },
-        // Add more test data as needed...
-    ];
+    const dispatch = useDispatch();
+    const { loadingCompanies, errorCompanies, companies } = useSelector(state => state.company)
 
-    return (  
+    useEffect(() => {
+        dispatch(fetchAllCompany());
+        window.scrollTo(0, 0);
+    }, [dispatch]);
+
+
+    //@TODO Loading until data response
+
+    return (
         <section className="table-container">
             <AdminSideBar />
             <div className="table-wrapper">
@@ -48,7 +35,7 @@ const CompaniesTable = () => {
                             <th>City</th>
                             <th>State</th>
                             <th>Created At</th>
-                            <th>Image</th>
+                            <th>View Details</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -57,17 +44,15 @@ const CompaniesTable = () => {
                             <tr key={company?._id}>
                                 <td>{company?.companyName}</td>
                                 <td>{company?.companyEmail}</td>
-                                <td>{company?.companyPhoneNumber}</td>
-                                <td>{company?.companyAddress}</td>
-                                <td>{company?.companyCity}</td>
-                                <td>{company?.companyState}</td>
-                                <td>{company?.createdAt}</td>
+                                <td>{company?.CompanyPhoneNumber}</td>
+                                <td>{company?.CompanyAddress}</td>
+                                <td>{company?.CompanyCity}</td>
+                                <td>{company?.CompanyState}</td>
+                                <td>{new Date(company?.createdAt).toDateString()}</td>
                                 <td>
-                                    <img
-                                        src={company?.imageCompany}
-                                        alt={company?.companyName}
-                                        className="table-company-image"
-                                    />
+                                    <Link to={`comapny/${companies?._id}`} className="view-details-btn">
+                                        View Details
+                                    </Link>
                                 </td>
                                 <td>
                                     <div className="table-button-group">
@@ -83,5 +68,5 @@ const CompaniesTable = () => {
         </section>
     );
 }
- 
+
 export default CompaniesTable;

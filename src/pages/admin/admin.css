@@ -2,5 +2,6 @@
     display: flex;
     overflow: hidden;
     width: 100%;
+    background-color: black;
     min-height: calc(100vh - 130px);
 }

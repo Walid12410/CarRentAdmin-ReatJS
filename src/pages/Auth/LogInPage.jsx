@@ -33,31 +33,31 @@ const LogInPage = () => {
 
 
     return (
-        <div className="hero">
-            <div className="form-box">
-                <div className="button-box">
-                    <div className={`btn ${activeForm === "employee" ? "move-right" : ""}`}></div>
-                    <button type="button" className="toggle-btn"
+        <div className="hero-login">
+            <div className="form-box-login">
+                <div className="button-box-switch">
+                    <div className={`btn-loginAdminEmployee ${activeForm === "employee" ? "move-right-login" : ""}`}></div>
+                    <button type="button" className="toggle-btn-login"
                         onClick={() => setActiveForm("admin")}>Admin</button>
-                    <button type="button" className="toggle-btn"
+                    <button type="button" className="toggle-btn-login"
                         onClick={() => setActiveForm("employee")}>Employee</button>
                 </div>
                 {activeForm === "admin" && (
-                    <form onSubmit={submitHandler} id="admin" className="input-group">
+                    <form onSubmit={submitHandler} id="admin" className="input-group-login">
                         <input value={adminEmail}
                         onChange={(e)=> setAdminEmail(e.target.value)}
-                        type="email" className="input-field" placeholder="Email" required />
+                        type="email" className="input-field-login" placeholder="Email" required />
                         <input value={adminPassword} 
                         onChange={(e)=> setAdminPassword(e.target.value)}
-                        type="password" className="input-field" placeholder="Password" required />
-                        <button className="submit-btn">Sign In as Admin</button>
+                        type="password" className="input-field-login" placeholder="Password" required />
+                        <button className="submit-btn-login">Sign In as Admin</button>
                     </form>
                 )}
                 {activeForm === "employee" && (
-                    <form id="employee" className="input-group">
-                        <input type="text" className="input-field" placeholder="Email" required />
-                        <input type="text" className="input-field" placeholder="Password" required />
-                        <button className="submit-btn">Sign In as Employee</button>
+                    <form id="employee" className="input-group-login">
+                        <input type="text" className="input-field-login" placeholder="Email" required />
+                        <input type="text" className="input-field-login" placeholder="Password" required />
+                        <button className="submit-btn-login">Sign In as Employee</button>
                     </form>
                 )}
 

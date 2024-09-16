@@ -1,142 +1,146 @@
+/* Keeping the provided classes as requested */
 .table-container {
     display: flex;
     overflow: hidden;
     background-image: url('../../../../assets/background.jpg');
-    background-size: cover; 
+    background-size: cover;
     background-position: center;
-    background-repeat: no-repeat; 
 }
 
 .table-wrapper {
     flex: 10;
+    height: 100%;
     padding: 20px;
-    overflow-y: scroll;
+    overflow-y: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* General improvements */
+.table-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
 }
 
 .new-form-button {
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    background-color: #007BFF;
+    color: #fff;
     border: none;
-    background-color: gray;
-    color: white;
-    border-radius: 5px;
-    font-size: 17px;
-    font-weight: 500;
-    padding: 5px 15px;
+    border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-/* Hover effect for the button */
 .new-form-button:hover {
-    background-color: darkgray;
-}
-
-.table-title {
-    font-size: 30px;
-    color: black;
-    margin-bottom: 15px;
-    border-bottom: 2px solid black;
-    padding-bottom: 3px;
-    width: max-content;
+    background-color: #0056b3;
 }
 
 .table {
     width: 100%;
-    text-align: left;
     border-collapse: collapse;
-    background-color: white; 
 }
 
-th, td {
-    border: 1px solid lightgray; 
-    padding: 10px;
+.table th, .table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+    word-wrap: break-word; /* Allows long words to break onto the next line */
 }
 
-th {
-    background-color: darkgray; 
-    color: white;
+.table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    color: #333;
 }
 
-tr:nth-child(even) {
-    background-color: white; 
-}
-
-tr:hover {
-    background-color: #f0f0f0; 
+.table td {
+    color: #555;
+    width: auto; /* Allow column width to adjust based on content */
 }
 
 .table-company-image {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+    width: 100px;
+    height: 100px;
     object-fit: cover;
 }
 
+/* Button group for actions */
 .table-button-group {
     display: flex;
-    gap: 10px; /* Adds space between buttons */
+    gap: 10px;
 }
 
-.table-company-image {
-    width: 40px;
-    height: 40px;
-}
 
-.new-form-button {
-    margin-bottom: 20px; /* Adds space below the new company button */
+.view-details-btn{
+    padding: 6px 15px;
+    font-size: 12px;
+    color: #fff;
+    background-color: #000000;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
 }
-
 
 .table-button-group button {
+    padding: 6px 12px;
+    font-size: 12px;
+    color: #fff;
+    background-color: #007BFF;
     border: none;
-    background-color: var(--green-color);
-    color: var(--white-color);
-    border-radius: 5px;
-    font-size: 17px;
-    font-weight: 500;
-    padding: 5px;
+    border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.table-button-group button:last-child {
-    background-color: var(--red-color);
+.table-button-group button:hover {
+    background-color: #0056b3;
 }
 
-.table-button-group button:first-child:hover {
-    background-color: green;
+.table-button-group button:nth-child(2) {
+    background-color: #dc3545;
 }
 
-.table-button-group button:last-child:hover {
-    background-color: red;
+.table-button-group button:nth-child(2):hover {
+    background-color: #b52a3b;
 }
 
-.table-button-group button a {
-    color: var(--white-color);
-}
-
-@media (max-width: 720px) {
-    .table-wrapper {
-        padding: 15px;
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .table-container {
+        flex-direction: column;
     }
 
-    .table-button-group {
-        flex-wrap: wrap;
+    .table-wrapper {
+        padding: 10px;
+    }
+
+    .table th, .table td {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
     }
 
     .table-button-group button {
-        width: 100%;
-        margin: 10px 0;
+        padding: 5px 8px;
     }
 
-    th, td {
-        padding: 5px;
-    }
-}
-
-@media (max-width: 520px) {
-    .table-wrapper {
-        padding: 5px;
+    .new-form-button {
+        font-size: 14px;
+        padding: 8px 16px;
     }
 
-    th, td {
-        padding: 2px;
+    .table-company-image {
+        width: 30px;
+        height: 30px;
     }
 }
