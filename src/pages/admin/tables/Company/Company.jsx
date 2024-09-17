@@ -17,53 +17,57 @@ const CompaniesTable = () => {
     }, [dispatch]);
 
 
-    //@TODO Loading until data response
-
     return (
         <section className="table-container">
             <AdminSideBar />
             <div className="table-wrapper">
                 <h1 className="table-title">Companies</h1>
                 <button className="new-form-button">New Company</button>
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th>Company Name</th>
-                            <th>Email</th>
-                            <th>Phone Number</th>
-                            <th>Address</th>
-                            <th>City</th>
-                            <th>State</th>
-                            <th>Created At</th>
-                            <th>View Details</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {companies?.map((company, index) => (
-                            <tr key={company?._id}>
-                                <td>{company?.companyName}</td>
-                                <td>{company?.companyEmail}</td>
-                                <td>{company?.CompanyPhoneNumber}</td>
-                                <td>{company?.CompanyAddress}</td>
-                                <td>{company?.CompanyCity}</td>
-                                <td>{company?.CompanyState}</td>
-                                <td>{new Date(company?.createdAt).toDateString()}</td>
-                                <td>
-                                    <Link to={`comapny/${companies?._id}`} className="view-details-btn">
-                                        View Details
-                                    </Link>
-                                </td>
-                                <td>
-                                    <div className="table-button-group">
-                                        <button>Update</button>
-                                        <button>Delete</button>
-                                    </div>
-                                </td>
+                {loadingCompanies ? (
+                    <p>Loading...</p>
+                ) : errorCompanies ? (
+                    <p>Error fetch companies</p>
+                ) : (
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th>Company Name</th>
+                                <th>Email</th>
+                                <th>Phone Number</th>
+                                <th>Address</th>
+                                <th>City</th>
+                                <th>State</th>
+                                <th>Created At</th>
+                                <th>View Details</th>
+                                <th>Action</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {companies?.map((company, index) => (
+                                <tr key={company?._id}>
+                                    <td>{company?.companyName}</td>
+                                    <td>{company?.companyEmail}</td>
+                                    <td>{company?.companyPhoneNumber}</td>
+                                    <td>{company?.companyAddress}</td>
+                                    <td>{company?.companyCity}</td>
+                                    <td>{company?.companyState}</td>
+                                    <td>{new Date(company?.createdAt).toDateString()}</td>
+                                    <td>
+                                        <Link to={`comapny/${companies?._id}`} className="view-details-btn">
+                                            View Details
+                                        </Link>
+                                    </td>
+                                    <td>
+                                        <div className="table-button-group">
+                                            <button>Update</button>
+                                            <button>Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                )}
             </div>
         </section>
     );

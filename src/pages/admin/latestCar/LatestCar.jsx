@@ -1,9 +1,9 @@
 import "./latest-car.css";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchLatestCar } from "../../../../redux/api/carApiCall";
+import { fetchLatestCar } from "../../../redux/api/carApiCall";
 import { Link } from "react-router-dom";
-import { fetchLatestOffer } from "../../../../redux/api/offerApiCall";
+import { fetchLatestOffer } from "../../../redux/api/offerApiCall";
 
 const LatestCar = () => {
 

@@ -4,15 +4,12 @@ import { ReactComponent as BuildingIcon } from '../../../assets/admin-icon/build
 import { ReactComponent as CarIcon } from '../../../assets/admin-icon/car-front-fill.svg';
 import { ReactComponent as PersonIcon } from '../../../assets/admin-icon/person-circle.svg';
 import { ReactComponent as BookingIcon } from '../../../assets/admin-icon/booking-icon.svg';
-import LatestCar from "./latestCar/LatestCar";
-import { useSelector } from "react-redux";
+import LatestCar from "../latestCar/LatestCar";
 import AdminHeader from "../../../components/header/HeaderAdmin";
 
 const AdminMain = () => {
 
-
     return (  
-        
         <div className="admin-main">
             <AdminHeader />
             <div className="admin-main-header">
