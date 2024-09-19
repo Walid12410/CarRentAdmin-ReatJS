@@ -6,6 +6,8 @@ const companySlice = createSlice({
     companies: [],
     loadingCompanies: false,
     errorCompanies: null,
+    loadingCreateCompany : false,
+    isCompanyCreated : false,
   },
   reducers: { 
     setComapnies: (state, action) => {
@@ -20,6 +22,17 @@ const companySlice = createSlice({
       state.loadingCompanies = false;
       state.errorCompanies = action.payload;
     },
+    //Create Company 
+    setLoadingCreateCompany : (state) => {
+      state.loadingCreateCompany = true;
+    },
+    setCompanyCreated : (state) => {
+      state.isCompanyCreated = true;
+      state.loadingCreateCompany = false;
+    },
+    setClearCompanyCreated : (state) => {
+      state.isCompanyCreated = false;
+    }
   },
 });
 

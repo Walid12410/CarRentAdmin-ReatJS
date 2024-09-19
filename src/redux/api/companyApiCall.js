@@ -17,3 +17,25 @@ export function fetchAllCompany(){
         }
     }
 }
+
+
+// Create new company
+export function createCompany(newCompany) {
+    return async (dispatch , getState) => {
+        try {
+            console.log(newCompany);
+            dispatch(companyAction.setLoadingCreateCompany());
+             await request.post(`/api/company/list`, newCompany , {
+                headers : {
+                    Authorization : "Bearer " + getState().auth.user.token,
+                    "Content-Type": "application/json"
+                }
+            });
+            dispatch(companyAction.setCompanyCreated());
+            setTimeout(()=> dispatch(companyAction.setClearCompanyCreated()));
+        } catch (error) {
+            toast.error(error.response.data.message);
+            dispatch(companyAction.setClearLoading());
+        }
+    }
+}

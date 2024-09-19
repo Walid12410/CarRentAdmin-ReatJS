@@ -1,12 +1,14 @@
-/* Keeping the provided classes as requested */
+/* Ensure background image covers the full container */
 .table-container {
     display: flex;
     overflow: hidden;
     background-image: url('../../../../assets/background.jpg');
     background-size: cover;
     background-position: center;
+    min-height: 100vh; /* Ensure full height for background image */
 }
 
+/* Style for the table wrapper */
 .table-wrapper {
     flex: 10;
     height: 100%;
@@ -41,6 +43,7 @@
 .table {
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed; /* Fixed layout to handle long content */
 }
 
 .table th, .table td {
@@ -58,32 +61,50 @@
 
 .table td {
     color: #555;
-    width: auto; /* Allow column width to adjust based on content */
+    overflow: hidden; /* Hide overflow content */
+    text-overflow: ellipsis; /* Ellipsis for overflowing text */
 }
 
+/* Style for company images */
 .table-company-image {
-    width: 100px;
-    height: 100px;
+    width: 50px; /* Adjusted width for better responsiveness */
+    height: 50px;
     object-fit: cover;
 }
 
 /* Button group for actions */
 .table-button-group {
     display: flex;
-    gap: 10px;
+    gap: 5px; /* Reduced gap for smaller screens */
+    flex-wrap: wrap; /* Allow wrapping of buttons */
 }
 
-
-.view-details-btn{
+.view-details-btn {
     padding: 6px 15px;
     font-size: 12px;
     color: #fff;
-    background-color: #000000;
+    background-color: #000;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     text-decoration: none;
     transition: background-color 0.3s ease;
+}
+
+.table-button-group a {
+    padding: 6px 12px;
+    font-size: 12px;
+    color: #fff;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.table-button-group a:hover {
+    background-color: #0056b3;
 }
 
 .table-button-group button {
@@ -120,7 +141,7 @@
     }
 
     .table th, .table td {
-        padding: 10px;
+        padding: 8px;
         font-size: 12px;
     }
 
@@ -130,8 +151,10 @@
         white-space: nowrap;
     }
 
-    .table-button-group button {
+    .table-button-group button,
+    .table-button-group a {
         padding: 5px 8px;
+        font-size: 10px;
     }
 
     .new-form-button {

@@ -1,4 +1,4 @@
-import { BrowserRouter , Routes , Route, Navigate } from 'react-router-dom';
+import { BrowserRouter , Routes , Route } from 'react-router-dom';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import LogInPage from './pages/Auth/LogInPage';
 import UserTable from "./pages/admin/tables/Users/Users";
@@ -12,6 +12,7 @@ import OfferTable from "./pages/admin/tables/Offer/Offer";
 import PromoTable from "./pages/admin/tables/Promo/Promo";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import CompanyForm from './pages/admin/Form/companyForm';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path= 'car-rent-table' element={<CarRentTable />} />
         <Route path= 'booking-table' element={<BookingTable />} />
         <Route path= 'notification-table' element={<NotificationTable />} />
+        <Route path= 'new-company' element={<CompanyForm />} />
       </Route>
 
     </Routes>
