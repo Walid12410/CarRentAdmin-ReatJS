@@ -1,13 +1,62 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import AdminSideBar from "../../sideBar/SideBar";
 import './company.css';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAllCompany } from "../../../../redux/api/companyApiCall";
+import { deleteCompany, fetchAllCompany } from "../../../../redux/api/companyApiCall";
+import swal from 'sweetalert';
 
 const CompaniesTable = () => {
+
     const dispatch = useDispatch();
-    const { loadingCompanies, errorCompanies, companies } = useSelector(state => state.company);
+    const [deleteInitiated, setDeleteInitiated] = useState(false);
+
+    const { 
+        loadingCompanies,
+        errorCompanies,
+        companies,
+        loadingCompanyDeleted,
+        isCompanyDeleted
+    } = useSelector(state => state.company);
+
+    // Delete Company
+    const CompanyDelete = (id) => {
+        swal({
+          title: "Are you sure?",
+          text: "Once deleted, this company and its related cars will be permanently deleted.",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        }).then((willDelete) => {
+          if (willDelete) {
+            setDeleteInitiated(true); 
+            dispatch(deleteCompany(id)); 
+            swal({
+              title: "Deleting Company...",
+              icon: "info",
+              buttons: false,
+            });
+          } else {
+            swal("Company deletion canceled!");
+          }
+        });
+    };
+
+    useEffect(() => {
+        if (deleteInitiated && !loadingCompanyDeleted) {
+            if (isCompanyDeleted) {
+                swal("Company has been deleted successfully!", {
+                    icon: "success",
+                });
+                dispatch(fetchAllCompany()); 
+            } else {
+                swal("Failed to delete the company!", {
+                    icon: "error",
+                });
+            }
+            setDeleteInitiated(false); 
+        }
+    }, [deleteInitiated, loadingCompanyDeleted, isCompanyDeleted, dispatch]);
 
     useEffect(() => {
         dispatch(fetchAllCompany());
@@ -48,7 +97,7 @@ const CompaniesTable = () => {
                                                 View Details
                                             </Link>
                                             <button>Update</button>
-                                            <button>Delete</button>
+                                            <button onClick={() => CompanyDelete(company?._id)}>Delete</button> 
                                         </div>
                                     </td>
                                 </tr>

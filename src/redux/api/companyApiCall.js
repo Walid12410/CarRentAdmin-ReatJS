@@ -23,7 +23,6 @@ export function fetchAllCompany(){
 export function createCompany(newCompany) {
     return async (dispatch , getState) => {
         try {
-            console.log(newCompany);
             dispatch(companyAction.setLoadingCreateCompany());
              await request.post(`/api/company/list`, newCompany , {
                 headers : {
@@ -36,6 +35,25 @@ export function createCompany(newCompany) {
         } catch (error) {
             toast.error(error.response.data.message);
             dispatch(companyAction.setClearLoading());
+        }
+    }
+}
+
+
+// Delete company
+export function deleteCompany(id) {
+    return async(dispatch, getState) => {
+        try {
+            dispatch(companyAction.setLoadingCompanyDeleted());
+            await request.delete(`/api/company/list/${id}`,{
+                headers : {
+                    Authorization : "Bearer " + getState().auth.user.token
+                }
+            });
+            dispatch(companyAction.setIsCompanyDeleted());
+        } catch (error) {
+            toast.error(error.response.data.message);
+            dispatch(companyAction.setErorrCompanyDeleted());
         }
     }
 }

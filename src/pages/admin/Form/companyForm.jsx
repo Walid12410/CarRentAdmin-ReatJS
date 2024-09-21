@@ -84,7 +84,7 @@ const CompanyForm = () => {
                     <input value={companyState}
                         onChange={(e) => setCompanyState(e.target.value)}
                         type="text" placeholder="State" required className="input-field-company" />
-                    <button type="submit" className="submit-btn">{loadingCreateCompany ? "loading.." : "Submit"}</button>
+                    <button type="submit" className="submit-btn">{loadingCreateCompany ? "loading..." : "Create new company"}</button>
                 </form>
             </div>
         </section>
