@@ -1,6 +1,6 @@
 import "./employee.css";
 import { useDispatch, useSelector } from 'react-redux';
-import AdminSideBar from "../../sideBar/SideBar";
+import AdminSideBar from "../../../../components/sideBar/SideBar";
 import React, { useEffect } from 'react';
 import { fetchEmployee } from "../../../../redux/api/employeeApiCall";
 

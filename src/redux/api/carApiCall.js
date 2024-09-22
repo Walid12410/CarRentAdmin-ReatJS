@@ -17,3 +17,31 @@ export function fetchLatestCar(){
         }
     }
 }
+
+// fetch cars by page number
+export function fetchCars(pageNumber) {
+    return async (dispatch) => {
+        try {
+            dispatch(carAction.setLoadingCars());
+            const {data} = await request.get(`/api/car-rent?pageNumber=${pageNumber}&car_rent_per_page=6`);
+            dispatch(carAction.setCars(data));
+        } catch (error) {
+            const errorMessage = error.response?.data?.message || "Error fetching cars"
+            dispatch(carAction.setErrorCars(errorMessage));
+            toast.error(errorMessage);
+        }
+    }
+}
+
+// Count Cars
+export function countCar() {
+    return async (dispatch) => {
+        try {
+            const {data} = await request.get(`/api/car-rent/count`);
+            dispatch(carAction.setCarsCount(data));
+        } catch (error) {
+            const errorMessage = error.response?.data?.message || "Error count cars"
+            toast.error(errorMessage);
+        }
+    }
+}

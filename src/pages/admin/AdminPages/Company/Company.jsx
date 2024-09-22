@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import AdminSideBar from "../../sideBar/SideBar";
+import AdminSideBar from "../../../../components/sideBar/SideBar";
 import './company.css';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';

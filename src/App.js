@@ -1,18 +1,18 @@
 import { BrowserRouter , Routes , Route } from 'react-router-dom';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import LogInPage from './pages/Auth/LogInPage';
-import UserTable from "./pages/admin/tables/Users/Users";
-import EmployeeTable from "./pages/admin/tables/Emlpoyee/Employee";
-import CategoryTable from "./pages/admin/tables/Category/Category";
-import BookingTable from "./pages/admin/tables/Booking/Booking";
-import CompanyTable from "./pages/admin/tables/Company/Company";
-import NotificationTable from "./pages/admin/tables/Notication/Notifcation";
-import CarRentTable from "./pages/admin/tables/CarRent/CarRent";
-import OfferTable from "./pages/admin/tables/Offer/Offer";
-import PromoTable from "./pages/admin/tables/Promo/Promo";
+import UserTable from "./pages/admin/AdminPages/Users/Users";
+import EmployeeTable from "./pages/admin/AdminPages/Emlpoyee/Employee";
+import CategoryTable from "./pages/admin/AdminPages/Category/Category";
+import BookingTable from "./pages/admin/AdminPages/Booking/Booking";
+import CompanyTable from "./pages/admin/AdminPages/Company/Company";
+import NotificationTable from "./pages/admin/AdminPages/Notication/Notifcation";
+import CarRentTable from "./pages/admin/AdminPages/CarRent/CarRent";
+import OfferTable from "./pages/admin/AdminPages/Offer/Offer";
+import PromoTable from "./pages/admin/AdminPages/Promo/Promo";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import CompanyForm from './pages/admin/Form/companyForm';
+import CompanyForm from './pages/admin/AdminForm/companyForm';
 
 function App() {
   return (

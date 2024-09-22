@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import AdminSideBar from "../sideBar/SideBar";
+import AdminSideBar from "../../../components/sideBar/SideBar";
 import './company-form.css';
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";

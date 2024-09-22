@@ -2,7 +2,7 @@ import "./header.css";
 import { ReactComponent as NotificationIcon } from '../../assets/admin-icon/notification-alert-icon.svg'
 import { ReactComponent as LogOutIcon } from '../../assets/admin-icon/enter-icon.svg';
 import { ReactComponent as PersonIcon } from '../../assets/admin-icon/person-circle.svg';
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -12,7 +12,6 @@ const AdminHeader = () => {
 
     const user = useSelector((state)=> state.auth.user);
 
-    const dispatch = useDispatch();
 
     const [dropdown , setDropDown] = useState(false);
 

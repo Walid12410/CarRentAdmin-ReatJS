@@ -1,6 +1,7 @@
+import AdminSideBar from "../../components/sideBar/SideBar";
 import "./admin.css";
 import AdminMain from "./AdminMain/AdminMainPage";
-import AdminSideBar from "./sideBar/SideBar";
+
 
 
 const AdminDashboard = () => {
