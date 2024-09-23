@@ -1,7 +1,6 @@
 import { BrowserRouter , Routes , Route } from 'react-router-dom';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import LogInPage from './pages/Auth/LogInPage';
-import UserTable from "./pages/admin/AdminPages/Users/Users";
 import EmployeeTable from "./pages/admin/AdminPages/Emlpoyee/Employee";
 import CategoryTable from "./pages/admin/AdminPages/Category/Category";
 import BookingTable from "./pages/admin/AdminPages/Booking/Booking";
@@ -13,6 +12,7 @@ import PromoTable from "./pages/admin/AdminPages/Promo/Promo";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CompanyForm from './pages/admin/AdminForm/companyForm';
+import UserTable from './pages/admin/AdminPages/Users/Users';
 
 function App() {
   return (

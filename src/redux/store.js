@@ -5,6 +5,7 @@ import { carReducer } from "./slices/car";
 import { offerReducer } from "./slices/offer";
 import { companyReducer } from "./slices/company";
 import { employeeReducer } from "./slices/employee";
+import { userReducer } from "./slices/user";
 
 
 const store = configureStore({
@@ -14,7 +15,8 @@ const store = configureStore({
         car : carReducer,
         offer : offerReducer,
         company : companyReducer,
-        employee : employeeReducer
+        employee : employeeReducer,
+        user : userReducer
     },
 });
 

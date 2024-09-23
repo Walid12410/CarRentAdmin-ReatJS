@@ -23,7 +23,7 @@ export function fetchCars(pageNumber) {
     return async (dispatch) => {
         try {
             dispatch(carAction.setLoadingCars());
-            const {data} = await request.get(`/api/car-rent?pageNumber=${pageNumber}&car_rent_per_page=6`);
+            const {data} = await request.get(`/api/car-rent?pageNumber=${pageNumber}&car_rent_per_page=6&isAdmin=1`);
             dispatch(carAction.setCars(data));
         } catch (error) {
             const errorMessage = error.response?.data?.message || "Error fetching cars"

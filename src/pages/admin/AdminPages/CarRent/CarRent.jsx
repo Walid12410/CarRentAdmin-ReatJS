@@ -40,7 +40,7 @@ const CarRentTable = () => {
                                     <div key={car.id} className="car-card">
                                         <div className="car-image-container">
                                             <img
-                                                src={car?.CarImage[0]?.carImage?.url}
+                                                src={car?.CarImage[0]?.carImage?.url || "https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg"}
                                                 className="car-image"
                                                 alt={`${car?.carMake} ${car?.carModel}`}
                                             />
