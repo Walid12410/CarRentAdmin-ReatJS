@@ -45,3 +45,18 @@ export function countCar() {
         }
     }
 }
+
+// fetch one car
+export function fetchOneCar(carId){
+    return async (dispatch) => {
+        try {
+            dispatch(carAction.setLoadingCar());
+            const { data } = await request.get(`/api/car-rent/${carId}`);
+            dispatch(carAction.setCar(data));
+        } catch (error) {
+            const errorMessage = error.response?.data?.message || "Error fetching car"
+            dispatch(carAction.setErrorCar());
+            toast.error(errorMessage);
+        }
+    }
+}

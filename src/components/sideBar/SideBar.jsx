@@ -21,43 +21,43 @@ const AdminSideBar = () => {
                 Dashboard
             </Link>
             <ul className="admin-dashboard-list">
-                <Link to={"/admin/user-table"} className="admin-sidebar-link">
+                <Link to={"/admin/user"} className="admin-sidebar-link">
                     <PersonIcon width="20" height="20" fill="white" />
                     Users
                 </Link>
-                <Link to={"/admin/category-table"} className="admin-sidebar-link">
+                <Link to={"/admin/category"} className="admin-sidebar-link">
                     <TagsIcon width="20" height="20" fill="white" />
                     Categories
                 </Link>
-                <Link to={"/admin/company-table"} className="admin-sidebar-link" >
+                <Link to={"/admin/company"} className="admin-sidebar-link" >
                     <BuildingIcon width="20" height="20" fill="white" />
                     Comapanies
                 </Link>
-                <Link to={"/admin/employee-table"} className="admin-sidebar-link">
+                <Link to={"/admin/employee"} className="admin-sidebar-link">
                     <PeopleIcon width="20" height="20" fill="white" />
                     Employee
                 </Link>
-                <Link to={"/admin/promo-table"} className="admin-sidebar-link">
+                <Link to={"/admin/promo"} className="admin-sidebar-link">
                     <CouponsIcon width="20" height="20" fill="white" />
                     Promo
                 </Link>
-                <Link to={"/admin/offer-table"} className="admin-sidebar-link">
+                <Link to={"/admin/offer"} className="admin-sidebar-link">
                     <SaleIcon width="20" height="20" fill="white" />
                     Offer
                 </Link>
-                <Link to={"/admin/car-rent-table"} className="admin-sidebar-link">
+                <Link to={"/admin/car-rent"} className="admin-sidebar-link">
                     <CarIcon width="20" height="20" fill="white" />
                     Car Rent
                 </Link>
-                <Link to={"/admin/booking-table"} className="admin-sidebar-link">
+                <Link to={"/admin/booking"} className="admin-sidebar-link">
                     <BookingIcon width="20" height="20" fill="white" />
                     Booking
                 </Link>
-                <Link to={"/admin/notification-table"} className="admin-sidebar-link">
+                <Link to={"/admin/notification"} className="admin-sidebar-link">
                     <NoticationIcon width="20" height="20" fill="white" />
                     Notification
                 </Link>
-                <Link to={"/admin/user-table"} className="admin-sidebar-link">
+                <Link to={"/admin/user"} className="admin-sidebar-link">
                     <LogOutIcon width="20" height="20" fill="white" />
                     Log out
                 </Link>

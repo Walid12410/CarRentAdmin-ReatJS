@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import AdminSideBar from "../../../../components/sideBar/SideBar";
-import './company.css';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteCompany, fetchAllCompany } from "../../../../redux/api/companyApiCall";
 import swal from 'sweetalert';
+import Table from '../../../../components/table/Table';
+import "../pages.css";
 
-const CompaniesTable = () => {
+
+const Company = () => {
 
     const dispatch = useDispatch();
     const [deleteInitiated, setDeleteInitiated] = useState(false);
@@ -18,6 +20,15 @@ const CompaniesTable = () => {
         loadingCompanyDeleted,
         isCompanyDeleted
     } = useSelector(state => state.company);
+
+    // Column definitions
+    const columns = [
+        {columnName : "Company Name" , dataField : "companyName" },
+        {columnName : "Email" , dataField : "companyEmail" },
+        {columnName : "Phone Number" , dataField : "companyPhoneNumber" },
+        {columnName : "Created At" , dataField : "createdAt" },
+        {columnName : "Action" , dataField : "action" },
+    ];
 
     // Delete Company
     const CompanyDelete = (id) => {
@@ -63,51 +74,39 @@ const CompaniesTable = () => {
         window.scrollTo(0, 0);
     }, [dispatch]);
 
+
+    // Map companies data for table rows
+    const rows = companies?.map(company => ({
+        companyName: company?.companyName,
+        companyEmail: company?.companyEmail,
+        companyPhoneNumber: company?.companyPhoneNumber,
+        createdAt: new Date(company?.createdAt).toDateString(),
+        action: (
+            <div className="table-button-group">
+                <Link to={`/company/${company?._id}`} className="view-details-btn">Details</Link>
+                <button className='update-btn'>Update</button>
+                <button onClick={() => CompanyDelete(company?._id)} className='delete-btn'>Delete</button>
+            </div>
+        )
+    }));
+
+
     return (
-        <section className="table-container">
+        <section className="page-container">
             <AdminSideBar />
-            <div className="table-wrapper">
-                <h1 className="table-title">Companies</h1>
+            <div className="wrapper">
+                <h1 className="page-title">Companies</h1>
                 <Link className="new-form-button" to={`/admin/new-company`}>New Company</Link>
                 {loadingCompanies ? (
-                    <p>Loading...</p>
+                    <div className="loading-spinner"></div>
                 ) : errorCompanies ? (
-                    <p>Error fetching companies</p>
+                    <div className="error-message">Error fetch company</div>
                 ) : (
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th>Company Name</th>
-                                <th>Email</th>
-                                <th>Phone Number</th>
-                                <th>Created At</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {companies?.map((company) => (
-                                <tr key={company?._id}>
-                                    <td>{company?.companyName}</td>
-                                    <td>{company?.companyEmail}</td>
-                                    <td>{company?.companyPhoneNumber}</td>
-                                    <td>{new Date(company?.createdAt).toDateString()}</td>
-                                    <td>
-                                        <div className="table-button-group">
-                                            <Link to={`/company/${company?._id}`} className="view-details-btn">
-                                                View Details
-                                            </Link>
-                                            <button>Update</button>
-                                            <button onClick={() => CompanyDelete(company?._id)}>Delete</button> 
-                                        </div>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                    <Table columns={columns} rows={rows}/>
                 )}
             </div>
         </section>
     );
 }
 
-export default CompaniesTable;
+export default Company;

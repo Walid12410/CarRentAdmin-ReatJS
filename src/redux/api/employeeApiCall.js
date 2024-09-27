@@ -22,3 +22,25 @@ export function fetchEmployee(){
         }
     }
 }
+
+
+// Create new employee
+export function createEmployee(newEmployee) {
+    return async (dispatch , getState) => {
+        try {
+            dispatch(employeeAction.setLoadingEmpolyeeCreated());
+            await request.post(`/api/auth-employee/register`,newEmployee , {
+                headers :{
+                    Authorization : "Bearer " + getState().auth.user.token,
+                    "Content-Type" : "application/json"
+                }
+            });
+            dispatch(employeeAction.setIsEmoloyeeCreated());
+            setTimeout(()=> dispatch(employeeAction.setClearEmployeeCreated()));
+        } catch (error) {
+            const errorMessage = error.response?.data?.message || "Error create Employee";
+            toast.error(errorMessage);
+            dispatch(employeeAction.setClearEmployeeCreated())
+        }
+    }
+}

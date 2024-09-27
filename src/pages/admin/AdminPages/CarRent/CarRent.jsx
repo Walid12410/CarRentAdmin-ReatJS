@@ -5,10 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { countCar, fetchCars } from "../../../../redux/api/carApiCall";
 import Pagination from "../../../../components/pagination/Pagination";
+import { Link } from "react-router-dom";
 
 const CAR_PER_PAGE = 6;
 
-const CarRentTable = () => {
+const CarRent = () => {
     const dispatch = useDispatch();
     const { carsCount, cars, loadingCars, errorCars } = useSelector(state => state.car);
     const [currentPage, setCurrentPage] = useState(1);
@@ -58,7 +59,7 @@ const CarRentTable = () => {
                                                 {car?.reviewCount} ({car?.averageRating} reviews)
                                             </div>
                                         </div>
-                                        <div className="car-details-button">More Details</div>
+                                        <Link className="car-details-button" to={`/admin/car-rent/car-details/${car?._id}`}>More Details</Link>
                                     </div>
                                 ))}
                             </div>
@@ -70,11 +71,11 @@ const CarRentTable = () => {
                                 />
                             </div>
                         </>
-                    )}
+                    )}>
                 </div>
             </section>
         </>
     );
 };
 
-export default CarRentTable;
+export default CarRent;

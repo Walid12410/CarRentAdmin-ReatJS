@@ -1,20 +1,30 @@
 import { useDispatch, useSelector } from "react-redux";
 import AdminSideBar from "../../../../components/sideBar/SideBar";
-import "./user.css";
+import "../pages.css";
 import { useEffect, useState } from "react";
 import { countUser, fetchUsers } from "../../../../redux/api/userApiCall";
 import Pagination from "../../../../components/pagination/Pagination";
+import Table from "../../../../components/table/Table";
+import "./user.css";
 
 
 const USERS_PER_PAGE = 10;
 
-const UserTable = () => {
+const User = () => {
 
     const dispatch = useDispatch();
     const { loadingUsers, users, errorUsers, usersCount } = useSelector(state => state.user);
     const [currentPage, setCurrentPage] = useState(1);
     const pages = Math.ceil(usersCount / USERS_PER_PAGE);
 
+    const columns = [
+        { columnName: "User Photo", dataField: "photo" },
+        { columnName: "User Name", dataField: "userName" },
+        { columnName: "Email", dataField: "email" },
+        { columnName: "Phone Number", dataField: "phoneNumber" },
+        { columnName: "Created At", dataField: "createdAt" },
+        { columnName: "Action", dataField: "action" },
+    ];
 
     useEffect(() => {
         dispatch(fetchUsers(currentPage));
@@ -26,46 +36,35 @@ const UserTable = () => {
     }, [dispatch]);
 
 
+    const rows = users?.map(user => ({
+        photo: (
+            <img src={user?.profilePhoto?.url} className="user-photo" />
+        ),
+        userName: `${user?.firstName} ${user?.lastName}`,
+        email: user?.email,
+        phoneNumber: user?.phoneNumber,
+        createdAt: new Date(user?.createdAt).toDateString(),
+        action: (
+            <div className="table-button-group">
+                <button className="delete-btn">Remove User</button>
+            </div>
+        )
+    }))
+
+
     return (
-        <section className="admin-dashboard">
+        <section className="page-container">
             <AdminSideBar />
-            <div className="user-wrapper">
-                <h1 className="user-title">Users</h1>
+            <div className="wrapper">
+                <h1 className="page-title">Users</h1>
+                <input type="text" className="search-user" placeholder="Search for specific user" />
                 {loadingUsers ? (
                     <div className="loading-spinner"></div>
                 ) : errorUsers ? (
                     <div className="error-message">Error fetch users</div>
                 ) : (
                     <>
-                        <table className="table">
-                            <thead>
-                                <tr>
-                                    <th>User Photo</th>
-                                    <th>User Name</th>
-                                    <th>Email</th>
-                                    <th>Phone Number</th>
-                                    <th>Created At</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {users?.map((user) => (
-                                    <tr key={user?._id}>
-                                        <td> <img src={user?.profilePhoto?.url} className="user-photo" />
-                                        </td>
-                                        <td>{user?.firstName} {user?.lastName}</td>
-                                        <td>{user?.email}</td>
-                                        <td>{user?.phoneNumber}</td>
-                                        <td>{new Date(user?.createdAt).toDateString()}</td>
-                                        <td>
-                                            <div className="table-button-group">
-                                                <button>Remove User</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                        <Table columns={columns} rows={rows} />
                         <div className="pagination-conatiner">
                             <Pagination
                                 pages={pages}
@@ -80,4 +79,4 @@ const UserTable = () => {
     );
 }
 
-export default UserTable
+export default User;

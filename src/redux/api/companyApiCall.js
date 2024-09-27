@@ -33,7 +33,8 @@ export function createCompany(newCompany) {
             dispatch(companyAction.setCompanyCreated());
             setTimeout(()=> dispatch(companyAction.setClearCompanyCreated()));
         } catch (error) {
-            toast.error(error.response.data.message);
+            const errorMessage = error.response?.data?.message || "Error create new company";
+            toast.error(errorMessage);
             dispatch(companyAction.setClearLoading());
         }
     }

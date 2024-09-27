@@ -9,7 +9,9 @@ const carSlice = createSlice({
     carsCount : null,
     cars : [],
     loadingCars : false,
-    errorCars : null
+    errorCars : null,
+    car: null,         
+    loadingCar: false,
   },
   reducers: { 
     setLatestCar: (state, action) => {
@@ -39,6 +41,17 @@ const carSlice = createSlice({
     setErrorCars : (state , action) => {
       state.loadingCars = false;
       state.errorCars = action.payload
+    },
+    // Get one car
+    setCar: (state, action) => {
+      state.loadingCar = false;
+      state.car = action.payload;  
+    },
+    setLoadingCar : (state) => {
+      state.loadingCar = true;
+    },
+    setErrorCar : (state) => {
+      state.loadingCar = false;
     }
   },
 });

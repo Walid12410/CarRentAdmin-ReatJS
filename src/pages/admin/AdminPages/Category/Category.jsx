@@ -1,60 +1,56 @@
 import React, { useEffect } from 'react';
 import AdminSideBar from "../../../../components/sideBar/SideBar";
-import "../table.css";
+import "../pages.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCategory } from "../../../../redux/api/categoryApiCall";
+import Table from '../../../../components/table/Table';
 
 
-const CategoryTable = () => {
+const Category = () => {
 
     const dispatch = useDispatch();
     const { categories, loading, error } = useSelector(state => state.category);
 
-    useEffect(()=>{
+    // Column definitions
+    const columns = [
+        { columnName: "Count", dataField: "countCat" },
+        { columnName: "Category Title", dataField: "categoryName" },
+        { columnName: "Action", dataField: "action" },
+    ];
+
+    useEffect(() => {
         dispatch(fetchCategory());
         window.scrollTo(0, 0);
     }, [dispatch]);
 
-    return (  
-        <section className="table-container">
+    // Map companies data for table rows
+    const rows = categories?.map((category, index) =>({
+        countCat: index + 1,
+        categoryName: category?.categoryName,
+        action: (
+            <div className="table-button-group">
+                <button className='update-btn'>Update</button>
+                <button className='delete-btn'>Delete</button>
+            </div>
+        )
+    }));
+
+    return (
+        <section className="page-container">
             <AdminSideBar />
-            <div className="table-wrapper">
-                <h1 className="table-title">Categories</h1>
+            <div className="wrapper">
+                <h1 className="page-title">Categories</h1>
                 <button className="new-form-button">New Category</button>
                 {loading ? (
-                    <p>Loading...</p>
+                    <div className="loading-spinner"></div>
                 ) : error ? (
-                    <p>Error fetching categories</p>
+                    <div className="error-message">Error fetch users</div>
                 ) : (
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th>Count</th>
-                                <th>Category Title</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {categories?.map((category , index) => (
-                                <tr key={category?._id}>
-                                    <td>{index + 1}</td>
-                                    <td>
-                                        <b>{category?.categoryName}</b>
-                                    </td>
-                                    <td>
-                                        <div className="table-button-group">
-                                            <button>Update Category</button>
-                                            <button>Delete Category</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                   <Table columns={columns} rows={rows} />
                 )}
             </div>
         </section>
     );
 }
- 
-export default CategoryTable;
+
+export default Category;

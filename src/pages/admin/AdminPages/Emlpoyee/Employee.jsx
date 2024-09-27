@@ -1,63 +1,63 @@
-import "./employee.css";
 import { useDispatch, useSelector } from 'react-redux';
 import AdminSideBar from "../../../../components/sideBar/SideBar";
 import React, { useEffect } from 'react';
 import { fetchEmployee } from "../../../../redux/api/employeeApiCall";
+import { Link } from "react-router-dom";
+import "../pages.css";
+import Table from '../../../../components/table/Table';
 
 
-
-const EmployeeTable = () => {
+const Employee = () => {
 
     const dispatch = useDispatch();
     const { loadingEmployees, errorEmployees, employees } = useSelector(state => state.employee);
+
+    // Column definitions
+    const columns = [
+        { columnName: "User Name", dataField: "userName" },
+        { columnName: "Email", dataField: "email" },
+        { columnName: "Company Name", dataField: "companyName" },
+        { columnName: "Crated At", dataField: "createdAt" },
+        { columnName: "Action", dataField: "action" },
+    ];
 
     useEffect(() => {
         dispatch(fetchEmployee());
         window.scrollTo(0, 0);
     }, [dispatch]);
 
+
+    // Map companies data for table rows
+    const rows = employees?.map(employee => ({
+        userName: employee?.userName,
+        email: employee?.email,
+        companyName: employee?.companyDetails[0]?.companyName,
+        createdAt: new Date(employee?.createdAt).toDateString(),
+        action: (
+            <div className="table-button-group">
+                <button className='update-btn'>Update</button>
+                <button className='delete-btn'>Delete</button>
+            </div>
+        )
+    }));
+
+
     return (
-        <section className="table-container">
+        <section className="page-container">
             <AdminSideBar />
-            <div className="table-wrapper">
-                <h1 className="table-title">Employees</h1>
-                <button className="new-form-button">New Employee</button>
+            <div className="wrapper">
+                <h1 className="page-title">Employees</h1>
+                <Link className="new-form-button" to={`/admin/new-employee`}>New Employee</Link>
                 {loadingEmployees ? (
-                    <p>Loading...</p>
+                    <div className="loading-spinner"></div>
                 ) : errorEmployees ? (
-                    <p>Error fetch employees</p>
+                    <div className="error-message">Error fetch company</div>
                 ) : (
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th>User Name</th>
-                                <th>Email</th>
-                                <th>Company Name</th>
-                                <th>Created At</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {employees?.map((employee) => (
-                                <tr key={employee?._id}>
-                                    <td>{employee?.userName}</td>
-                                    <td>{employee?.email}</td>
-                                    <td>{employee?.companyDetails[0]?.companyName}</td>
-                                    <td>{new Date(employee?.createdAt).toDateString()}</td>
-                                    <td>
-                                        <div className="table-button-group">
-                                            <button>Update</button>
-                                            <button>Delete</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                    <Table columns={columns} rows={rows} />
                 )}
             </div>
         </section>
     );
 }
 
-export default EmployeeTable
+export default Employee;
