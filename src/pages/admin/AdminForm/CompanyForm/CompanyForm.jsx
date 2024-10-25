@@ -1,9 +1,9 @@
 import { toast } from "react-toastify";
-import AdminSideBar from "../../../components/sideBar/SideBar";
-import './form.css';
+import AdminSideBar from "../../../../components/sideBar/SideBar";
+import '../form.css';
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createCompany } from "../../../redux/api/companyApiCall";
+import { createCompany } from "../../../../redux/api/companyApiCall";
 import { useNavigate } from "react-router-dom";
 
 const CompanyForm = () => {

@@ -34,6 +34,8 @@ const CarRent = () => {
                         <div className="loading-spinner"></div>
                     ) : errorCars ? (
                         <div className="error-message">Error fetching cars</div>
+                    ) : cars.length === 0 ? (
+                        <div className="error-message">No car added yet</div>
                     ) : (
                         <>
                             <div className="car-wrapper-card">
@@ -71,7 +73,7 @@ const CarRent = () => {
                                 />
                             </div>
                         </>
-                    )}>
+                    )}
                 </div>
             </section>
         </>

@@ -16,3 +16,25 @@ export function fetchCategory() {
     }
   };
 }
+
+
+// create category
+export function createCategory(categoryName) {
+  return async (dispatch , getState) => {
+    try {
+      dispatch(categoryAction.setLoadingCreateCategory());
+      await request.post(`/api/category`, categoryName , {
+        headers : {
+          Authorization : "Bearer " + getState().auth.user.token,
+          "Content-Type" : "application/json"
+        }
+      });
+      dispatch(categoryAction.setIsCreatedCategory());
+      setTimeout(()=> dispatch(categoryAction.setClearCategoryCreated()));
+    } catch (error) {
+      const erroMessage = error.response?.data?.message || "Error create category";
+      toast.error(erroMessage);
+      dispatch(categoryAction.setClearCategoryCreated());
+    }
+  }
+}

@@ -69,8 +69,6 @@ const CarDetails = () => {
                         </div>
                     </div>
                 </div>
-
-                <div className="review">Reviews: 230</div>
             </div>
         </section>
     );

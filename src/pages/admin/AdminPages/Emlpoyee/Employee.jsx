@@ -52,6 +52,8 @@ const Employee = () => {
                     <div className="loading-spinner"></div>
                 ) : errorEmployees ? (
                     <div className="error-message">Error fetch company</div>
+                ): employees.length === 0 ? (
+                    <div className="error-message">no employee added yet</div>
                 ) : (
                     <Table columns={columns} rows={rows} />
                 )}

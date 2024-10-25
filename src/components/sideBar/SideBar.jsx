@@ -10,6 +10,7 @@ import { ReactComponent as PeopleIcon } from '../../assets/admin-icon/people.svg
 import { ReactComponent as TagsIcon } from '../../assets/admin-icon/tags-fill.svg';
 import { ReactComponent as LogOutIcon } from '../../assets/admin-icon/enter-icon.svg';
 import { ReactComponent as BookingIcon } from '../../assets/admin-icon/booking-icon.svg';
+import { ReactComponent as ReviewIcon } from '../../assets/admin-icon/review.svg';
 import { ReactComponent as NoticationIcon } from '../../assets/admin-icon/notification-alert-icon.svg';
 
 
@@ -52,6 +53,10 @@ const AdminSideBar = () => {
                 <Link to={"/admin/booking"} className="admin-sidebar-link">
                     <BookingIcon width="20" height="20" fill="white" />
                     Booking
+                </Link>
+                <Link className="admin-sidebar-link">
+                    <ReviewIcon width="20" height="20" fill="white" />
+                    Review
                 </Link>
                 <Link to={"/admin/notification"} className="admin-sidebar-link">
                     <NoticationIcon width="20" height="20" fill="white" />

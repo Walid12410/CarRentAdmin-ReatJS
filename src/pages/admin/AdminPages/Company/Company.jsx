@@ -101,6 +101,8 @@ const Company = () => {
                     <div className="loading-spinner"></div>
                 ) : errorCompanies ? (
                     <div className="error-message">Error fetch company</div>
+                ): companies.length ===0 ? (
+                    <div className="error-message">no company added yet</div>
                 ) : (
                     <Table columns={columns} rows={rows}/>
                 )}

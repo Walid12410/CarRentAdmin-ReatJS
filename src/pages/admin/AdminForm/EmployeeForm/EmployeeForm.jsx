@@ -47,7 +47,6 @@ const EmployeeForm = () => {
 
     useEffect(() => {
         dispatch(fetchAllCompany());
-        window.scrollTo(0, 0);
     }, [dispatch]);
 
 

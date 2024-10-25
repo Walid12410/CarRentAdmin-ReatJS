@@ -6,6 +6,8 @@ const categorySlice = createSlice({
     categories: [],
     loading: false,
     error: null,
+    loadingCreateCategory : false,
+    isCategoryCreated : false,
   },
   reducers: { 
     setCategory: (state, action) => {
@@ -20,6 +22,17 @@ const categorySlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    //Create Category
+    setLoadingCreateCategory : (state) => {
+      state.loadingCreateCategory = true;
+    },
+    setIsCreatedCategory : (state) => {
+      state.isCategoryCreated = true;
+    },
+    setClearCategoryCreated : (state) => {
+      state.isCategoryCreated = false;
+      state.loadingCreateCategory = false;
+    }
   },
 });
 

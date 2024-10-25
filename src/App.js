@@ -11,9 +11,9 @@ import OfferTable from "./pages/admin/AdminPages/Offer/Offer";
 import PromoTable from "./pages/admin/AdminPages/Promo/Promo";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import CompanyForm from './pages/admin/AdminForm/companyForm';
+import CompanyForm from './pages/admin/AdminForm/CompanyForm/CompanyForm';
 import User from './pages/admin/AdminPages/Users/Users';
-import EmployeeForm from './pages/admin/AdminForm/Employee/EmployeeForm';
+import EmployeeForm from './pages/admin/AdminForm/EmployeeForm/EmployeeForm';
 import CarDetails from './pages/admin/AdminPages/CarRent/CarDetails/CarDetails';
 
 function App() {
