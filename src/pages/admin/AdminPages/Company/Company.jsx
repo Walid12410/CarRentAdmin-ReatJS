@@ -13,7 +13,7 @@ const Company = () => {
     const dispatch = useDispatch();
     const [deleteInitiated, setDeleteInitiated] = useState(false);
 
-    const { 
+    const {
         loadingCompanies,
         errorCompanies,
         companies,
@@ -23,33 +23,33 @@ const Company = () => {
 
     // Column definitions
     const columns = [
-        {columnName : "Company Name" , dataField : "companyName" },
-        {columnName : "Email" , dataField : "companyEmail" },
-        {columnName : "Phone Number" , dataField : "companyPhoneNumber" },
-        {columnName : "Created At" , dataField : "createdAt" },
-        {columnName : "Action" , dataField : "action" },
+        { columnName: "Company Name", dataField: "companyName" },
+        { columnName: "Email", dataField: "companyEmail" },
+        { columnName: "Phone Number", dataField: "companyPhoneNumber" },
+        { columnName: "Created At", dataField: "createdAt" },
+        { columnName: "Action", dataField: "action" },
     ];
 
     // Delete Company
     const CompanyDelete = (id) => {
         swal({
-          title: "Are you sure?",
-          text: "Once deleted, this company and its related cars will be permanently deleted.",
-          icon: "warning",
-          buttons: true,
-          dangerMode: true,
+            title: "Are you sure?",
+            text: "Once deleted, this company and its related cars will be permanently deleted.",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
         }).then((willDelete) => {
-          if (willDelete) {
-            setDeleteInitiated(true); 
-            dispatch(deleteCompany(id)); 
-            swal({
-              title: "Deleting Company...",
-              icon: "info",
-              buttons: false,
-            });
-          } else {
-            swal("Company deletion canceled!");
-          }
+            if (willDelete) {
+                setDeleteInitiated(true);
+                dispatch(deleteCompany(id));
+                swal({
+                    title: "Deleting Company...",
+                    icon: "info",
+                    buttons: false,
+                });
+            } else {
+                swal("Company deletion canceled!");
+            }
         });
     };
 
@@ -59,13 +59,13 @@ const Company = () => {
                 swal("Company has been deleted successfully!", {
                     icon: "success",
                 });
-                dispatch(fetchAllCompany()); 
+                dispatch(fetchAllCompany());
             } else {
                 swal("Failed to delete the company!", {
                     icon: "error",
                 });
             }
-            setDeleteInitiated(false); 
+            setDeleteInitiated(false);
         }
     }, [deleteInitiated, loadingCompanyDeleted, isCompanyDeleted, dispatch]);
 
@@ -101,10 +101,10 @@ const Company = () => {
                     <div className="loading-spinner"></div>
                 ) : errorCompanies ? (
                     <div className="error-message">Error fetch company</div>
-                ): companies.length ===0 ? (
+                ) : companies.length === 0 ? (
                     <div className="error-message">no company added yet</div>
                 ) : (
-                    <Table columns={columns} rows={rows}/>
+                    <Table columns={columns} rows={rows} />
                 )}
             </div>
         </section>

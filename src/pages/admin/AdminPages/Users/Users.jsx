@@ -65,13 +65,14 @@ const User = () => {
                 ) : (
                     <>
                         <Table columns={columns} rows={rows} />
-                        <div className="pagination-conatiner">
+                        {users.length <= 10 ? <div></div> : <div className="pagination-conatiner">
                             <Pagination
                                 pages={pages}
                                 currentPage={currentPage}
                                 setCurrentPage={setCurrentPage}
                             />
-                        </div>
+                        </div>}
+
                     </>
                 )}
             </div>
