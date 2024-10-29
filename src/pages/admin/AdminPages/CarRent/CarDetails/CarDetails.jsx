@@ -33,39 +33,37 @@ const CarDetails = () => {
                     ))}
                 </div>
 
-                <div className="car-title">{car?.carMake} {car?.carModel}</div>
+                <div className="car-title">{car?.CarMake?.carMakeName} {car?.carModel}</div>
 
                 <div className="car-details">
                     <div className="car-detail">
                         <h1 className="car-details-title">Car Details</h1>
-                        <div className="car-details-text">Car Name: {car?.carMake} {car?.carModel}</div>
+                        <div className="car-details-text">Car Name: {car?.CarMake?.carMakeName} {car?.carModel}</div>
                         <div className="car-details-text">Year: {car?.year}</div>
                         <div className="car-details-text">Color: {car?.color}</div>
-                        <div className="car-details-text">Car Type: {car?.carType}</div>
                         <div className="car-details-text">Car Status: {car?.carStatus}</div>
                         <div className="car-details-text">License Plate: {car?.licensePlate}</div>
-                        <div className="car-details-text">VIN: {car?.vin}</div>
                         <div className="car-details-text">Mileage: {car?.mileage}</div>
                         <div className="car-details-text">Fuel Type: {car?.fuelType}</div>
                         <div className="car-details-text">Transmission: {car?.transmission}</div>
                         <div className="car-details-text">Rent Price: {car?.rentPrice} $/day</div>
-                        <div className="car-details-text">Category: {car?.category?.categoryName}</div>
+                        <div className="car-details-text">Category: {car?.Category?.categoryName}</div>
                         <div className="car-details-text">Created At: {new Date(car?.createdAt).toDateString()}</div>
                     </div>
                     <div className="car-details-company">
                         <h1 className="car-details-title">Company</h1>
                         <div className="company-img-details">
-                            <img className="company-img" src={car?.companyDetails[0]?.imageCompany[0]?.image?.url} alt="Company Logo" />
+                            <img className="company-img" src={car?.companyDetails?.imageCompany?.image?.url} alt="Company Logo" />
                             <div className="company-name-email">
-                                <div className="company-details-text">{car?.companyDetails[0]?.companyEmail}</div>
-                                <div className="car-details-text">{car?.companyDetails[0]?.companyName}</div>
+                                <div className="company-details-text">{car?.companyDetails?.companyEmail}</div>
+                                <div className="car-details-text">{car?.companyDetails?.companyName}</div>
                             </div>
                         </div>
                         <div className="company-details">
-                            <div className="company-details-text">Company Phone Number: {car?.companyDetails[0]?.companyPhoneNumber}</div>
-                            <div className="company-details-text">Company Address: {car?.companyDetails[0]?.companyAddress}</div>
-                            <div className="company-details-text">Company State: {car?.companyDetails[0]?.companyState}</div>
-                            <div className="company-details-text">Company City: {car?.companyDetails[0]?.companyCity}</div>
+                            <div className="company-details-text">Company Phone Number: {car?.companyDetails?.companyPhoneNumber}</div>
+                            <div className="company-details-text">Company Address: {car?.companyDetails?.companyAddress}</div>
+                            <div className="company-details-text">Company State: {car?.companyDetails?.companyState}</div>
+                            <div className="company-details-text">Company City: {car?.companyDetails?.companyCity}</div>
                         </div>
                     </div>
                 </div>

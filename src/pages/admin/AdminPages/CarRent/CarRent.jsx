@@ -43,7 +43,7 @@ const CarRent = () => {
                                     <div key={car.id} className="car-card">
                                         <div className="car-image-container">
                                             <img
-                                                src={car?.CarImage[0]?.carImage?.url || "https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg"}
+                                                src={car?.CarImage?.carImage?.url || "https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg"}
                                                 className="car-image"
                                                 alt={`${car?.carMake} ${car?.carModel}`}
                                             />
@@ -51,7 +51,7 @@ const CarRent = () => {
                                         </div>
                                         <div className="car-details">
                                             <div className="car-name">
-                                                {car?.carMake} {car?.carModel} - {car?.year}
+                                                {car?.CarMake[0]?.carMakeName} {car?.carModel} - {car?.year}
                                             </div>
                                             <div className="car-price">{car?.rentPrice} $/day</div>
                                         </div>

@@ -14,9 +14,6 @@ const CompanyForm = () => {
     const [companyName, setCompanyName] = useState("");
     const [companyEmail, setCompanyEmail] = useState("");
     const [companyNumber, setCompanyNumber] = useState("");
-    const [companyAddress, setCompanyAddress] = useState("");
-    const [companyCity, setCompanyCity] = useState("");
-    const [companyState, setCompanyState] = useState("");
 
     const formSubmitHandler = (e) => {
 
@@ -25,18 +22,12 @@ const CompanyForm = () => {
         if (companyName.trim() === "") return toast.error("Company name is required");
         if (companyEmail.trim() === "") return toast.error("Company email is required");
         if (companyNumber.trim() === "") return toast.error("Company number is required");
-        if (companyAddress.trim() === "") return toast.error("Company address is required");
-        if (companyCity.trim() === "") return toast.error("Company city is required");
-        if (companyState.trim() === "") return toast.error("Company state is required");
 
 
         const newCompany = {
             "companyName": companyName,
             "companyEmail": companyEmail,
             "companyPhoneNumber": companyNumber,
-            "companyAddress": companyAddress,
-            "companyCity": companyCity,
-            "companyState": companyState
         };
 
         dispatch(createCompany(newCompany));
@@ -47,7 +38,7 @@ const CompanyForm = () => {
 
     useEffect(() => {
         if (isCompanyCreated) {
-            navigate("/admin/company-table");
+            navigate("/admin/company");
         }
     }, [isCompanyCreated, navigate]);
 
@@ -72,18 +63,6 @@ const CompanyForm = () => {
                     <input value={companyNumber}
                         onChange={(e) => setCompanyNumber(e.target.value)}
                         type="number" placeholder="Phone Number" required className="input-field-company" />
-                    <p className="title-form">Company Address</p>
-                    <input value={companyAddress}
-                        onChange={(e) => setCompanyAddress(e.target.value)}
-                        type="text" placeholder="Address" required className="input-field-company" />
-                    <p className="title-form">Company City</p>
-                    <input value={companyCity}
-                        onChange={(e) => setCompanyCity(e.target.value)}
-                        type="text" placeholder="City" required className="input-field-company" />
-                    <p className="title-form">Company State</p>
-                    <input value={companyState}
-                        onChange={(e) => setCompanyState(e.target.value)}
-                        type="text" placeholder="State" required className="input-field-company" />
                     <button type="submit" className="submit-btn">{loadingCreateCompany ? "loading..." : "Create new company"}</button>
                 </form>
             </div>
