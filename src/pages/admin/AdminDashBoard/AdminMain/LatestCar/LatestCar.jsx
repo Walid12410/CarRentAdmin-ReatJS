@@ -1,9 +1,10 @@
 import "./latest-car.css";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchLatestCar } from "../../../redux/api/carApiCall";
+import { fetchLatestCar } from "../../../../../redux/api/carApiCall";
 import { Link } from "react-router-dom";
-import { fetchLatestOffer } from "../../../redux/api/offerApiCall";
+import { fetchLatestOffer } from "../../../../../redux/api/offerApiCall";
+
 
 const LatestCar = () => {
 
@@ -37,7 +38,6 @@ const LatestCar = () => {
                                 <tr>
                                     <th>Car Make</th>
                                     <th>Car Model</th>
-                                    <th>Car Type</th>
                                     <th>Year</th>
                                     <th>Color</th>
                                     <th>Price</th>
@@ -48,9 +48,8 @@ const LatestCar = () => {
                             <tbody>
                                 {latestCar?.map((car) => (
                                     <tr>
-                                        <td>{car?.carMake}</td>
+                                        <td>{car?.CarMake.carMakeName}</td>
                                         <td>{car?.carModel}</td>
-                                        <td>{car?.carType}</td>
                                         <td>{car?.year}</td>
                                         <td>{car?.color}</td>
                                         <td>{car?.rentPrice}$/day</td>

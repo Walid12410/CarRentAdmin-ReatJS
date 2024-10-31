@@ -1,5 +1,5 @@
-import AdminSideBar from "../../components/sideBar/SideBar";
-import "./admin.css";
+import AdminSideBar from "../../../components/Admin-Components/sideBar/SideBar";
+import "../admin.css";
 import AdminMain from "./AdminMain/AdminMainPage";
 
 

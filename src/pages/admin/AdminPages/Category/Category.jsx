@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import AdminSideBar from "../../../../components/sideBar/SideBar";
+import AdminSideBar from "../../../../components/Admin-Components/sideBar/SideBar";
 import "../pages.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCategory } from "../../../../redux/api/categoryApiCall";

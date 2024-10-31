@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import AdminSideBar from "../../../../components/sideBar/SideBar";
+import AdminSideBar from "../../../../components/Admin-Components/sideBar/SideBar";
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteCompany, fetchAllCompany } from "../../../../redux/api/companyApiCall";

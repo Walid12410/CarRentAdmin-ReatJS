@@ -1,4 +1,4 @@
-.admin-sidebar {
+.sidebar {
     flex: 2;
     padding: 20px;
     display: flex;
@@ -9,7 +9,7 @@
     overflow-y: auto;
 }
 
-.admin-sidebar-title {
+.sidebar-title {
     display: flex;
     align-items: center;
     font-size: 18px;
@@ -17,14 +17,14 @@
     color: white;
 }
 
-.admin-dashboard-list {
+.dashboard-list {
     list-style: none;
     display: flex;
     flex-direction: column;
     flex-grow: 1; 
 }
 
-.admin-sidebar-link {
+.sidebar-link {
     display: flex;
     align-items: center;
     font-size: 16px;
@@ -33,19 +33,19 @@
     padding: 10px 0;
 }
 
-.admin-sidebar-link svg {
+.sidebar-link svg {
     margin-right: 10px; 
     width: 20px; 
     height: 20px;
 }
 
-.admin-sidebar-link:hover {
+.sidebar-link:hover {
     color: gray; 
 }
 
 
 @media (max-width: 990px){
-    .admin-sidebar{
+    .sidebar{
         display: none;
     }
 }

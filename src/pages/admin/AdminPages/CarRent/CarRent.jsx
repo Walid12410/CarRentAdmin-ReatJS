@@ -1,4 +1,4 @@
-import AdminSideBar from "../../../../components/sideBar/SideBar";
+import AdminSideBar from "../../../../components/Admin-Components/sideBar/SideBar";
 import { ReactComponent as StarIcon } from '../../../../assets/admin-icon/star.svg';
 import "./car-rent.css";
 import { useDispatch, useSelector } from "react-redux";

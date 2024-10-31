@@ -1,7 +1,7 @@
 .admin-main {
     flex: 10; 
     padding: 10px;
-    background-image: url('../../../assets/background.jpg'); /* Background image path */
+    background-image: url('../../../../assets/background.jpg'); /* Background image path */
     background-size: cover; /* Cover the entire container */
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Prevent repeating the image */

@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import AdminSideBar from "../../../../../components/sideBar/SideBar";
+import AdminSideBar from "../../../../../components/Admin-Components/sideBar/SideBar";
 import "./car-details.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";

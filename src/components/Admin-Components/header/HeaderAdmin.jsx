@@ -1,7 +1,7 @@
 import "./header.css";
-import { ReactComponent as NotificationIcon } from '../../assets/admin-icon/notification-alert-icon.svg'
-import { ReactComponent as LogOutIcon } from '../../assets/admin-icon/enter-icon.svg';
-import { ReactComponent as PersonIcon } from '../../assets/admin-icon/person-circle.svg';
+import { ReactComponent as NotificationIcon } from '../../../assets/admin-icon/notification-alert-icon.svg'
+import { ReactComponent as LogOutIcon } from '../../../assets/admin-icon/enter-icon.svg';
+import { ReactComponent as PersonIcon } from '../../../assets/admin-icon/person-circle.svg';
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { Link } from "react-router-dom";

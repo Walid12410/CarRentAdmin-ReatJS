@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import AdminSideBar from "../../../../components/sideBar/SideBar";
+import AdminSideBar from "../../../../components/Admin-Components/sideBar/SideBar";
 import React, { useEffect } from 'react';
 import { fetchEmployee } from "../../../../redux/api/employeeApiCall";
 import { Link } from "react-router-dom";
