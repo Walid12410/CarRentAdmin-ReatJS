@@ -1,0 +1,63 @@
+.employee-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: black;
+    border-bottom: 1px solid #eaeaea;
+    margin-bottom: 20px;
+}
+
+.employee-header-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+.employee-header-icons {
+    display: flex;
+    color: white;
+    align-items: center;
+}
+
+.employee-notification-icon{
+    margin-left: 20px;
+    color: white;
+}
+
+.employee-profile-icon {
+    margin-left: 20px;
+    color: white;
+    position: relative;
+    cursor: pointer;
+}
+
+.header-right-dropdown{
+    position: absolute;
+    right: 0; 
+    top: 100%;
+    background-color: var(--main-color);
+    border: 1px solid var(--white-color);
+    border-radius: 5px;
+    padding: 10px; 
+    width: 150px;
+    text-align: left;
+    z-index: 10;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header-dropdown-item svg {
+    margin-right: 10px; /* Add space between icon and text */
+}
+
+.header-dropdown-item{
+    color: var(--primary-color);
+    font-weight: 500;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.header-dropdown-item:first-child {
+    margin-top: 0;
+}
