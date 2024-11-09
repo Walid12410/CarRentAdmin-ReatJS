@@ -1,5 +1,4 @@
 import React from 'react';
-import "./car-status.css";
 import { Bar, Doughnut, Line } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
@@ -31,8 +30,8 @@ ChartJS.register(
 
 const CompanyStatus = () => {
     return (
-        <div className="company-status-container">
-            <div className="dataCard revenueCard">
+        <div className="bg-slate-300 m-2 grid grid-rows-3 grid-flow-col gap-4 p-2">
+            <div className="row-span-3 box-border h-90  p-4 border-4"> 
                 <Line
                     data={{
                         labels: revenueData.map((data) => data.label),
@@ -73,7 +72,7 @@ const CompanyStatus = () => {
                     }}
                 />
             </div>
-            <div className="dataCard customerCard">
+            <div className="col-span-2 box-border h-48 p-4 border-4">
                 <Bar
                     data={{
                         labels: sourceData.map((data) => data.label),
@@ -91,6 +90,9 @@ const CompanyStatus = () => {
                         ],
                     }}
                     options={{
+                        responsive: true,
+                        maintainAspectRatio: false, // Allow it to adapt to container
+
                         plugins: {
                             title: {
                                 text: "Total Cars, Coupons and offers",
@@ -105,7 +107,7 @@ const CompanyStatus = () => {
                 />
             </div>
 
-            <div className="dataCard categoryCard">
+            <div className="row-span-2 col-span-2 box-border h-70 p-4 border-4">
                 <Doughnut
                     data={{
                         labels: sourceData.map((data) => data.label),
@@ -127,6 +129,8 @@ const CompanyStatus = () => {
                         ],
                     }}
                     options={{
+                        responsive: true,
+                        maintainAspectRatio: false, // Allow it to adapt to container
                         plugins: {
                             title: {
                                 text: "Car Status",
