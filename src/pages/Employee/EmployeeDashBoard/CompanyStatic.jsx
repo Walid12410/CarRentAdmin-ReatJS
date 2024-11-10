@@ -12,8 +12,8 @@ import {
     ArcElement,
     BarElement
 } from 'chart.js';
-import revenueData from "../../FakeData/revenueData.json";
-import sourceData from "../../FakeData/sourceData.json";
+import revenueData from "../FakeData/revenueData.json";
+import sourceData from "../FakeData/sourceData.json"
 
 // Register the plugins with ChartJS
 ChartJS.register(
