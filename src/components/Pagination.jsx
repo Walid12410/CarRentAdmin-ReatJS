@@ -1,4 +1,4 @@
-import "./pagination.css";
+import React from "react";
 
 const Pagination = ({ pages, currentPage, setCurrentPage }) => {
     const generatePagination = () => {
@@ -29,9 +29,9 @@ const Pagination = ({ pages, currentPage, setCurrentPage }) => {
     const paginationItems = generatePagination();
 
     return (
-        <div className="pagination">
+        <div className="flex items-center space-x-2 m-2">
             <button
-                className="page previous"
+                className="px-4 py-2 text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 disabled:opacity-50"
                 onClick={() => setCurrentPage((current) => Math.max(current - 1, 1))}
                 disabled={currentPage === 1}
             >
@@ -39,17 +39,18 @@ const Pagination = ({ pages, currentPage, setCurrentPage }) => {
             </button>
             {paginationItems.map((page, index) => (
                 <div
-                    className={`page ${currentPage === page ? "active" : ""}`}
-                    onClick={() => handlePageClick(page)}
                     key={index}
+                    className={`px-4 py-2 cursor-pointer rounded-lg ${currentPage === page ? "bg-gray-800 text-white" : "bg-gray-100 text-gray-700"
+                        } ${page !== "..." ? "hover:bg-gray-200" : ""}`}
+                    onClick={() => handlePageClick(page)}
                 >
                     {page}
                 </div>
             ))}
             <button
+                className="px-4 py-2 text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 disabled:opacity-50"
                 onClick={() => setCurrentPage((current) => Math.min(current + 1, pages))}
                 disabled={currentPage === pages}
-                className="page next"
             >
                 Next
             </button>

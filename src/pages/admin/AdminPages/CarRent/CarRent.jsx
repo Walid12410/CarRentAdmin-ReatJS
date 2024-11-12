@@ -4,7 +4,7 @@ import "./car-rent.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { countCar, fetchCars } from "../../../../redux/api/carApiCall";
-import Pagination from "../../../../components/pagination/Pagination";
+import Pagination from "../../../../components/Pagination";
 import { Link } from "react-router-dom";
 
 const CAR_PER_PAGE = 6;
@@ -13,7 +13,7 @@ const CarRent = () => {
     const dispatch = useDispatch();
     const { carsCount, cars, loadingCars, errorCars } = useSelector(state => state.car);
     const [currentPage, setCurrentPage] = useState(1);
-    const pages = Math.ceil(carsCount / CAR_PER_PAGE);
+    const pages = Math.ceil(carsCount?.carRentCount / CAR_PER_PAGE);
 
     useEffect(() => {
         dispatch(fetchCars(currentPage));

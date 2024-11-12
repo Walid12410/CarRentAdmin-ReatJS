@@ -12,6 +12,10 @@ const carSlice = createSlice({
     errorCars : null,
     car: null,         
     loadingCar: false,
+    companyCars: [],
+    loadingCompanyCars: false,
+    errorCompanyCars: null,
+    companyCarsCount : null,
   },
   reducers: { 
     setLatestCar: (state, action) => {
@@ -52,6 +56,23 @@ const carSlice = createSlice({
     },
     setErrorCar : (state) => {
       state.loadingCar = false;
+    },
+    // fetch company car
+    setCompanyCar: (state, action) => {
+      state.companyCars = action.payload;
+      state.loadingCompanyCars = false;
+      state.errorCompanyCars = null;
+    },
+    setLoadingCompanyCar: (state) => {
+      state.loadingCompanyCars = true;
+    },
+    setErrorCompanyCar: (state, action) => {
+      state.loadingCompanyCars = false;
+      state.errorCompanyCars = action.payload;
+    },
+    // count company car
+    setCompanyCarCount : (state,action) => {
+      state.companyCarsCount = action.payload;
     }
   },
 });

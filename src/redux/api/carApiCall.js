@@ -4,7 +4,7 @@ import request from "../../utils/requset";
 
 
 // fetch latest car
-export function fetchLatestCar(){
+export function fetchLatestCar() {
     return async (dispatch) => {
         try {
             dispatch(carAction.setLoadingLatestCar());
@@ -23,7 +23,7 @@ export function fetchCars(pageNumber) {
     return async (dispatch) => {
         try {
             dispatch(carAction.setLoadingCars());
-            const {data} = await request.get(`/api/car-rent?pageNumber=${pageNumber}&car_rent_per_page=6&isAdmin=1`);
+            const { data } = await request.get(`/api/car-rent?pageNumber=${pageNumber}&car_rent_per_page=6&isAdmin=1`);
             dispatch(carAction.setCars(data));
         } catch (error) {
             const errorMessage = error.response?.data?.message || "Error fetching cars"
@@ -37,7 +37,7 @@ export function fetchCars(pageNumber) {
 export function countCar() {
     return async (dispatch) => {
         try {
-            const {data} = await request.get(`/api/car-rent/count`);
+            const { data } = await request.get(`/api/car-rent/count`);
             dispatch(carAction.setCarsCount(data));
         } catch (error) {
             const errorMessage = error.response?.data?.message || "Error count cars"
@@ -47,7 +47,7 @@ export function countCar() {
 }
 
 // fetch one car
-export function fetchOneCar(carId){
+export function fetchOneCar(carId) {
     return async (dispatch) => {
         try {
             dispatch(carAction.setLoadingCar());
@@ -56,6 +56,35 @@ export function fetchOneCar(carId){
         } catch (error) {
             const errorMessage = error.response?.data?.message || "Error fetching car"
             dispatch(carAction.setErrorCar());
+            toast.error(errorMessage);
+        }
+    }
+}
+
+// fetch company car
+export function fetchCompanyCar(pageNumber) {
+    return async (dispatch , getState) => {
+        try {
+            dispatch(carAction.setLoadingCompanyCar());
+            const { data } = await request.get(`/api/car-rent?company=${getState().auth.employee.companyID}&companyPageNumber=${pageNumber}&companyLimitPage=6`)
+            dispatch(carAction.setCompanyCar(data));
+        } catch (error) {
+            const errorMessage = error.response?.data?.message || "Error fetch company car"
+            dispatch(carAction.setErrorCompanyCar(errorMessage));
+            toast.error(errorMessage);
+        }
+    }
+}
+
+
+// count company car
+export function countCompanyCar() {
+    return async (dispatch,getState) => {
+        try {
+            const { data } = await request.get(`/api/car-rent/count?companyId=${getState().auth.employee.companyID}`);
+            dispatch(carAction.setCompanyCarCount(data));
+        } catch (error) {
+            const errorMessage = error.response?.data?.message || "Error count cars"
             toast.error(errorMessage);
         }
     }

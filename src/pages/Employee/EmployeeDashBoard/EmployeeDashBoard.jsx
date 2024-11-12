@@ -1,5 +1,5 @@
 import EmployeeMainePage from "./EmployeeMain";
-import EmployeeSideBar from "../../../components/Employee-Components/SideBar-Employee";
+import EmployeeSideBar from "../../../components/Employee-Components/EmployeeSidebar";
 import { useState } from "react";
 
 const EmployeeDashBoard = () => {

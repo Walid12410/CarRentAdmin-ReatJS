@@ -3,7 +3,7 @@ import AdminSideBar from "../../../../components/Admin-Components/sideBar/SideBa
 import "../pages.css";
 import { useEffect, useState } from "react";
 import { countUser, fetchUsers } from "../../../../redux/api/userApiCall";
-import Pagination from "../../../../components/pagination/Pagination";
+import Pagination from "../../../../components/Pagination";
 import Table from "../../../../components/table/Table";
 import "./user.css";
 

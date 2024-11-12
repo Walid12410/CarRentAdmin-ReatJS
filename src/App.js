@@ -16,8 +16,9 @@ import User from './pages/admin/AdminPages/Users/Users';
 import EmployeeForm from './pages/admin/AdminForm/EmployeeForm/EmployeeForm';
 import CarDetails from './pages/admin/AdminPages/CarRent/CarDetails/CarDetails';
 import EmployeeDashBoard from './pages/Employee/EmployeeDashBoard/EmployeeDashBoard';
-import CarPage from './pages/Employee/pages/Car';
+import CarPage from './pages/Employee/carPage/Car';
 import LoginEmployee from './pages/Auth/LoginEmployee';
+import PromoPage from './pages/Employee/promoPage/Promo';
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
       <Route path='employee'>
         <Route index element={<EmployeeDashBoard/>} />
         <Route path= 'car-page' element={<CarPage />} />
+        <Route path= 'promo-page' element={<PromoPage />} />
       </Route>
     </Routes>
     <ToastContainer theme="colored" position="top-center"></ToastContainer>

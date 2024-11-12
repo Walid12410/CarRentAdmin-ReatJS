@@ -7,7 +7,7 @@ const authSlice = createSlice({
     JSON.parse(localStorage.getItem("userInfo")) : null,
     success : false,
     employee: localStorage.getItem("employeeInfo") ? 
-    JSON.parse(localStorage.getItem("emploteeInfo")) : null,
+    JSON.parse(localStorage.getItem("employeeInfo")) : null,
     successEmployee : false
   },
   reducers: {
