@@ -16,3 +16,17 @@ export function loginAdmin(user) {
     }
   };
 }
+
+export function loginEmployee(user) {
+  return async (dispatch) => {
+    try {
+      const { data } = await request.post("/api/auth-employee/login", user);
+      localStorage.setItem("employeeInfo", JSON.stringify(data));
+      dispatch(authAction.loginEmployee(data));
+      dispatch(authAction.setSuccessEmplpoyee(true)); 
+    } catch (error) {
+      dispatch(authAction.setSuccessEmplpoyee(false));
+      toast.error(error.response.data.message);
+    }
+  };
+}

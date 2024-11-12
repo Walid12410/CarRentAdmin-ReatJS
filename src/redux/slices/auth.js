@@ -4,10 +4,14 @@ const authSlice = createSlice({
   name: "auth",
   initialState: {
     user: localStorage.getItem("userInfo") ?
-    JSON.parse(localStorage.getItem("userInfo")) :null,
-    success : false
+    JSON.parse(localStorage.getItem("userInfo")) : null,
+    success : false,
+    employee: localStorage.getItem("employeeInfo") ? 
+    JSON.parse(localStorage.getItem("emploteeInfo")) : null,
+    successEmployee : false
   },
-  reducers: { 
+  reducers: {
+    // admin auth 
     login: (state, action) => {
       state.user = action.payload;
       state.success = true; 
@@ -19,6 +23,18 @@ const authSlice = createSlice({
     setSuccess: (state, action) => {
       state.success = action.payload;
     },
+    //Employee auth
+    loginEmployee: (state, action) => {
+      state.employee = action.payload;
+      state.successEmployee = true;
+    },
+    logoutEmployee: (state) => {
+      state.employee = null;
+      state.successEmployee = false;
+    },
+    setSuccessEmplpoyee: (state, action)=> {
+      state.success = action.payload;
+    }
   },
 });
 

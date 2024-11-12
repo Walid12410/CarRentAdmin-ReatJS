@@ -1,6 +1,6 @@
 import { BrowserRouter , Routes , Route } from 'react-router-dom';
 import AdminDashboard from './pages/admin/AdminDashBoard/AdminDashboard';
-import LogInPage from './pages/Auth/LogInPage';
+import LoginPageAdmin from './pages/Auth/LoginAdmin';
 import EmployeeTable from "./pages/admin/AdminPages/Emlpoyee/Employee";
 import Category from "./pages/admin/AdminPages/Category/Category";
 import BookingTable from "./pages/admin/AdminPages/Booking/Booking";
@@ -16,13 +16,16 @@ import User from './pages/admin/AdminPages/Users/Users';
 import EmployeeForm from './pages/admin/AdminForm/EmployeeForm/EmployeeForm';
 import CarDetails from './pages/admin/AdminPages/CarRent/CarDetails/CarDetails';
 import EmployeeDashBoard from './pages/Employee/EmployeeDashBoard/EmployeeDashBoard';
+import CarPage from './pages/Employee/pages/Car';
+import LoginEmployee from './pages/Auth/LoginEmployee';
 
 function App() {
   return (
     <BrowserRouter>
     <Routes>
-      <Route path='/' element={<LogInPage/>} />
-      <Route path= '/login' element={<LogInPage/>} />
+      <Route path='/' element={<LoginPageAdmin/>} />
+      <Route path= '/admin-login' element={<LoginPageAdmin/>} />
+      <Route path= '/employee-login' element={<LoginEmployee/>} />
 
       <Route path='admin'>
         <Route index element={<AdminDashboard/>} />
@@ -40,8 +43,9 @@ function App() {
         <Route path= 'notification' element={<NotificationTable />} />
       </Route>
 
-      <Route path='employee-page'>
+      <Route path='employee'>
         <Route index element={<EmployeeDashBoard/>} />
+        <Route path= 'car-page' element={<CarPage />} />
       </Route>
     </Routes>
     <ToastContainer theme="colored" position="top-center"></ToastContainer>
