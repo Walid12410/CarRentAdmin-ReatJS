@@ -34,9 +34,11 @@ const CarPage = () => {
                     sidebarToggle={sidebarToggle}
                     setSidebarToggle={setSidebarToggle}
                 />
-                <div className="text-ms font-bold text-white w-44 h-10 bg-gray-800 hover:bg-gray-700 cursor-pointer	 m-2 text-center p-2">
+                <Link
+                to={`/employee/car-page/new-car`}
+                className="text-ms font-bold text-white w-44 h-10 bg-gray-800 hover:bg-gray-700 cursor-pointer m-2 text-center p-2">
                     New Car
-                </div>
+                </Link>
                 {loadingCompanyCars ? (
                     <div className="loading-spinner"></div>
                 ) : errorCompanyCars ? (

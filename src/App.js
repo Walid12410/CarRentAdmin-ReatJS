@@ -19,6 +19,7 @@ import EmployeeDashBoard from './pages/Employee/EmployeeDashBoard/EmployeeDashBo
 import CarPage from './pages/Employee/carPage/Car';
 import LoginEmployee from './pages/Auth/LoginEmployee';
 import PromoPage from './pages/Employee/promoPage/Promo';
+import AddNewCar from './pages/Employee/AddCarPage/AddCar';
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
       <Route path='employee'>
         <Route index element={<EmployeeDashBoard/>} />
         <Route path= 'car-page' element={<CarPage />} />
+        <Route path= 'car-page/new-car' element={<AddNewCar />} />
         <Route path= 'promo-page' element={<PromoPage />} />
       </Route>
     </Routes>
