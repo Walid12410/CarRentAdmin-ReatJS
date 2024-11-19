@@ -63,7 +63,7 @@ export function fetchOneCar(carId) {
 
 // fetch company car
 export function fetchCompanyCar(pageNumber) {
-    return async (dispatch , getState) => {
+    return async (dispatch, getState) => {
         try {
             dispatch(carAction.setLoadingCompanyCar());
             const { data } = await request.get(`/api/car-rent?company=${getState().auth.employee.companyID}&companyPageNumber=${pageNumber}&companyLimitPage=6`)
@@ -79,13 +79,44 @@ export function fetchCompanyCar(pageNumber) {
 
 // count company car
 export function countCompanyCar() {
-    return async (dispatch,getState) => {
+    return async (dispatch, getState) => {
         try {
             const { data } = await request.get(`/api/car-rent/count?companyId=${getState().auth.employee.companyID}`);
             dispatch(carAction.setCompanyCarCount(data));
         } catch (error) {
             const errorMessage = error.response?.data?.message || "Error count cars"
             toast.error(errorMessage);
+        }
+    }
+}
+
+
+
+// Create new Car
+export function CreateNewCar(newCar, carImage) {
+    return async (dispatch, getState) => {
+        try {
+            dispatch(carAction.setLoadingCarCreated());
+            const carResponse = await request.post(`/api/car-rent`,newCar, {
+                headers: {
+                    Authorization: "Bearer " + getState().auth.employee.token,
+                    "Content-Type": "application/json"
+                }
+            });
+            const carId = carResponse.data.carId;
+            await request.post(`/api/car-rent/car-image/${carId}`,carImage,{
+                headers : {
+                    Authorization : "Bearer " + getState().auth.employee.token,
+                    "Content-Type" : "multipart/from-data"
+                }
+            });
+            dispatch(carAction.setIsCarCreated());
+            toast.success("new car created successfully!");
+            setTimeout(()=> dispatch(carAction.setClearCarCreated()));
+        } catch (error) {
+            const errorMessage = error.response?.data?.message || "Error create new car";
+            toast.error(errorMessage);
+            dispatch(carAction.setClearCarCreated());
         }
     }
 }

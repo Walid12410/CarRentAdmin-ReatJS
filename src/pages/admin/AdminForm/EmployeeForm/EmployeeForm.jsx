@@ -12,7 +12,6 @@ const EmployeeForm = () => {
     const dispatch = useDispatch();
     
     const { loadingCreateEmployee, isEmployeeCreated } = useSelector(state => state.employee);
-
     const { companies, loadingCompanies, errorCompanies } = useSelector(state => state.company);
 
 
@@ -78,7 +77,8 @@ const EmployeeForm = () => {
                         onChange={(e) => setEmployeePassword(e.target.value)}
                         type="password" placeholder="password" required className="input-field-company" />
                     <p className="title-form">Company name</p>
-                    <select className="input-field-company" value={companyId} onChange={(e) => setCompanyId(e.target.value)}>
+                    <select className="input-field-company" value={companyId}
+                     onChange={(e) => setCompanyId(e.target.value)}>
                         <option value="">Select Company</option>
                         {loadingCompanies ? (
                             <p>Loading...</p>

@@ -4,14 +4,36 @@ import EmployeeHeader from "../../../components/Employee-Components/EmployeeHead
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCarMake } from "../../../redux/api/carMakeApi";
 import { fetchCategory } from "../../../redux/api/categoryApiCall";
+import { toast } from "react-toastify";
+import { CreateNewCar } from "../../../redux/api/carApiCall";
+import { useNavigate } from "react-router-dom";
 
 const AddNewCar = () => {
     const dispatch = useDispatch();
 
     const [sidebarToggle, setSidebarToggle] = useState(false);
-    const [images, setImages] = useState([]); // State to manage uploaded images
     const { carMake, loadingCarMake, errorCarMake } = useSelector(state => state.carMake);
     const { categories, loading, error } = useSelector(state => state.category);
+    const { isCarCreated, loadingCarCreate } = useSelector(state => state.car);
+
+    // Image array
+    const [images, setImages] = useState([]); // State to manage uploaded images
+
+    // All object data
+    const [carMakeId, setCarMakeId] = useState(null);
+    const [carModel, setCarModel] = useState("");
+    const [categoryId, setCategoryId] = useState(null);
+    const [year, setYear] = useState("");
+    const [color, setColor] = useState("");
+    const [carStatus, setCarStatus] = useState("");
+    const [licensePlate, setLicensePlate] = useState("");
+    const [mileage, setMileage] = useState("");
+    const [fuelType, setFuelType] = useState("");
+    const [transmission, setTransmission] = useState("");
+    const [rentPrice, setRentPrice] = useState("");
+
+
+
 
     useEffect(() => {
         dispatch(fetchCarMake());
@@ -42,6 +64,58 @@ const AddNewCar = () => {
     };
 
 
+    const formSubmitHandler = (e) => {
+        e.preventDefault();
+
+        // validation for empty variable 
+        if (carMakeId === null) return toast.error("Car make is required");
+        if (categoryId === null) return toast.error("Category is required");
+        if (carModel.trim() === "") return toast.error("Car model is required");
+        if (year.trim() === "") return toast.error("Year is required");
+        if (color.trim() === "") return toast.error("Color is required");
+        if (rentPrice.trim() === "") return toast.error("Rent price is required");
+        if (carStatus.trim() === "") return toast.error("Car status is required");
+        if (transmission.trim() === "") return toast.error("Transmission is required");
+        if (mileage.trim() === "") return toast.error("Mileage is required");
+        if (licensePlate.trim() === "") return toast.error("License plate is required");
+        if (fuelType.trim() === "") return toast.error("Fuel type is required");
+        if(images.length === 0) return toast.error("Image is required");
+
+
+        // make all variable in object
+        const newCar = {
+            "carMakeId": carMakeId,
+            "carModel": carModel,
+            "categoryId": categoryId,
+            "year": year,
+            "color": color,
+            "carStatus": carStatus,
+            "licensePlate": licensePlate,
+            "mileage": mileage,
+            "fuelType": fuelType,
+            "transmission": transmission,
+            "rentPrice": rentPrice,
+        }
+
+        // Create a new FormData object
+        const formData = new FormData();
+
+        // Append images to FormData
+        images.forEach((image) => {
+            formData.append("carImages", image); // Use a unique key for each image
+        });
+
+        dispatch(CreateNewCar(newCar,formData));
+    }
+
+    const navigate = useNavigate();
+
+    useEffect(()=> {
+        if(isCarCreated) {
+            navigate("/employee/car-page");
+        }
+    }, [isCarCreated , navigate]);
+
     return (
         <div className="flex">
             <EmployeeSideBar sidebarToggle={sidebarToggle} />
@@ -55,7 +129,7 @@ const AddNewCar = () => {
                         <div className="text-3xl font-bold text-center mb-6">
                             Add New Car
                         </div>
-                        <form className="space-y-6">
+                        <form className="space-y-6" onSubmit={formSubmitHandler}>
                             <div className="grid grid-cols-3 gap-6">
                                 <div className="flex flex-col">
                                     <label htmlFor="carModel" className="text-sm font-medium mb-1">
@@ -65,6 +139,8 @@ const AddNewCar = () => {
                                         type="text"
                                         id="carModel"
                                         className="rounded-lg border border-gray-300 p-2.5 w-full"
+                                        value={carModel}
+                                        onChange={(e) => setCarModel(e.target.value)}
                                     />
                                 </div>
 
@@ -76,6 +152,8 @@ const AddNewCar = () => {
                                         type="number"
                                         id="year"
                                         className="rounded-lg border border-gray-300 p-2.5 w-full"
+                                        value={year}
+                                        onChange={(e) => setYear(e.target.value)}
                                     />
                                 </div>
 
@@ -87,6 +165,8 @@ const AddNewCar = () => {
                                         type="text"
                                         id="color"
                                         className="rounded-lg border border-gray-300 p-2.5 w-full"
+                                        value={color}
+                                        onChange={(e) => setColor(e.target.value)}
                                     />
                                 </div>
                             </div>
@@ -99,6 +179,8 @@ const AddNewCar = () => {
                                     <select
                                         id="status"
                                         className="rounded-lg border border-gray-300 p-2.5 w-full bg-white"
+                                        value={carStatus}
+                                        onChange={(e) => setCarStatus(e.target.value)}
                                     >
                                         <option value="">Select Status</option>
                                         <option value="Available">Available</option>
@@ -115,6 +197,8 @@ const AddNewCar = () => {
                                         type="text"
                                         id="licensePlate"
                                         className="rounded-lg border border-gray-300 p-2.5 w-full"
+                                        value={licensePlate}
+                                        onChange={(e) => setLicensePlate(e.target.value)}
                                     />
                                 </div>
 
@@ -126,6 +210,8 @@ const AddNewCar = () => {
                                         type="text"
                                         id="mileage"
                                         className="rounded-lg border border-gray-300 p-2.5 w-full"
+                                        value={mileage}
+                                        onChange={(e) => setMileage(e.target.value)}
                                     />
                                 </div>
                             </div>
@@ -138,6 +224,8 @@ const AddNewCar = () => {
                                     <select
                                         id="fuelType"
                                         className="rounded-lg border border-gray-300 p-2.5 w-full bg-white"
+                                        value={fuelType}
+                                        onChange={(e) => setFuelType(e.target.value)}
                                     >
                                         <option value="">Select Fuel Type</option>
                                         <option value="Gasoline">Gasoline</option>
@@ -153,6 +241,8 @@ const AddNewCar = () => {
                                     <select
                                         id="transmission"
                                         className="rounded-lg border border-gray-300 p-2.5 w-full bg-white"
+                                        value={transmission}
+                                        onChange={(e) => setTransmission(e.target.value)}
                                     >
                                         <option value="">Select Transmission</option>
                                         <option value="Automatic">Automatic</option>
@@ -168,6 +258,7 @@ const AddNewCar = () => {
                                         type="number"
                                         id="rentPrice"
                                         className="rounded-lg border border-gray-300 p-2.5 w-full"
+                                        value={rentPrice} onChange={(e) => setRentPrice(e.target.value)}
                                     />
                                 </div>
                             </div>
@@ -180,6 +271,7 @@ const AddNewCar = () => {
                                     <select
                                         id="carMake"
                                         className="rounded-lg border border-gray-300 p-2.5 w-full bg-white"
+                                        value={carMakeId} onChange={(e) => setCarMakeId(e.target.value)}
                                     >
                                         <option value="">Select Car Make</option>
                                         {
@@ -201,12 +293,13 @@ const AddNewCar = () => {
                                 </div>
 
                                 <div className="flex flex-col">
-                                    <label htmlFor="carMake" className="text-sm font-medium mb-1">
+                                    <label htmlFor="category" className="text-sm font-medium mb-1">
                                         Category
                                     </label>
                                     <select
-                                        id="carMake"
+                                        id="category"
                                         className="rounded-lg border border-gray-300 p-2.5 w-full bg-white"
+                                        value={categoryId} onChange={(e) => setCategoryId(e.target.value)}
                                     >
                                         <option value="">Select Category</option>
                                         {
@@ -269,7 +362,7 @@ const AddNewCar = () => {
                                 type="submit"
                                 className="w-full bg-gray-800 text-white py-2 px-4 rounded-lg hover:bg-gray-700 transition"
                             >
-                                Add Car
+                               {loadingCarCreate ? "Loading..." : "Create new car"}
                             </button>
 
                         </form>

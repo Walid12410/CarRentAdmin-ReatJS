@@ -6,18 +6,21 @@ const carSlice = createSlice({
     latestCar: [],
     loadingLatestCar: false,
     errorLatestCar: null,
-    carsCount : null,
-    cars : [],
-    loadingCars : false,
-    errorCars : null,
-    car: null,         
+    carsCount: null,
+    cars: [],
+    loadingCars: false,
+    errorCars: null,
+    car: null,
     loadingCar: false,
     companyCars: [],
     loadingCompanyCars: false,
     errorCompanyCars: null,
-    companyCarsCount : null,
+    companyCarsCount: null,
+    // Create New Car
+    isCarCreated: false,
+    loadingCarCreate: false
   },
-  reducers: { 
+  reducers: {
     setLatestCar: (state, action) => {
       state.latestCar = action.payload;
       state.loadingLatestCar = false;
@@ -31,30 +34,30 @@ const carSlice = createSlice({
       state.errorLatestCar = action.payload;
     },
     // Count car
-    setCarsCount : (state,action) => {
+    setCarsCount: (state, action) => {
       state.carsCount = action.payload;
     },
     // fetch cars
-    setCars : (state,action) => {
+    setCars: (state, action) => {
       state.cars = action.payload;
       state.loadingCars = false;
     },
-    setLoadingCars : (state) => {
-      state.loadingCars  = true;
+    setLoadingCars: (state) => {
+      state.loadingCars = true;
     },
-    setErrorCars : (state , action) => {
+    setErrorCars: (state, action) => {
       state.loadingCars = false;
       state.errorCars = action.payload
     },
     // Get one car
     setCar: (state, action) => {
       state.loadingCar = false;
-      state.car = action.payload;  
+      state.car = action.payload;
     },
-    setLoadingCar : (state) => {
+    setLoadingCar: (state) => {
       state.loadingCar = true;
     },
-    setErrorCar : (state) => {
+    setErrorCar: (state) => {
       state.loadingCar = false;
     },
     // fetch company car
@@ -71,8 +74,20 @@ const carSlice = createSlice({
       state.errorCompanyCars = action.payload;
     },
     // count company car
-    setCompanyCarCount : (state,action) => {
+    setCompanyCarCount: (state, action) => {
       state.companyCarsCount = action.payload;
+    },
+    // Create New Car
+    setIsCarCreated: (state) => {
+      state.isCarCreated = true;
+      state.loadingCarCreate = false;
+    },
+    setLoadingCarCreated: (state) => {
+      state.loadingCarCreate = true;
+    },
+    setClearCarCreated: (state) => {
+      state.isCarCreated = false;
+      state.loadingCarCreate = false;
     }
   },
 });
