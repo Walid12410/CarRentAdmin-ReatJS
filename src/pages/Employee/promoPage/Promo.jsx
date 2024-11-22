@@ -7,7 +7,6 @@ import PromoCard from "../../../components/PromoCard";
 import Pagination from "../../../components/Pagination";
 
 const PromoPage = () => {
-
     const dispatch = useDispatch();
 
     const [sidebarToggle, setSidebarToggle] = useState(false);
@@ -25,43 +24,49 @@ const PromoPage = () => {
         dispatch(countCompanyPromo());
     }, [dispatch]);
 
-
     return (
         <div className="flex">
+            {/* Sidebar */}
             <EmployeeSideBar sidebarToggle={sidebarToggle} />
-            <div className={`${sidebarToggle ? " " : " ml-64 "} w-full`}>
+            <div className={`${sidebarToggle ? "" : "ml-64"} w-full flex flex-col min-h-screen`}>
+                {/* Header */}
                 <EmployeeHeader
                     sidebarToggle={sidebarToggle}
                     setSidebarToggle={setSidebarToggle}
                 />
-                <div className="text-ms font-bold text-white w-44 h-10 bg-gray-800 hover:bg-gray-700 cursor-pointer	 m-2 text-center p-2">
-                    New Promo
-                </div>
-                {loadingCompanyPromo ? (
-                    <div className="loading-spinner"></div>
-                ) : errorCompanyPromo ? (
-                    <div className="error-message"></div>
-                ) : companyPromo.length === 0 ? (
-                    <div className="error-message">No promo added yet</div>
-                ) : (
-                    <>
+
+                {/* Content */}
+                <div className="flex-grow">
+                    <div className="text-sm font-bold text-white w-44 h-10 bg-gray-800 hover:bg-gray-700 cursor-pointer m-2 text-center p-2">
+                        New Promo
+                    </div>
+
+                    {loadingCompanyPromo ? (
+                        <div className="loading-spinner"></div>
+                    ) : errorCompanyPromo ? (
+                        <div className="error-message"></div>
+                    ) : companyPromo.length === 0 ? (
+                        <div className="error-message">No promo added yet</div>
+                    ) : (
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 m-2 justify-items-center">
                             {companyPromo?.map((promo) => (
-                                <PromoCard promo={promo} />
+                                <PromoCard promo={promo} key={promo.id} />
                             ))}
                         </div>
-                        <div className="flex justify-center mt-auto">
-                            <Pagination
-                                pages={pages}
-                                currentPage={currentPage}
-                                setCurrentPage={setCurrentPage}
-                            />
-                        </div>
-                    </>
-                )}
+                    )}
+                </div>
+
+                {/* Pagination */}
+                <div className="mt-auto flex justify-center items-center py-4">
+                    <Pagination
+                        pages={pages}
+                        currentPage={currentPage}
+                        setCurrentPage={setCurrentPage}
+                    />
+                </div>
             </div>
         </div>
     );
-}
+};
 
 export default PromoPage;

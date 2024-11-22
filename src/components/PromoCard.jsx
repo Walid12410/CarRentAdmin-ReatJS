@@ -1,10 +1,10 @@
 import { FaEdit, FaTrash } from 'react-icons/fa';
 
-const  PromoCard = ({promo}) => {
+const PromoCard = ({ promo }) => {
   return (
-    <div key={promo.id} className="max-w-sm mx-auto mt-6 bg-white rounded-lg shadow-lg overflow-hidden">
+    <div key={promo._id} className="w-10/12 mx-auto mt-6 bg-white rounded-lg shadow-lg overflow-hidden">
       <div className="relative">
-        <img src={promo?.promoImage?.url || "https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg"} alt={promo.promoTitle} className="w-full h-48 object-fit" />
+        <img src={promo?.promoImage?.url || "https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg"} alt={promo.promoTitle} className="w-full h-52 object-fit" />
         <div className="absolute top-0 right-0 m-2 bg-gray-800 text-white text-xs px-2 py-1 rounded">
           {promo?.status}
         </div>

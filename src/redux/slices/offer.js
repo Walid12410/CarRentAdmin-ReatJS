@@ -6,6 +6,12 @@ const offerSlice = createSlice({
     latestOffer: [],
     loadingLatestOffer: false,
     errorLatestOffer: null,
+    // Get Offer of company
+    companyOffers: [],
+    loadingCompanyOffer : false,
+    errorCompanyOffers: null,
+    // Count Offers for company
+    companyOfferCount : null
   },
   reducers: { 
     setLatestOffer: (state, action) => {
@@ -20,6 +26,23 @@ const offerSlice = createSlice({
       state.loadingLatestOffer = false;
       state.errorLatestOffer = action.payload;
     },
+    // Get Offers of company
+    setCompanyOffer : (state, action) => {
+      state.companyOffers = action.payload;
+      state.loadingCompanyOffer = false;
+      state.errorCompanyOffers = null;
+    },
+    setLoadingCompanyOffer: (state) => {
+      state.loadingCompanyOffer = true;
+    },
+    setErrorCompanyOffer : (state, action) => {
+      state.errorCompanyOffers = action.payload;
+      state.loadingCompanyOffer = false;
+    },
+    // Count Offer for company
+    setCountCompanyOffers : (state,action) => {
+      state.companyOfferCount = action.payload;
+    }
   },
 });
 

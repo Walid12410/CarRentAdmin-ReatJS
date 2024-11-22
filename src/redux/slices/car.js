@@ -18,7 +18,10 @@ const carSlice = createSlice({
     companyCarsCount: null,
     // Create New Car
     isCarCreated: false,
-    loadingCarCreate: false
+    loadingCarCreate: false,
+    // Update Car
+    isCarUpdated: false,
+    loadingUpdateCar: false
   },
   reducers: {
     setLatestCar: (state, action) => {
@@ -88,6 +91,18 @@ const carSlice = createSlice({
     setClearCarCreated: (state) => {
       state.isCarCreated = false;
       state.loadingCarCreate = false;
+    },
+    // Update Car
+    setIsCarUpdated: (state) => {
+      state.isCarUpdated = true;
+      state.loadingUpdateCar = false;
+    },
+    setLoadingCarUpdated : (state) => {
+      state.loadingUpdateCar = true;
+    },
+    setClearCarUpdated: (state) => {
+      state.isCarUpdated = false;
+      state.loadingUpdateCar = false;
     }
   },
 });

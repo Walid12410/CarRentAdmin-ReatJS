@@ -20,6 +20,8 @@ import CarPage from './pages/Employee/carPage/Car';
 import LoginEmployee from './pages/Auth/LoginEmployee';
 import PromoPage from './pages/Employee/promoPage/Promo';
 import AddNewCar from './pages/Employee/AddCarPage/AddCar';
+import EditCar from './pages/Employee/EditCarPage/EditCar';
+import OfferPage from './pages/Employee/OfferPage/OfferPage';
 
 function App() {
   return (
@@ -49,6 +51,9 @@ function App() {
         <Route index element={<EmployeeDashBoard/>} />
         <Route path= 'car-page' element={<CarPage />} />
         <Route path= 'car-page/new-car' element={<AddNewCar />} />
+        <Route path= 'car-page/edit-car/:id' element={<EditCar />} />
+        <Route path= 'offer-page' element={<OfferPage />} />
+
         <Route path= 'promo-page' element={<PromoPage />} />
       </Route>
     </Routes>

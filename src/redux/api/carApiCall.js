@@ -91,7 +91,6 @@ export function countCompanyCar() {
 }
 
 
-
 // Create new Car
 export function CreateNewCar(newCar, carImage) {
     return async (dispatch, getState) => {
@@ -117,6 +116,28 @@ export function CreateNewCar(newCar, carImage) {
             const errorMessage = error.response?.data?.message || "Error create new car";
             toast.error(errorMessage);
             dispatch(carAction.setClearCarCreated());
+        }
+    }
+}
+
+
+// Update car
+export function UpdateCar(carId , carData) {
+    return async(dispatch , getState) => {
+        try {
+            dispatch(carAction.setLoadingCarUpdated());
+            await request.put(`api/car-rent/${carId}`,carData,{
+                headers : {
+                    Authorization : "Bearer " +getState().auth.employee.token,
+                    "Content-Type" : "application/json"
+                }
+            });
+            dispatch(carAction.setIsCarUpdated());
+            setTimeout(()=> dispatch(carAction.setClearCarUpdated()));
+        } catch (error) {
+            const errorMessage = error.response?.data?.message || "Error updating car";
+            toast.error(errorMessage);
+            dispatch(carAction.setClearCarUpdated());
         }
     }
 }
