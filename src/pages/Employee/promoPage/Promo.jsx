@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { countCompanyPromo, fetchCompanyPromo } from "../../../redux/api/promoApiCall";
 import PromoCard from "../../../components/PromoCard";
 import Pagination from "../../../components/Pagination";
+import { Link } from "react-router-dom";
 
 const PromoPage = () => {
     const dispatch = useDispatch();
@@ -37,9 +38,12 @@ const PromoPage = () => {
 
                 {/* Content */}
                 <div className="flex-grow">
-                    <div className="text-sm font-bold text-white w-44 h-10 bg-gray-800 hover:bg-gray-700 cursor-pointer m-2 text-center p-2">
+                    <Link
+                        to={`/employee/promo-page/new-promo`}
+                        className="text-sm font-bold no-underline text-white w-44 h-10 bg-gray-800 hover:bg-gray-700 cursor-pointer mt-2 ml-2 text-center flex items-center justify-center rounded"
+                    >
                         New Promo
-                    </div>
+                    </Link>
 
                     {loadingCompanyPromo ? (
                         <div className="loading-spinner"></div>

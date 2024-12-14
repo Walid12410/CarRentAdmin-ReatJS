@@ -30,3 +30,25 @@ export function countCompanyPromo() {
         }
     }
 }
+
+// create new promo
+export function createNewPromo(newPromo) {
+    return async (dispatch , getState) => {
+        try {
+            dispatch(promoAction.setLoadingPromoCreating());
+            await request.post(`/api/promo` , newPromo, {
+                headers : {
+                    Authorization : "Bearer " + getState().auth.employee.token,
+                    "Content-Type" : "multipart/from-data"
+                }
+            });
+            dispatch(promoAction.setIsPromoCreated);
+            toast.success("new promo created successfully!");
+            setTimeout(()=> dispatch(promoAction.setClearPromoCreated()));
+        } catch (error) {
+            const errorMessage = error.response?.data?.message || "Error create new promo";
+            toast.error(errorMessage);
+            dispatch(promoAction.setClearPromoCreated());
+        }
+    }
+}

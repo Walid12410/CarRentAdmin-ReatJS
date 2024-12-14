@@ -22,6 +22,7 @@ import PromoPage from './pages/Employee/promoPage/Promo';
 import AddNewCar from './pages/Employee/AddCarPage/AddCar';
 import EditCar from './pages/Employee/EditCarPage/EditCar';
 import OfferPage from './pages/Employee/OfferPage/OfferPage';
+import AddNewPromo from './pages/Employee/AddPromoPage/AddPromoPage';
 
 function App() {
   return (
@@ -55,6 +56,8 @@ function App() {
         <Route path= 'offer-page' element={<OfferPage />} />
 
         <Route path= 'promo-page' element={<PromoPage />} />
+        <Route path= 'promo-page/new-promo' element={<AddNewPromo />} />
+
       </Route>
     </Routes>
     <ToastContainer theme="colored" position="top-center"></ToastContainer>

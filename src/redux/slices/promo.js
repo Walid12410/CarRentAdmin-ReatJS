@@ -6,7 +6,10 @@ const promoSlice = createSlice({
     companyPromo: [],
     loadingCompanyPromo: false,
     errorCompanyPromo: null,
-    companyPromoCount: null
+    companyPromoCount: null,
+    // create promo
+    isPromoCreated : false,
+    loadingPromoCreated : false
   },
   reducers: {
     // get company promo 
@@ -25,6 +28,18 @@ const promoSlice = createSlice({
     // count company promo
     setCompanyPromoCount : (state , action) => {
         state.companyPromoCount = action.payload;
+    },
+    // create new promo
+    setIsPromoCreated : (state) => {
+      state.isPromoCreated = true;
+      state.loadingPromoCreated = false;
+    },
+    setLoadingPromoCreating : (state) => {
+      state.loadingPromoCreated = true;
+    },
+    setClearPromoCreated : (state) => {
+      state.isPromoCreated = false;
+      state.loadingPromoCreated  =false;
     }
   },
 });
