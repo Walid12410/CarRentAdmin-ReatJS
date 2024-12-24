@@ -68,8 +68,8 @@ const AddNewPromo = () => {
         formData.append("usedCount" , 0)
     
         // Append images (if any)
-        images.forEach((image, index) => {
-            formData.append(`image_${index}`, image); // Assign a unique key for each image
+        images.forEach((image) => {
+            formData.append(`image`, image); // Assign a unique key for each image
         });
 
         console.log(formData);
@@ -80,7 +80,7 @@ const AddNewPromo = () => {
 
     useEffect(()=> {
         if(isPromoCreated) {
-            navigate("employee/promo-page");
+            navigate("/employee/promo-page");
         }
     },[isPromoCreated, navigate]);
 

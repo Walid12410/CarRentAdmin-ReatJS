@@ -42,7 +42,7 @@ export function createNewPromo(newPromo) {
                     "Content-Type" : "multipart/from-data"
                 }
             });
-            dispatch(promoAction.setIsPromoCreated);
+            dispatch(promoAction.setIsPromoCreated());
             toast.success("new promo created successfully!");
             setTimeout(()=> dispatch(promoAction.setClearPromoCreated()));
         } catch (error) {
