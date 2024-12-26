@@ -16,13 +16,14 @@ import User from './pages/admin/AdminPages/Users/Users';
 import EmployeeForm from './pages/admin/AdminForm/EmployeeForm/EmployeeForm';
 import CarDetails from './pages/admin/AdminPages/CarRent/CarDetails/CarDetails';
 import EmployeeDashBoard from './pages/Employee/EmployeeDashBoard/EmployeeDashBoard';
-import CarPage from './pages/Employee/carPage/Car';
 import LoginEmployee from './pages/Auth/LoginEmployee';
-import PromoPage from './pages/Employee/promoPage/Promo';
-import AddNewCar from './pages/Employee/AddCarPage/AddCar';
-import EditCar from './pages/Employee/EditCarPage/EditCar';
-import OfferPage from './pages/Employee/OfferPage/OfferPage';
-import AddNewPromo from './pages/Employee/AddPromoPage/AddPromoPage';
+import PromoPage from './pages/Employee/Promo/Promo';
+import AddNewCar from './pages/Employee/Car/AddCarPage/AddCar';
+import EditCar from './pages/Employee/Car/EditCarPage/EditCar';
+import OfferPage from './pages/Employee/Offer/OfferPage';
+import AddNewPromo from './pages/Employee/Promo/AddPromoPage';
+import AddNewOffer from './pages/Employee/Offer/AddOfferPage';
+import CarPage from "./pages/Employee/Car/CarListPage/CarPage";
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
         <Route path= 'car-page/new-car' element={<AddNewCar />} />
         <Route path= 'car-page/edit-car/:id' element={<EditCar />} />
         <Route path= 'offer-page' element={<OfferPage />} />
+        <Route path= 'offer-page/new-offer' element={<AddNewOffer />} />
 
         <Route path= 'promo-page' element={<PromoPage />} />
         <Route path= 'promo-page/new-promo' element={<AddNewPromo />} />

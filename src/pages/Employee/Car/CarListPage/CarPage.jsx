@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import EmployeeHeader from "../../../components/Employee-Components/EmployeeHeader";
-import EmployeeSideBar from "../../../components/Employee-Components/EmployeeSidebar";
+import EmployeeHeader from "../../../../components/Employee-Components/EmployeeHeader";
+import EmployeeSideBar from "../../../../components/Employee-Components/EmployeeSidebar";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { countCompanyCar, fetchCompanyCar } from "../../../redux/api/carApiCall";
-import Pagination from "../../../components/Pagination";
-import CarCard from "../../../components/CarCard";
+import { countCompanyCar, fetchCompanyCar } from "../../../../redux/api/carApiCall";
+import Pagination from "../../../../components/Pagination";
+import CarCard from "../../../../components/CarCard";
 
 const CarPage = () => {
     const dispatch = useDispatch();

@@ -47,3 +47,25 @@ export function fetchCompanyOffer(pageNumber) {
         }
     }
 }
+
+// create new offer
+export function createNewOffer(newOffer,carId) {
+    return async (dispatch , getState) => {
+        try {
+            dispatch(offerAction.setLoadingCreatingOffer());
+            await request.post(`/api/offer/${carId}`,newOffer,{
+                headers : {
+                    Authorization : "Bearer " + getState().auth.employee.token,
+                    "Content-Type": "application/json",
+                }
+            });
+            dispatch(offerAction.setIsOfferCreated());
+            toast.success("new offer created successfully!");
+            setTimeout(()=> dispatch(offerAction.setClearOfferCreated()));
+        } catch (error) {
+            const errorMessage = error.response?.data?.message || "Error creating new offer";
+            toast.error(errorMessage);
+            dispatch(offerAction.setClearOfferCreated());
+        }
+    }
+}

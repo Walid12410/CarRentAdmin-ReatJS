@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import EmployeeHeader from "../../../components/Employee-Components/EmployeeHeader";
-import EmployeeSideBar from "../../../components/Employee-Components/EmployeeSidebar";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from "../../../components/Pagination";
 import { countCompanyOffers, fetchCompanyOffer } from "../../../redux/api/offerApiCall";
 import OfferCard from "../../../components/OfferCard";
+import EmployeeHeader from "../../../components/Employee-Components/EmployeeHeader";
+import EmployeeSideBar from "../../../components/Employee-Components/EmployeeSidebar";
 
 const OfferPage = () => {
     const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const OfferPage = () => {
     useEffect(() => {
         dispatch(fetchCompanyOffer(currentPage));
         window.scrollTo(0, 0);
-    }, [dispatch]);
+    }, [currentPage]);
 
     useEffect(() => {
         dispatch(countCompanyOffers());
@@ -37,7 +37,7 @@ const OfferPage = () => {
                 {/* Content */}
                 <div className="flex-grow">
                     <Link
-                        to="/offers/new"
+                        to="/employee/offer-page/new-offer"
                         className="text-sm font-bold text-white w-44 h-10 no-underline bg-gray-800 hover:bg-gray-700 cursor-pointer mt-2 ml-2 text-center flex items-center justify-center rounded">
                         New Offer
                     </Link>

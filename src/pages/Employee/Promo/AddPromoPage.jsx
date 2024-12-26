@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
-import EmployeeSideBar from "../../../components/Employee-Components/EmployeeSidebar";
-import EmployeeHeader from "../../../components/Employee-Components/EmployeeHeader";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { createNewPromo } from "../../../redux/api/promoApiCall";
+import InputComponent from "../../../components/InputComponent";
+import EmployeeSideBar from "../../../components/Employee-Components/EmployeeSidebar";
+import EmployeeHeader from "../../../components/Employee-Components/EmployeeHeader";
 
 const AddNewPromo = () => {
     const dispatch = useDispatch();
 
     const [sidebarToggle, setSidebarToggle] = useState(false);
-    const {isPromoCreated , loadingPromoCreated} = useSelector(state => state.promo);
+    const { isPromoCreated, loadingPromoCreated } = useSelector(state => state.promo);
     // Image array
     const [images, setImages] = useState([]); // State to manage uploaded images
 
@@ -50,12 +51,12 @@ const AddNewPromo = () => {
     const formSubmitHandler = (e) => {
         e.preventDefault();
 
-        if(promoTitle == "") return toast.error("promo title is required");
-        if(promoDesc == "") return toast.error("promo description is required");
-        if(promoCode == "") return toast.error("promo code is required");
-        if(startDate == "") return toast.error("start date is required");
-        if(endDate == "") return toast.error("end date is required");
-        if(usageLimit == "") return toast.error("usage limit is required");
+        if (promoTitle == "") return toast.error("promo title is required");
+        if (promoDesc == "") return toast.error("promo description is required");
+        if (promoCode == "") return toast.error("promo code is required");
+        if (startDate == "") return toast.error("start date is required");
+        if (endDate == "") return toast.error("end date is required");
+        if (usageLimit == "") return toast.error("usage limit is required");
 
         const formData = new FormData();
         formData.append("promoTitle", promoTitle);
@@ -65,8 +66,8 @@ const AddNewPromo = () => {
         formData.append("endDate", endDate);
         formData.append("usageLimit", usageLimit);
         formData.append("discountPercentage", discountPercent);
-        formData.append("usedCount" , 0)
-    
+        formData.append("usedCount", 0)
+
         // Append images (if any)
         images.forEach((image) => {
             formData.append(`image`, image); // Assign a unique key for each image
@@ -78,11 +79,11 @@ const AddNewPromo = () => {
 
     const navigate = useNavigate();
 
-    useEffect(()=> {
-        if(isPromoCreated) {
+    useEffect(() => {
+        if (isPromoCreated) {
             navigate("/employee/promo-page");
         }
-    },[isPromoCreated, navigate]);
+    }, [isPromoCreated, navigate]);
 
     return (
         <div className="flex">
@@ -99,106 +100,46 @@ const AddNewPromo = () => {
                         </div>
                         <form className="space-y-6" onSubmit={formSubmitHandler}>
                             <div className="grid grid-cols-3 gap-6">
-                                <div className="flex flex-col">
-                                    <label htmlFor="promoTitle" className="text-sm font-medium mb-1">
-                                        Promo title
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="promoTitle"
-                                        className="rounded-lg border border-gray-300 p-2.5 w-full"
-                                        value={promoTitle}
-                                        onChange={(e) => setPromoTitle(e.target.value)}
-                                    />
-                                </div>
-
-                                <div className="flex flex-col">
-                                    <label htmlFor="promoDesc" className="text-sm font-medium mb-1">
-                                        Promo description
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="promoDesc"
-                                        className="rounded-lg border border-gray-300 p-2.5 w-full"
-                                        value={promoDesc}
-                                        onChange={(e) => setPromoDesc(e.target.value)}
-                                    />
-                                </div>
-
-                                <div className="flex flex-col">
-                                    <label htmlFor="promoCode" className="text-sm font-medium mb-1">
-                                        Promo code
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="promoCode"
-                                        className="rounded-lg border border-gray-300 p-2.5 w-full"
-                                        value={promoCode}
-                                        onChange={(e) => setPromoCode(e.target.value)}
-                                    />
-                                </div>
+                                <InputComponent
+                                    label={"Promo title"} type={"text"} value={promoTitle}
+                                    onChange={(e) => setPromoTitle(e.target.value)}
+                                    idName={"promoTitle"}
+                                />
+                                <InputComponent
+                                    label={"Promo description"} type={"text"} value={promoDesc}
+                                    onChange={(e) => setPromoDesc(e.target.value)} idName={"promoDesc"}
+                                />
+                                <InputComponent
+                                    label={"Promo code"} type={"text"} value={promoCode}
+                                    onChange={(e) => setPromoCode(e.target.value)} idName={"promoCode"}
+                                />
                             </div>
 
                             <div className="grid grid-cols-3 gap-6">
-                                <div className="flex flex-col">
-                                    <label htmlFor="discountPercentage" className="text-sm font-medium mb-1">
-                                        Discount percentage
-                                    </label>
-                                    <input
-                                        type="number"
-                                        id="discountPercentage"
-                                        className="rounded-lg border border-gray-300 p-2.5 w-full"
-                                        value={discountPercent}
-                                        onChange={(e) => setDiscountPercent(e.target.value)}
-                                    />
-                                </div>
-
-                                <div className="flex flex-col">
-                                    <label htmlFor="usageLimit" className="text-sm font-medium mb-1">
-                                        Usage limit
-                                    </label>
-                                    <input
-                                        type="number"
-                                        id="usageLimit"
-                                        className="rounded-lg border border-gray-300 p-2.5 w-full"
-                                        value={usageLimit}
-                                        onChange={(e) => setUsageLimit(e.target.value)}
-                                    />
-                                </div>
-
-                                <div className="flex flex-col">
-                                    <label htmlFor="startDate" className="text-sm font-medium mb-1">
-                                        Start date
-                                    </label>
-                                    <input
-                                        type="date"
-                                        id="startDate"
-                                        className="rounded-lg border border-gray-300 p-2.5 w-full"
-                                        value={startDate}
-                                        onChange={(e) => setStartDate(e.target.value)}
-                                    />
-                                </div>
+                                <InputComponent
+                                    label={"Discount percentage"} type={"number"} value={discountPercent}
+                                    onChange={(e) => setDiscountPercent(e.target.value)}
+                                    idName={"discountPercentage"}
+                                />
+                                <InputComponent
+                                    label={"Usage limit"} type={"number"} value={usageLimit}
+                                    onChange={(e) => setUsageLimit(e.target.value)}
+                                    idName={"usageLimit"}
+                                />
+                                <InputComponent
+                                    label={"Start date"} type={"date"} value={startDate}
+                                    onChange={(e) => setStartDate(e.target.value)}
+                                    idName={"startDate"}
+                                />
                             </div>
 
-                            
+
                             <div className="grid grid-cols-3 gap-6">
-                                <div className="flex flex-col">
-                                    <label htmlFor="endDate" className="text-sm font-medium mb-1">
-                                        End date
-                                    </label>
-                                    <input
-                                        type="date"
-                                        id="endDate"
-                                        className="rounded-lg border border-gray-300 p-2.5 w-full"
-                                        value={endDate}
-                                        onChange={(e) => setEndDate(e.target.value)}
-                                    />
-                                </div>
-
+                                <InputComponent
+                                    label={"End date"} type={"date"} value={endDate}
+                                    onChange={(e) => setEndDate(e.target.value)} idName={"endDate"}
+                                />
                             </div>
-
-
-
                             <div className="mt-6">
                                 <label className="block text-sm font-medium mb-2">
                                     Upload Images (Max: 1)
@@ -236,14 +177,12 @@ const AddNewPromo = () => {
                                     </div>
                                 )}
                             </div>
-
                             <button
                                 type="submit"
                                 className="w-full bg-gray-800 text-white py-2 px-4 rounded-lg hover:bg-gray-700 transition"
                             >
-                               {loadingPromoCreated ? "Creating..." : "Create new promo"}
+                                {loadingPromoCreated ? "Creating..." : "Create new promo"}
                             </button>
-
                         </form>
                     </div>
                 </div>
