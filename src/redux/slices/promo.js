@@ -9,7 +9,10 @@ const promoSlice = createSlice({
     companyPromoCount: null,
     // create promo
     isPromoCreated : false,
-    loadingPromoCreated : false
+    loadingPromoCreated : false,
+    // deleted promo
+    loadingDeletingPromo : false,
+    isPromoDeleted : false
   },
   reducers: {
     // get company promo 
@@ -40,6 +43,18 @@ const promoSlice = createSlice({
     setClearPromoCreated : (state) => {
       state.isPromoCreated = false;
       state.loadingPromoCreated  =false;
+    },
+    // delete promo
+    setIsPromoDeleted : (state) => {
+      state.isPromoDeleted = true;
+      state.loadingDeletingPromo = false;
+    },
+    setLoadingPromoDeleted : (state) => {
+      state.loadingDeletingPromo = true;
+    },
+    setClearPromoDeleted : (state) => {
+      state.loadingDeletingPromo = false;
+      state.isPromoDeleted = false; 
     }
   },
 });

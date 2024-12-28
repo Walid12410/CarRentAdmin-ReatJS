@@ -52,3 +52,24 @@ export function createNewPromo(newPromo) {
         }
     }
 }
+
+// delete promo
+export function deletePromo(promoId) {
+    return async (dispatch,getState) => {
+        try {
+            dispatch(promoAction.setLoadingPromoDeleted());
+            await request.delete(`/api/promo/${promoId}`,{
+                headers : {
+                    Authorization : "Bearer " + getState().auth.employee.token
+                }
+            });
+            dispatch(promoAction.setIsPromoDeleted());
+            setTimeout(()=> dispatch(promoAction.setClearPromoDeleted()));
+        } catch (error) {
+            const errorMessage = error.response?.data?.message || "Error deleting promo";
+            toast.error(errorMessage);
+            dispatch(promoAction.setClearPromoDeleted());
+        }
+    }
+
+}

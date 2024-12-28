@@ -1,6 +1,45 @@
 import { FaEdit, FaTrash } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
+import swal from 'sweetalert';
+import { deletePromo } from "../../src/redux/api/promoApiCall"
+import { useEffect } from 'react';
 
 const PromoCard = ({ promo }) => {
+
+  const dispatch = useDispatch();
+  const { isPromoDeleted } = useSelector(state => state.promo);
+
+  const deletePromoHandler = () => {
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, this promo will remove from your system",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal({
+            title: "Deleting...",
+            text: "Please wait while we delete the promo.",
+            icon: "info",
+            buttons: false,
+            closeOnClickOutside: false,
+            closeOnEsc: false,
+          });
+          dispatch(deletePromo(promo._id));
+        } else {
+          swal("Something went wrong!");
+        }
+      });
+  }
+
+  useEffect(() => {
+    if (isPromoDeleted) {
+      swal("Deleted!", "The promo has been successfully deleted.", "success");
+    }
+  }, [isPromoDeleted]);
+
   return (
     <div key={promo._id} className="w-10/12 mx-auto mt-6 bg-white rounded-lg shadow-lg overflow-hidden">
       <div className="relative">
@@ -14,7 +53,7 @@ const PromoCard = ({ promo }) => {
           <h3 className="text-xl font-semibold text-gray-800 mb-3">{promo?.promoTitle}</h3>
           <div className="flex space-x-2 text-gray-600">
             <FaEdit className="cursor-pointer hover:text-blue-500" title="Edit" />
-            <FaTrash className="cursor-pointer hover:text-red-500" title="Delete" />
+            <FaTrash className="cursor-pointer hover:text-red-500" title="Delete" onClick={deletePromoHandler} />
           </div>
         </div>
         <div className="text-sm text-gray-600">

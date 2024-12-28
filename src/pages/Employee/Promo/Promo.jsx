@@ -11,7 +11,10 @@ const PromoPage = () => {
     const dispatch = useDispatch();
 
     const [sidebarToggle, setSidebarToggle] = useState(false);
-    const { companyPromoCount, companyPromo, loadingCompanyPromo, errorCompanyPromo } = useSelector(state => state.promo);
+    const { companyPromoCount, companyPromo,
+        loadingCompanyPromo, errorCompanyPromo,
+        isPromoDeleted 
+    } = useSelector(state => state.promo);
 
     const [currentPage, setCurrentPage] = useState(1);
     const pages = Math.ceil(companyPromoCount?.promoCount / 3);
@@ -24,6 +27,14 @@ const PromoPage = () => {
     useEffect(() => {
         dispatch(countCompanyPromo());
     }, [dispatch]);
+
+    useEffect(()=> {
+        if(isPromoDeleted) {
+            dispatch(fetchCompanyPromo(currentPage));
+            dispatch(countCompanyPromo());
+            window.scrollTo(0, 0);
+        }
+    },[isPromoDeleted]);
 
     return (
         <div className="flex">
