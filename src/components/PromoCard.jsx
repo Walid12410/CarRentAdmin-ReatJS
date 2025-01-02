@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import swal from 'sweetalert';
 import { deletePromo } from "../../src/redux/api/promoApiCall"
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const PromoCard = ({ promo }) => {
 
@@ -40,19 +41,27 @@ const PromoCard = ({ promo }) => {
     }
   }, [isPromoDeleted]);
 
+  const isEnded = new Date(promo?.endDate) < new Date();
+
   return (
     <div key={promo._id} className="w-10/12 mx-auto mt-6 bg-white rounded-lg shadow-lg overflow-hidden">
       <div className="relative">
         <img src={promo?.promoImage?.url || "https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg"} alt={promo.promoTitle} className="w-full h-52 object-fit" />
         <div className="absolute top-0 right-0 m-2 bg-gray-800 text-white text-xs px-2 py-1 rounded">
-          {promo?.status}
+          {isEnded ? "Ended" : "Active"}
         </div>
       </div>
       <div className="p-4">
         <div className="flex justify-between items-center">
           <h3 className="text-xl font-semibold text-gray-800 mb-3">{promo?.promoTitle}</h3>
           <div className="flex space-x-2 text-gray-600">
+            <Link
+              to={`/employee/promo-page/edit-promo/${promo?._id}`}
+              state={{promo}}
+              className="text-blue-500 hover:text-blue-700"
+            >
             <FaEdit className="cursor-pointer hover:text-blue-500" title="Edit" />
+            </Link>
             <FaTrash className="cursor-pointer hover:text-red-500" title="Delete" onClick={deletePromoHandler} />
           </div>
         </div>

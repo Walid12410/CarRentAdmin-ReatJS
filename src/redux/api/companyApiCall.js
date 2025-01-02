@@ -58,3 +58,17 @@ export function deleteCompany(id) {
         }
     }
 }
+
+// Get company by id
+export function fetchOneCompany() {
+    return async(dispatch , getState) => {
+        try {
+            dispatch(companyAction.setLoadingCompany());
+            const { data } = await request.get(`/api/company/list/${getState().auth.employee.companyID}`);
+            dispatch(companyAction.setCompany(data));
+        } catch (error) {
+            toast.error(error.response.data.message);
+            dispatch(companyAction.setErrorCompany());
+        }
+    }
+}

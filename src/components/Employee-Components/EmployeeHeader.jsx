@@ -12,15 +12,6 @@ const EmployeeHeader = ({ sidebarToggle, setSidebarToggle }) => {
                 <span className="text-white font-semibold">Employee DashBoard</span>
             </div>
             <div className="flex items-center gap-x-5">
-                <div className="relative md:w-65">
-                    <span className="relative md:absolute inset-y-0 left-0 flex items-center pl-2">
-                        <button className="p-1 focus:outline-none text-white">
-                            <FaSearch />
-                        </button>
-                    </span>
-                    <input type="text"
-                        className="w-full px-4 py-1 pl-12 rounded shadow outline-none hidden md:block" />
-                </div>
                 <div className="text-white">
                     <FaBell className="w-6 h-6" />
                 </div>

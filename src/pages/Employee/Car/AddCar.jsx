@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import EmployeeSideBar from "../../../../components/Employee-Components/EmployeeSidebar";
-import EmployeeHeader from "../../../../components/Employee-Components/EmployeeHeader";
+import EmployeeSideBar from "../../../components/Employee-Components/EmployeeSidebar";
+import EmployeeHeader from "../../../components/Employee-Components/EmployeeHeader";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCarMake } from "../../../../redux/api/carMakeApi";
-import { fetchCategory } from "../../../../redux/api/categoryApiCall";
+import { fetchCarMake } from "../../../redux/api/carMakeApi";
+import { fetchCategory } from "../../../redux/api/categoryApiCall";
 import { toast } from "react-toastify";
-import { CreateNewCar } from "../../../../redux/api/carApiCall";
+import { CreateNewCar } from "../../../redux/api/carApiCall";
 import { useNavigate } from "react-router-dom";
 
 const AddNewCar = () => {

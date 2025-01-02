@@ -12,7 +12,13 @@ const promoSlice = createSlice({
     loadingPromoCreated : false,
     // deleted promo
     loadingDeletingPromo : false,
-    isPromoDeleted : false
+    isPromoDeleted : false,
+    // promo image
+    loadingPromoImage : false,
+    isPromoImageChanged : false,
+    // update promo
+    loadingPromoUpdated : false,
+    isPromoUpdated : false,
   },
   reducers: {
     // get company promo 
@@ -55,6 +61,30 @@ const promoSlice = createSlice({
     setClearPromoDeleted : (state) => {
       state.loadingDeletingPromo = false;
       state.isPromoDeleted = false; 
+    },
+    // changing promo image
+    setLoadingPromoImage : (state) => {
+      state.loadingPromoImage = true;
+    },
+    setPromoImageChanged : (state) => {
+      state.isPromoImageChanged = true;
+      state.loadingPromoImage = false;
+    },
+    setClearPromoImageChanged : (state) => {
+      state.isPromoImageChanged = false;
+      state.loadingPromoImage = false;
+    },
+    // update promo
+    setloadingPromoUpdated : (state) => {
+      state.loadingPromoUpdated = true;
+    },
+    setPromoUpdated : (state) => {
+      state.isPromoUpdated = true;
+      state.loadingPromoUpdated = false;
+    },
+    setClearPromoUpdated : (state) => {
+      state.isPromoUpdated = false;
+      state.loadingPromoUpdated = false;
     }
   },
 });

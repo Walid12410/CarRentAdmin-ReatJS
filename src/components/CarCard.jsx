@@ -51,13 +51,6 @@ const CarCard = ({ car }) => {
                     </Link>
                 </div>
             </div>
-            <div className="p-2">
-                <Link
-                    className="inline-block w-full text-center py-2 px-4 bg-gray-800 text-white font-semibold rounded hover:bg-gray-700 transition"
-                >
-                    More Details
-                </Link>
-            </div>
         </div>
     );
 };

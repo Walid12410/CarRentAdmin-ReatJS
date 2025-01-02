@@ -18,12 +18,14 @@ import CarDetails from './pages/admin/AdminPages/CarRent/CarDetails/CarDetails';
 import EmployeeDashBoard from './pages/Employee/EmployeeDashBoard/EmployeeDashBoard';
 import LoginEmployee from './pages/Auth/LoginEmployee';
 import PromoPage from './pages/Employee/Promo/Promo';
-import AddNewCar from './pages/Employee/Car/AddCarPage/AddCar';
-import EditCar from './pages/Employee/Car/EditCarPage/EditCar';
+import AddNewCar from './pages/Employee/Car/AddCar';
+import EditCar from './pages/Employee/Car/EditCar';
 import OfferPage from './pages/Employee/Offer/OfferPage';
 import AddNewPromo from './pages/Employee/Promo/AddPromoPage';
 import AddNewOffer from './pages/Employee/Offer/AddOfferPage';
-import CarPage from "./pages/Employee/Car/CarListPage/CarPage";
+import CarPage from "./pages/Employee/Car/CarPage";
+import EditPromo from './pages/Employee/Promo/EditPromoPage';
+import CompanyPage from './pages/Employee/Company/Company';
 
 function App() {
   return (
@@ -51,14 +53,18 @@ function App() {
 
       <Route path='employee'>
         <Route index element={<EmployeeDashBoard/>} />
-        <Route path= 'car-page' element={<CarPage />} />
+        <Route path= 'car-page' element={<CarPage />} />        
         <Route path= 'car-page/new-car' element={<AddNewCar />} />
         <Route path= 'car-page/edit-car/:id' element={<EditCar />} />
+
+        <Route path= 'company-page' element={<CompanyPage />} />
+
         <Route path= 'offer-page' element={<OfferPage />} />
         <Route path= 'offer-page/new-offer' element={<AddNewOffer />} />
 
         <Route path= 'promo-page' element={<PromoPage />} />
         <Route path= 'promo-page/new-promo' element={<AddNewPromo />} />
+        <Route path= 'promo-page/edit-promo/:id' element={<EditPromo />} />
 
       </Route>
     </Routes>

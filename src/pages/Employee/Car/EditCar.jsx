@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import EmployeeSideBar from "../../../../components/Employee-Components/EmployeeSidebar";
-import EmployeeHeader from "../../../../components/Employee-Components/EmployeeHeader";
+import EmployeeSideBar from "../../../components/Employee-Components/EmployeeSidebar";
+import EmployeeHeader from "../../../components/Employee-Components/EmployeeHeader";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCarMake } from "../../../../redux/api/carMakeApi";
-import { fetchCategory } from "../../../../redux/api/categoryApiCall";
+import { fetchCarMake } from "../../../redux/api/carMakeApi";
+import { fetchCategory } from "../../../redux/api/categoryApiCall";
 import { toast } from "react-toastify";
-import { UpdateCar } from "../../../../redux/api/carApiCall";
+import { UpdateCar } from "../../../redux/api/carApiCall";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const EditCar = () => {
@@ -14,7 +14,7 @@ const EditCar = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const dispatch = useDispatch();
-    const { car } = location.state; 
+    const { car } = location.state;
 
     const [sidebarToggle, setSidebarToggle] = useState(false);
     const { carMake, loadingCarMake, errorCarMake } = useSelector(state => state.carMake);
@@ -34,7 +34,7 @@ const EditCar = () => {
     const [fuelType, setFuelType] = useState(car?.fuelType || "");
     const [transmission, setTransmission] = useState(car?.transmission || "");
     const [rentPrice, setRentPrice] = useState(car?.rentPrice || "");
-
+    const [carImage, setCarImage] = useState(car?.CarImage || []);
 
     useEffect(() => {
         dispatch(fetchCarMake());
@@ -57,9 +57,8 @@ const EditCar = () => {
         if (mileage.trim() === "") return toast.error("Mileage is required");
         if (licensePlate.trim() === "") return toast.error("License plate is required");
         if (fuelType.trim() === "") return toast.error("Fuel type is required");
-        if(car._id === null) return toast.error("Something went wrong")
+        if (car._id === null) return toast.error("Something went wrong")
 
-        
         // make all variables in object
         const updatedCar = {
             "carMakeId": carMakeId,
@@ -75,15 +74,15 @@ const EditCar = () => {
             "rentPrice": rentPrice,
         }
 
-        dispatch(UpdateCar(car._id,updatedCar))
+        dispatch(UpdateCar(car._id, updatedCar))
     }
 
 
-    useEffect(()=> {
-        if(isCarUpdated){
+    useEffect(() => {
+        if (isCarUpdated) {
             navigate("/employee/car-page");
         }
-    },[isCarUpdated,navigate]);
+    }, [isCarUpdated, navigate]);
 
 
     return (
@@ -94,10 +93,44 @@ const EditCar = () => {
                     sidebarToggle={setSidebarToggle}
                     setSidebarToggle={setSidebarToggle}
                 />
-                <div className="flex justify-center items-center h-screen bg-gray-100">
+                <div className="flex flex-col items-center bg-gray-100 min-h-screen py-6">
+                    {/* Promo Image Section */}
+                    <div className="w-11/12 max-w-4xl bg-white shadow-lg rounded-lg p-6 mb-6">
+                        <div className="flex flex-col items-center">
+                            <div>
+                                {/* Check if carImage length is less than 3 */}
+                                {carImage.length < 3 && (
+                                    <button
+                                        className="bg-gray-800 text-white py-2 px-4 rounded-lg hover:bg-gray-700 transition mb-4"
+                                    >
+                                        Add Image
+                                    </button>
+                                )}
+                                
+                                {/* Map through carImage */}
+                                {carImage.map((image, index) => (
+                                    <div key={index} className="relative mb-4">
+                                        <img
+                                            src={image.carImage.url} // Default image if none is set
+                                            alt="Promo"
+                                            className="w-50 h-50 object-cover mb-2"
+                                        />
+
+                                        {/* Change Image button positioned at the top right */}
+                                        <button
+                                            className="absolute top-0 right-0 bg-gray-800 text-white py-2 px-4 rounded-bl-lg hover:bg-gray-700 transition"
+                                        >
+                                            Change Image
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                    {/* Form section */}
                     <div className="w-11/12 max-w-4xl bg-white shadow-lg rounded-lg p-6">
                         <div className="text-3xl font-bold text-center mb-6">
-                            Update Car
+                            Update Car Fields
                         </div>
                         <form className="space-y-6" onSubmit={formSubmitHandler}>
                             <div className="grid grid-cols-3 gap-6">
@@ -294,7 +327,7 @@ const EditCar = () => {
                                 type="submit"
                                 className="w-full bg-gray-800 text-white py-2 px-4 rounded-lg hover:bg-gray-700 transition"
                             >
-                               {loadingUpdateCar ? "Loading..." : "Update car"}
+                                {loadingUpdateCar ? "Updating..." : "Update car fields"}
                             </button>
 
                         </form>

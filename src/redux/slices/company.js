@@ -9,7 +9,10 @@ const companySlice = createSlice({
     loadingCreateCompany : false,
     isCompanyCreated : false,
     loadingCompanyDeleted : false,
-    isCompanyDeleted : false
+    isCompanyDeleted : false,
+    // get one company
+    loadingOneCompany : false,
+    company : null,
   },
   reducers: { 
     setComapnies: (state, action) => {
@@ -47,6 +50,17 @@ const companySlice = createSlice({
       state.loadingCompanyDeleted = false;
       state.isCompanyDeleted = false;
 
+    },
+    // get one company
+    setLoadingCompany(state){
+      state.loadingOneCompany = true;
+    },
+    setCompany : (state , action) => {
+      state.company = action.payload;
+      state.loadingOneCompany = false;
+    },
+    setErrorCompany : (state) => {
+      state.loadingOneCompany = false;
     }
   },
 });
