@@ -72,3 +72,46 @@ export function fetchOneCompany() {
         }
     }
 }
+
+// update company 
+export function updateCompany(updatedCompany) {
+    return async(dispatch , getState) => {
+        try {
+            dispatch(companyAction.setLoadingCompanyUpdated());
+            await request.put(`/api/company/list/${getState().auth.employee.companyID}`, updatedCompany , {
+                headers : {
+                    Authorization : "Bearer " + getState().auth.employee.token,
+                    "Content-Type": "application/json"
+                }
+            });
+            dispatch(companyAction.setCompanyUpdated());
+            setTimeout(()=> dispatch(companyAction.setClearCompanyUpdated()));
+        } catch (error) {
+            const errorMessage = error.response?.data?.message || "Error updating company";
+            toast.error(errorMessage);
+            dispatch(companyAction.setClearCompanyUpdated());
+        }
+    }
+}
+
+
+// change company image
+export function changeCompanyImage(imageId,image) {
+    return async (dispatch , getState) => {
+        try {
+            dispatch(companyAction.setLoadingCompanyImage());
+            await request.post(`/api/company/change-image/${imageId}`, image , {
+                headers : {
+                    Authorization : "Bearer " + getState().auth.employee.token,
+                    "Content-Type": "multipart/form-data"
+                }
+            });
+            dispatch(companyAction.setIsCompanyImageUpdated());
+            setTimeout(()=> dispatch(companyAction.setClearCompangImageChange()));
+        } catch (error) {
+            const errorMessage = error.response?.data?.message || "Error updating company image";
+            toast.error(errorMessage);
+            dispatch(companyAction.setClearCompangImageChange());
+        }
+    }
+}

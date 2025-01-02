@@ -130,7 +130,7 @@ const EditCar = () => {
                     {/* Form section */}
                     <div className="w-11/12 max-w-4xl bg-white shadow-lg rounded-lg p-6">
                         <div className="text-3xl font-bold text-center mb-6">
-                            Update Car Fields
+                            Update car fields
                         </div>
                         <form className="space-y-6" onSubmit={formSubmitHandler}>
                             <div className="grid grid-cols-3 gap-6">

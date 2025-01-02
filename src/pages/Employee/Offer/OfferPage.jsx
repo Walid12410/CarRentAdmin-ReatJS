@@ -11,7 +11,9 @@ const OfferPage = () => {
     const dispatch = useDispatch();
     const [sidebarToggle, setSidebarToggle] = useState(false);
 
-    const { companyOffers, loadingCompanyOffer, errorCompanyOffers, companyOfferCount } = useSelector(state => state.offer);
+    const { companyOffers, loadingCompanyOffer,
+        errorCompanyOffers, companyOfferCount, isOfferDeleted
+    } = useSelector(state => state.offer);
     const [currentPage, setCurrentPage] = useState(1);
     const pages = Math.ceil(companyOfferCount?.offerCount / 3);
 
@@ -23,6 +25,14 @@ const OfferPage = () => {
     useEffect(() => {
         dispatch(countCompanyOffers());
     }, [dispatch]);
+
+    useEffect(() => {
+        if (isOfferDeleted) {
+            dispatch(fetchCompanyOffer(currentPage));
+            dispatch(countCompanyOffers());
+            window.scrollTo(0, 0);
+        }
+    }, [isOfferDeleted]);
 
     return (
         <div className="flex">

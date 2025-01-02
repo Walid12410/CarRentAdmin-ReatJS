@@ -14,7 +14,13 @@ const offerSlice = createSlice({
     companyOfferCount : null,
     // create new offer
     isOfferCreated : false,
-    loadingCreatingOffer : false
+    loadingCreatingOffer : false,
+    // update offer
+    isOfferUpdated : false,
+    loadingOfferUpdated : false,
+    // delte offer
+    isOfferDeleted : false,
+    loadingDeleteOffer : false,
   },
   reducers: { 
     setLatestOffer: (state, action) => {
@@ -57,6 +63,30 @@ const offerSlice = createSlice({
     setClearOfferCreated : (state) => {
       state.isOfferCreated = false;
       state.loadingCreatingOffer = false;
+    },
+    // offer update
+    setLoadingUpdateOffer : (state) => {
+      state.loadingOfferUpdated = true;
+    },
+    setIsOfferUpdated : (state) => {
+      state.loadingOfferUpdated = false;
+      state.isOfferUpdated = true;
+    },
+    setClearOfferUpdated : (state) => {
+      state.loadingOfferUpdated = false;
+      state.isOfferUpdated = false;
+    },
+    // delete offer
+    setLoadingDeleteOffer : (state) => {
+      state.loadingDeleteOffer = true;
+    },
+    setIsOfferDeleted : (state) => {
+      state.loadingDeleteOffer = false;
+      state.isOfferDeleted = true;
+    },
+    setClearOfferDeleted: (state) => {
+      state.loadingDeleteOffer = false;
+      state.isOfferDeleted = false;
     }
   },
 });

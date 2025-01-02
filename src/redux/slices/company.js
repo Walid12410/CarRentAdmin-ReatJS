@@ -13,6 +13,12 @@ const companySlice = createSlice({
     // get one company
     loadingOneCompany : false,
     company : null,
+    // update company
+    loadingCompanyUpdated : false,
+    isCompanyUpdated : false,
+    // company image change
+    loadingCompanyImageChange : false,
+    isCompanyImageChange : false
   },
   reducers: { 
     setComapnies: (state, action) => {
@@ -61,9 +67,32 @@ const companySlice = createSlice({
     },
     setErrorCompany : (state) => {
       state.loadingOneCompany = false;
+    },
+    // update company
+    setLoadingCompanyUpdated : (state) => {
+      state.loadingCompanyUpdated = true;
+    },
+    setCompanyUpdated : (state) => {
+      state.loadingCompanyUpdated = false;
+      state.isCompanyUpdated = true;
+    },
+    setClearCompanyUpdated : (state) => {
+      state.isCompanyUpdated = false;
+      state.loadingCompanyUpdated= false;
+    },
+    // change company image
+    setLoadingCompanyImage : (state) => {
+      state.loadingCompanyImageChange = true;
+    },
+    setIsCompanyImageUpdated: (state) => {
+      state.loadingCompanyImageChange = false;
+      state.isCompanyImageChange = true;
+    },
+    setClearCompangImageChange : (state) => {
+      state.loadingCompanyImageChange = false;
+      state.isCompanyImageChange = false;
     }
-  },
-});
+}});
 
 const companyReducer = companySlice.reducer;
 const companyAction = companySlice.actions;

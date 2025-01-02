@@ -69,3 +69,48 @@ export function createNewOffer(newOffer,carId) {
         }
     }
 }
+
+
+// update offer
+export function updateOffer(offerId,updateOffer) {
+    return async (dispatch,getState) => {
+        try {
+            dispatch(offerAction.setLoadingUpdateOffer());
+            await request.put(`/api/offer/${offerId}`,updateOffer,{
+                headers : {
+                    Authorization : "Bearer " + getState().auth.employee.token,
+                    "Content-Type": "application/json",
+                }
+            });
+            dispatch(offerAction.setIsOfferUpdated());
+            toast.success("offer updated successfully!");
+            setTimeout(()=> dispatch(offerAction.setClearOfferUpdated()));
+        } catch (error) {
+            const errorMessage = error.response?.data?.message || "Error updating offer";
+            toast.error(errorMessage);
+            dispatch(offerAction.setClearOfferUpdated());
+        }
+    }
+}
+
+
+// delete offer
+export function deleteOffer(offerId) {
+    return async (dispatch, getState) =>{
+        try {
+            dispatch(offerAction.setLoadingDeleteOffer());
+            await request.delete(`/api/offer/${offerId}`,{
+                headers : {
+                    Authorization : "Bearer " + getState().auth.employee.token,
+                }
+            });
+            dispatch(offerAction.setIsOfferDeleted());
+            toast.success("offer deleted successfully");
+            setTimeout(()=> dispatch(offerAction.setClearOfferDeleted()));
+        } catch (error) {
+            const errorMessage = error.response?.data?.message || "Error deleting offer";
+            toast.error(errorMessage);
+            dispatch(offerAction.setClearOfferDeleted());
+        }
+    }
+}
