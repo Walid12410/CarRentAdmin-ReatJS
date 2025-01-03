@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCarMake } from "../../../redux/api/carMakeApi";
 import { fetchCategory } from "../../../redux/api/categoryApiCall";
 import { toast } from "react-toastify";
-import { UpdateCar } from "../../../redux/api/carApiCall";
+import { addCarImage, changeCarImage, UpdateCar } from "../../../redux/api/carApiCall";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const EditCar = () => {
@@ -19,7 +19,12 @@ const EditCar = () => {
     const [sidebarToggle, setSidebarToggle] = useState(false);
     const { carMake, loadingCarMake, errorCarMake } = useSelector(state => state.carMake);
     const { categories, loading, error } = useSelector(state => state.category);
-    const { isCarUpdated, loadingUpdateCar } = useSelector(state => state.car);
+    const { isCarUpdated, loadingUpdateCar,isCarImageChange,loadingCarImageChange,
+        isCarImageAdded , loadingAddingCarImage
+     } = useSelector(state => state.car);
+
+    const [selectedFiles, setSelectedFiles] = useState({});
+    const [loadingState, setLoadingState] = useState({}); // Store loading states for each image
 
 
     // All object data
@@ -33,13 +38,86 @@ const EditCar = () => {
     const [mileage, setMileage] = useState(car?.mileage || "");
     const [fuelType, setFuelType] = useState(car?.fuelType || "");
     const [transmission, setTransmission] = useState(car?.transmission || "");
-    const [rentPrice, setRentPrice] = useState(car?.rentPrice || "");
+    const [rentPrice, setRentPrice] = useState(car?.rentPrice || null);
     const [carImage, setCarImage] = useState(car?.CarImage || []);
 
     useEffect(() => {
         dispatch(fetchCarMake());
         dispatch(fetchCategory())
     }, [dispatch]);
+
+    // change image handler
+    const handlerChangeCarImage = async (CarImageId) => {
+        if (loadingCarImageChange) return;
+
+        const fileInput = document.createElement("input");
+        fileInput.type = "file";
+        fileInput.accept = "image/*";
+
+        fileInput.onchange = async (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const formData = new FormData();
+                formData.append("carImages", file);
+
+                setSelectedFiles((prevState) => ({
+                    ...prevState,
+                    [CarImageId]: file, // Map the file to the specific CompanyImageId
+                }));
+
+
+                // Set loading for this specific image
+                setLoadingState((prevState) => ({
+                    ...prevState,
+                    [CarImageId]: true,
+                }));
+                
+
+                // Call the API
+               dispatch(changeCarImage(CarImageId,formData));
+            }
+        };
+
+        fileInput.click();
+    };
+
+
+    const handleAddImage = () => {
+        if (carImage.length >= 3) {
+            toast.error("You can only upload a maximum of 3 images!");
+            return;
+        }
+    
+        const fileInput = document.createElement("input");
+        fileInput.type = "file";
+        fileInput.accept = "image/*";
+    
+        fileInput.onchange = async (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const formData = new FormData();
+                formData.append("carImages", file);
+
+                // call the api
+                dispatch(addCarImage(car._id,formData));
+            }
+        };
+    
+        fileInput.click();
+    };
+
+    useEffect(() => {
+        if(isCarImageAdded){
+            navigate("/employee/car-page")
+        }
+    },[isCarImageAdded,navigate]);
+    
+
+    useEffect(()=> {
+        if(isCarImageChange) {
+            navigate("/employee/car-page")
+        }
+    },[isCarImageChange,navigate]);
 
 
     const formSubmitHandler = (e) => {
@@ -51,7 +129,7 @@ const EditCar = () => {
         if (carModel.trim() === "") return toast.error("Car model is required");
         if (year.trim() === "") return toast.error("Year is required");
         if (color.trim() === "") return toast.error("Color is required");
-        if (rentPrice.trim() === "") return toast.error("Rent price is required");
+        if (rentPrice === null) return toast.error("Rent price is required");
         if (carStatus.trim() === "") return toast.error("Car status is required");
         if (transmission.trim() === "") return toast.error("Transmission is required");
         if (mileage.trim() === "") return toast.error("Mileage is required");
@@ -77,7 +155,6 @@ const EditCar = () => {
         dispatch(UpdateCar(car._id, updatedCar))
     }
 
-
     useEffect(() => {
         if (isCarUpdated) {
             navigate("/employee/car-page");
@@ -101,26 +178,32 @@ const EditCar = () => {
                                 {/* Check if carImage length is less than 3 */}
                                 {carImage.length < 3 && (
                                     <button
+                                        onClick={()=> handleAddImage()}
                                         className="bg-gray-800 text-white py-2 px-4 rounded-lg hover:bg-gray-700 transition mb-4"
                                     >
-                                        Add Image
+                                        {loadingAddingCarImage ? "Adding..." : "Add Image"}
                                     </button>
                                 )}
-                                
+
                                 {/* Map through carImage */}
                                 {carImage.map((image, index) => (
                                     <div key={index} className="relative mb-4">
                                         <img
-                                            src={image.carImage.url} // Default image if none is set
+                                            src={
+                                                selectedFiles[image._id]
+                                                ? URL.createObjectURL(selectedFiles[image._id])
+                                                : image.carImage.url
+                                                }
                                             alt="Promo"
                                             className="w-50 h-50 object-cover mb-2"
                                         />
 
                                         {/* Change Image button positioned at the top right */}
                                         <button
+                                            onClick={() => handlerChangeCarImage(image._id)}
                                             className="absolute top-0 right-0 bg-gray-800 text-white py-2 px-4 rounded-bl-lg hover:bg-gray-700 transition"
                                         >
-                                            Change Image
+                                           {loadingState[image._id] ? "Changing..." : "Change image"}
                                         </button>
                                     </div>
                                 ))}

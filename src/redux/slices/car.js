@@ -21,7 +21,13 @@ const carSlice = createSlice({
     loadingCarCreate: false,
     // Update Car
     isCarUpdated: false,
-    loadingUpdateCar: false
+    loadingUpdateCar: false,
+    // change car image
+    isCarImageChange : false,
+    loadingCarImageChange : false,
+    // add car image
+    isCarImageAdded : false,
+    loadingAddingCarImage : false
   },
   reducers: {
     setLatestCar: (state, action) => {
@@ -103,6 +109,30 @@ const carSlice = createSlice({
     setClearCarUpdated: (state) => {
       state.isCarUpdated = false;
       state.loadingUpdateCar = false;
+    },
+    // change car image
+    setLoadingCarImageChange : (state) => {
+      state.loadingCarImageChange = true;
+    },
+    setIsCarImageChanged : (state) => {
+      state.isCarImageChange = true;
+      state.loadingCarImageChange = false; 
+    },
+    setClearCarImageChange : (state) => {
+      state.isCarImageChange = false;
+      state.loadingCarImageChange = false;
+    },
+    // add car image
+    setLoadingCarImageAdd : (state) => {
+      state.loadingAddingCarImage = true;
+    },
+    setIsCarImageChanged : (state) => {
+      state.isCarImageAdded = true;
+      state.loadingAddingCarImage = false;
+    },
+    setClearCarImageAdded : (state) => {
+      state.isCarImageAdded = false;
+      state.loadingAddingCarImage = false;
     }
   },
 });

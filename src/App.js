@@ -27,6 +27,7 @@ import CarPage from "./pages/Employee/Car/CarPage";
 import EditPromo from './pages/Employee/Promo/EditPromoPage';
 import CompanyPage from './pages/Employee/Company/Company';
 import EditOfferPage from './pages/Employee/Offer/EditOfferPage';
+import BookingPage from './pages/Employee/Booking/BookingPage';
 
 function App() {
   return (
@@ -68,6 +69,9 @@ function App() {
         <Route path= 'promo-page' element={<PromoPage />} />
         <Route path= 'promo-page/new-promo' element={<AddNewPromo />} />
         <Route path= 'promo-page/edit-promo/:id' element={<EditPromo />} />
+
+
+        <Route path= 'booking-page' element={<BookingPage />} />
 
       </Route>
     </Routes>

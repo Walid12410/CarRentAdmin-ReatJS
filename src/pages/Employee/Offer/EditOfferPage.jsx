@@ -50,9 +50,6 @@ const EditOfferPage = () => {
             "discountPrice": discountPrice
         }
 
-        console.log(updateOfferObject);
-
-
         dispatch(updateOffer(offer._id, updateOfferObject));
     };
 

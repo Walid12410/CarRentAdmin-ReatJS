@@ -4,10 +4,9 @@ import { ReactComponent as BuildingIcon } from '../../assets/admin-icon/building
 import { ReactComponent as CarIcon } from '../../assets/admin-icon/car-front-fill.svg';
 import { ReactComponent as CouponsIcon } from '../../assets/admin-icon/discount-voucher-icon.svg';
 import { ReactComponent as SaleIcon } from '../../assets/admin-icon/offer-icon.svg';
-import { ReactComponent as PersonIcon } from '../../assets/admin-icon/person-circle.svg';
+import { ReactComponent as ReviewIcon } from '../../assets/admin-icon/review.svg';
 import { ReactComponent as LogOutIcon } from '../../assets/admin-icon/enter-icon.svg';
 import { ReactComponent as BookingIcon } from '../../assets/admin-icon/booking-icon.svg';
-import { ReactComponent as NoticationIcon } from '../../assets/admin-icon/notification-alert-icon.svg';
 
 const EmployeeSideBar = ({ sidebarToggle }) => {
     return (
@@ -47,7 +46,7 @@ const EmployeeSideBar = ({ sidebarToggle }) => {
                         className="inline-block w-6 h-6 mr-2 -mt-2" />
                     Car
                 </Link>
-                <Link
+                <Link to={`/employee/booking-page`}
                     className="mb-2 rounded text-white hover:shadow hover:bg-blue-500 py-2 no-underline">
                     <BookingIcon width="20" height="20" fill="white"
                         className="inline-block w-6 h-6 mr-2 -mt-2" />
@@ -55,9 +54,9 @@ const EmployeeSideBar = ({ sidebarToggle }) => {
                 </Link>
                 <Link
                     className="mb-2 rounded text-white hover:shadow hover:bg-blue-500 py-2 no-underline">
-                    <NoticationIcon width="20" height="20" fill="white"
+                    <ReviewIcon width="20" height="20" fill="white"
                         className="inline-block w-6 h-6 mr-2 -mt-2" />
-                    Notification
+                    Review
                 </Link>
                 <Link
                     className="mb-2 rounded text-white hover:shadow hover:bg-blue-500 py-2 no-underline">

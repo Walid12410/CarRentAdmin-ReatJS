@@ -8,6 +8,7 @@ import { employeeReducer } from "./slices/employee";
 import { userReducer } from "./slices/user";
 import { promoReducer } from "./slices/promo";
 import { carModelReducer } from "./slices/carMake";
+import { bookingReducer } from "./slices/booking";
 
 
 const store = configureStore({
@@ -20,7 +21,8 @@ const store = configureStore({
         employee : employeeReducer,
         user : userReducer,
         promo: promoReducer,
-        carMake : carModelReducer
+        carMake : carModelReducer,
+        booking : bookingReducer
     },
 });
 

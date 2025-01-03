@@ -141,3 +141,49 @@ export function UpdateCar(carId , carData) {
         }
     }
 }
+
+
+// change car image
+export function changeCarImage(carImageId , carImage) {
+    return async(dispatch , getState) => {
+        try {
+            dispatch(carAction.setLoadingCarImageChange());
+            await request.post(`api/car-rent/change-image/${carImageId}`,carImage,{
+                headers : {
+                    Authorization : "Bearer " +getState().auth.employee.token,
+                    "Content-Type" : "multipart/from-data"
+                }
+            });
+            dispatch(carAction.setIsCarImageChanged());
+            toast.success("Car image updated successfully!");
+            setTimeout(()=> dispatch(carAction.setClearCarImageChange()));
+        } catch (error) {
+            const errorMessage = error.response?.data?.message || "Error updating car image";
+            toast.error(errorMessage);
+            dispatch(carAction.setClearCarImageChange());
+        }
+    }
+}
+
+
+// add car image
+export function addCarImage(carId, carImage) {
+    return async(dispatch , getState) => {
+        try {
+            dispatch(carAction.setLoadingCarImageAdd());
+            await request.post(`api/car-rent/car-image/${carId}`,carImage,{
+                headers : {
+                    Authorization : "Bearer " +getState().auth.employee.token,
+                    "Content-Type" : "multipart/from-data"
+                }
+            });
+            dispatch(carAction.setIsCarImageChanged());
+            toast.success("Car image added successfully!");
+            setTimeout(()=> dispatch(carAction.setClearCarImageAdded()));
+        } catch (error) {
+            const errorMessage = error.response?.data?.message || "Error adding car image";
+            toast.error(errorMessage);
+            dispatch(carAction.setClearCarImageAdded());
+        }
+    }
+}

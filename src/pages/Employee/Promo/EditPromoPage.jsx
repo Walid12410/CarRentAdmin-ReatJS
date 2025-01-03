@@ -17,10 +17,10 @@ const EditPromo = () => {
     const { isPromoImageChanged, loadingPromoImage , isPromoUpdated , loadingPromoUpdated } = useSelector(state => state.promo);
     const [sidebarToggle, setSidebarToggle] = useState(false);
     const [promoCode, setPromoCode] = useState(promo?.promoCode || "");
-    const [discountPercent, setDiscountPercent] = useState(promo?.discountPercentage || "");
+    const [discountPercent, setDiscountPercent] = useState(promo?.discountPercentage || null);
     const [startDate, setStartDate] = useState(promo?.startDate || "");
     const [endDate, setEndDate] = useState(promo?.endDate || "");
-    const [usageLimit, setUsageLimit] = useState(promo?.usageLimit || "");
+    const [usageLimit, setUsageLimit] = useState(promo?.usageLimit || null);
     const [promoTitle, setPromoTitle] = useState(promo?.promoTitle || "");
     const [promoDesc, setPromoDesc] = useState(promo?.promoDescription || "");
     const [promoImage, setPromoImage] = useState(promo?.promoImage?.url ?? "");
@@ -60,10 +60,10 @@ const EditPromo = () => {
 
         // validation for empty variable 
         if (promoCode.trim() === "") return toast.error("Promo code is required");
-        if (discountPercent.trim() === "") return toast.error("Discount percent is required");
+        if (discountPercent === null) return toast.error("Discount percent is required");
         if (startDate.trim() === "") return toast.error("Start date is required");
-        if (endDate.trim() === "") return toast.error("End date is required");
-        if (usageLimit.trim() === "") return toast.error("Usage limit is required");
+        if (endDate.trim() === null) return toast.error("End date is required");
+        if (usageLimit === "") return toast.error("Usage limit is required");
         if (promoTitle.trim() === "") return toast.error("Promo title is required");
         if (promoDesc.trim() === "") return toast.error("Promo description status is required");
 
