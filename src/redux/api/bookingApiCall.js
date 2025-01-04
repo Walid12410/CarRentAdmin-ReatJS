@@ -2,12 +2,14 @@ import { toast } from "react-toastify";
 import { bookingAction } from "../slices/booking";
 import request from "../../utils/requset";
 
+
+
 // fetch company car booking
-export function fetchCompanyBooking () {
-    return async (dispatch,getState) => {
+export function fetchCompanyBooking(pageNumber) {
+    return async (dispatch, getState) => {
         try {
             dispatch(bookingAction.setLoadingCompanyBooking());
-            const { data } = await request.get(`/api/booking/company/${getState().auth.employee.companyID}`,{
+            const { data } = await request.get(`/api/booking/company/${getState().auth.employee.companyID}?pageNumber=${pageNumber}&limitPage=10`, {
                 headers: {
                     Authorization: `Bearer ` + getState().auth.employee.token,
                 }
@@ -15,6 +17,24 @@ export function fetchCompanyBooking () {
             dispatch(bookingAction.setCompanyBooking(data));
         } catch (error) {
             const errorMessage = error.response?.data?.message || "Error fetching company booking"
+            toast.error(errorMessage);
+        }
+    }
+}
+
+
+// count company booking
+export function countCompanyBooking() {
+    return async (dispatch, getState) => {
+        try {
+            const { data } = await request.get(`/api/booking/company-count/${getState().auth.employee.companyID}`, {
+                headers: {
+                    Authorization: `Bearer ` + getState().auth.employee.token,
+                }
+            });
+            dispatch(bookingAction.setCompanyBookingCount(data));
+        } catch (error) {
+            const errorMessage = error.response?.data?.message || "Error count booking"
             toast.error(errorMessage);
         }
     }

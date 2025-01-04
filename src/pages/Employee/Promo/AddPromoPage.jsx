@@ -6,6 +6,7 @@ import { createNewPromo } from "../../../redux/api/promoApiCall";
 import InputComponent from "../../../components/InputComponent";
 import EmployeeSideBar from "../../../components/Employee-Components/EmployeeSidebar";
 import EmployeeHeader from "../../../components/Employee-Components/EmployeeHeader";
+import { sendNotificationForAllUser } from "../../../redux/api/notificationApiCall";
 
 const AddNewPromo = () => {
     const dispatch = useDispatch();
@@ -51,12 +52,12 @@ const AddNewPromo = () => {
     const formSubmitHandler = (e) => {
         e.preventDefault();
 
-        if (promoTitle == "") return toast.error("promo title is required");
-        if (promoDesc == "") return toast.error("promo description is required");
-        if (promoCode == "") return toast.error("promo code is required");
-        if (startDate == "") return toast.error("start date is required");
-        if (endDate == "") return toast.error("end date is required");
-        if (usageLimit == "") return toast.error("usage limit is required");
+        if (promoTitle === "") return toast.error("promo title is required");
+        if (promoDesc === "") return toast.error("promo description is required");
+        if (promoCode === "") return toast.error("promo code is required");
+        if (startDate === "") return toast.error("start date is required");
+        if (endDate === "") return toast.error("end date is required");
+        if (usageLimit === "") return toast.error("usage limit is required");
 
         const formData = new FormData();
         formData.append("promoTitle", promoTitle);
@@ -81,6 +82,7 @@ const AddNewPromo = () => {
 
     useEffect(() => {
         if (isPromoCreated) {
+            dispatch(sendNotificationForAllUser("New promo available", promoTitle));
             navigate("/employee/promo-page");
         }
     }, [isPromoCreated, navigate]);

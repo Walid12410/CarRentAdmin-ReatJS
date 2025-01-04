@@ -5,6 +5,8 @@ const bookingModelSlice = createSlice({
   initialState: {
     companyBooking: [],
     loadingCompanyBooking: false,
+    // count company booking
+    companyBookingCount: null,
   },
   reducers: { 
     setCompanyBooking: (state, action) => {
@@ -14,7 +16,10 @@ const bookingModelSlice = createSlice({
     setLoadingCompanyBooking: (state) => {
       state.loadingCompanyBooking = true;
     },
-
+    // company booking count
+    setCompanyBookingCount: (state, action) => {
+      state.companyBookingCount = action.payload;
+    }
   },
 });
 

@@ -9,6 +9,7 @@ import { userReducer } from "./slices/user";
 import { promoReducer } from "./slices/promo";
 import { carModelReducer } from "./slices/carMake";
 import { bookingReducer } from "./slices/booking";
+import { notificationReducer } from "./slices/notification";
 
 
 const store = configureStore({
@@ -22,7 +23,8 @@ const store = configureStore({
         user : userReducer,
         promo: promoReducer,
         carMake : carModelReducer,
-        booking : bookingReducer
+        booking : bookingReducer,
+        notification : notificationReducer
     },
 });
 

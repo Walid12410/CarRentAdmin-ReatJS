@@ -2,21 +2,26 @@ import { useEffect, useState } from "react";
 import EmployeeSideBar from "../../../components/Employee-Components/EmployeeSidebar";
 import EmployeeHeader from "../../../components/Employee-Components/EmployeeHeader";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCompanyBooking } from "../../../redux/api/bookingApiCall";
+import { countCompanyBooking, fetchCompanyBooking } from "../../../redux/api/bookingApiCall";
 import BookingCard from "../../../components/BookingCard";
+import Pagination from "../../../components/Pagination";
 
 const BookingPage = () => {
-    
+
     const dispatch = useDispatch();
 
 
     const [sidebarToggle, setSidebarToggle] = useState(false);
-    const { companyBooking , loadingCompanyBooking } = useSelector((state) => state.booking);
+    const { companyBooking, loadingCompanyBooking,companyBookingCount } = useSelector((state) => state.booking);
 
-    useEffect(()=>{
-        dispatch(fetchCompanyBooking());
-        window.scrollTo(0,0);
-    },[dispatch]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const pages = Math.ceil((companyBookingCount?.bookingCount ?? 1) / 10);
+
+    useEffect(() => {
+        dispatch(fetchCompanyBooking(currentPage));
+        dispatch(countCompanyBooking());
+        window.scrollTo(0, 0);
+    }, [currentPage]);
 
     return (
         <div className="flex min-h-screen">
@@ -39,6 +44,15 @@ const BookingPage = () => {
                         </div>
                     ))
                 )}
+                {/* Pagination */}
+                <div className="flex justify-center py-4 ">
+                    <Pagination
+                        pages={pages}
+                        currentPage={currentPage}
+                        setCurrentPage={setCurrentPage}
+                    />
+                </div>
+
             </div>
         </div>
     );

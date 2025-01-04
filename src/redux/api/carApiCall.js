@@ -177,7 +177,7 @@ export function addCarImage(carId, carImage) {
                     "Content-Type" : "multipart/from-data"
                 }
             });
-            dispatch(carAction.setIsCarImageChanged());
+            dispatch(carAction.setIsCarImageAdded());
             toast.success("Car image added successfully!");
             setTimeout(()=> dispatch(carAction.setClearCarImageAdded()));
         } catch (error) {

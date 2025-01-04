@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import request from "../../../utils/requset";
 import { createNewOffer } from "../../../redux/api/offerApiCall";
 import InputComponent from "../../../components/InputComponent";
+import { sendNotificationForAllUser } from "../../../redux/api/notificationApiCall";
 
 const AddNewOffer = () => {
   const dispatch = useDispatch();
@@ -109,6 +110,7 @@ const AddNewOffer = () => {
 
   useEffect(() => {
     if (isOfferCreated) {
+      dispatch(sendNotificationForAllUser("New offer available", offerTitle));
       navigate("/employee/offer-page");
     }
   }, [isOfferCreated, navigate]);

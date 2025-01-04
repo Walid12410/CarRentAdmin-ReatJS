@@ -46,6 +46,12 @@ const EmployeeSideBar = ({ sidebarToggle }) => {
                         className="inline-block w-6 h-6 mr-2 -mt-2" />
                     Car
                 </Link>
+                <Link
+                    className="mb-2 rounded text-white hover:shadow hover:bg-blue-500 py-2 no-underline">
+                    <CarIcon width="20" height="20" fill="white"
+                        className="inline-block w-6 h-6 mr-2 -mt-2" />
+                    Ended Car Booking
+                </Link>
                 <Link to={`/employee/booking-page`}
                     className="mb-2 rounded text-white hover:shadow hover:bg-blue-500 py-2 no-underline">
                     <BookingIcon width="20" height="20" fill="white"
@@ -58,13 +64,15 @@ const EmployeeSideBar = ({ sidebarToggle }) => {
                         className="inline-block w-6 h-6 mr-2 -mt-2" />
                     Review
                 </Link>
+            </ul>
+            <div className="absolute bottom-5 w-full">
                 <Link
-                    className="mb-2 rounded text-white hover:shadow hover:bg-blue-500 py-2 no-underline">
+                    className="mb-5 rounded text-white hover:shadow hover:bg-blue-500 py-2 no-underline">
                     <LogOutIcon width="20" height="20" fill="white"
                         className="inline-block w-6 h-6 mr-2 -mt-2 " />
                     Log out
                 </Link>
-            </ul>
+            </div>
         </div>
     );
 }

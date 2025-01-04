@@ -126,7 +126,7 @@ const carSlice = createSlice({
     setLoadingCarImageAdd : (state) => {
       state.loadingAddingCarImage = true;
     },
-    setIsCarImageChanged : (state) => {
+    setIsCarImageAdded : (state) => {
       state.isCarImageAdded = true;
       state.loadingAddingCarImage = false;
     },

@@ -110,14 +110,14 @@ const EditCar = () => {
         if(isCarImageAdded){
             navigate("/employee/car-page")
         }
-    },[isCarImageAdded,navigate]);
+    },[isCarImageAdded]);
     
 
     useEffect(()=> {
         if(isCarImageChange) {
             navigate("/employee/car-page")
         }
-    },[isCarImageChange,navigate]);
+    },[isCarImageChange]);
 
 
     const formSubmitHandler = (e) => {
@@ -159,7 +159,7 @@ const EditCar = () => {
         if (isCarUpdated) {
             navigate("/employee/car-page");
         }
-    }, [isCarUpdated, navigate]);
+    }, [isCarUpdated]);
 
 
     return (
