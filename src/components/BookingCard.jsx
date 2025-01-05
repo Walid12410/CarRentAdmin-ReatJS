@@ -38,7 +38,7 @@ const BookingCard = ({ booking }) => {
             {/* Car Image */}
             <div className="w-full md:w-52 h-52 overflow-hidden rounded-lg shadow-md">
                 <img
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-fill"
                     src={booking?.CarImage[0]?.carImage.url}
                     alt="Car Image"
                 />

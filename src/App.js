@@ -28,6 +28,7 @@ import EditPromo from './pages/Employee/Promo/EditPromoPage';
 import CompanyPage from './pages/Employee/Company/Company';
 import EditOfferPage from './pages/Employee/Offer/EditOfferPage';
 import BookingPage from './pages/Employee/Booking/BookingPage';
+import ReviewPage from './pages/Employee/Review/ReviewPage';
 
 function App() {
   return (
@@ -65,14 +66,13 @@ function App() {
         <Route path= 'offer-page/new-offer' element={<AddNewOffer />} />
         <Route path= 'offer-page/edit-offer/:id' element={<EditOfferPage />} />
 
-
         <Route path= 'promo-page' element={<PromoPage />} />
         <Route path= 'promo-page/new-promo' element={<AddNewPromo />} />
         <Route path= 'promo-page/edit-promo/:id' element={<EditPromo />} />
 
-
         <Route path= 'booking-page' element={<BookingPage />} />
 
+        <Route path= 'review-page' element={<ReviewPage/>} />
       </Route>
     </Routes>
     <ToastContainer theme="colored" position="top-center"></ToastContainer>
