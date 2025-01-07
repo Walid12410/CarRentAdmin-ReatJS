@@ -47,7 +47,6 @@ const CarPage = () => {
 
                     {loadingCompanyCars ? (
                         <div className="loading-spinner">
-                            Loading...
                         </div>
                     ) : errorCompanyCars ? (
                         <div className="error-message">
@@ -61,7 +60,7 @@ const CarPage = () => {
                         <div className="flex-grow">
                             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 m-2 justify-items-center">
                                 {companyCars?.map((car) => (
-                                    <CarCard key={car._id} car={car} />
+                                    <CarCard key={car._id} car={car} isAdmin={false}/>
                                 ))}
                             </div>
                         </div>

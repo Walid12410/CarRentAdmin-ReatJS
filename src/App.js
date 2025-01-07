@@ -1,20 +1,8 @@
 import { BrowserRouter , Routes , Route } from 'react-router-dom';
 import AdminDashboard from './pages/admin/AdminDashBoard/AdminDashboard';
 import LoginPageAdmin from './pages/Auth/LoginAdmin';
-import EmployeeTable from "./pages/admin/AdminPages/Emlpoyee/Employee";
-import Category from "./pages/admin/AdminPages/Category/Category";
-import BookingTable from "./pages/admin/AdminPages/Booking/Booking";
-import Company from "./pages/admin/AdminPages/Company/Company";
-import NotificationTable from "./pages/admin/AdminPages/Notication/Notifcation";
-import CarRent from "./pages/admin/AdminPages/CarRent/CarRent";
-import OfferTable from "./pages/admin/AdminPages/Offer/Offer";
-import PromoTable from "./pages/admin/AdminPages/Promo/Promo";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import CompanyForm from './pages/admin/AdminForm/CompanyForm/CompanyForm';
-import User from './pages/admin/AdminPages/Users/Users';
-import EmployeeForm from './pages/admin/AdminForm/EmployeeForm/EmployeeForm';
-import CarDetails from './pages/admin/AdminPages/CarRent/CarDetails/CarDetails';
 import EmployeeDashBoard from './pages/Employee/EmployeeDashBoard/EmployeeDashBoard';
 import LoginEmployee from './pages/Auth/LoginEmployee';
 import PromoPage from './pages/Employee/Promo/Promo';
@@ -29,6 +17,13 @@ import CompanyPage from './pages/Employee/Company/Company';
 import EditOfferPage from './pages/Employee/Offer/EditOfferPage';
 import BookingPage from './pages/Employee/Booking/BookingPage';
 import ReviewPage from './pages/Employee/Review/ReviewPage';
+import User from './pages/admin/Pages/Users';
+import CompanyAdmin from './pages/admin/Pages/Company';
+import PromoAdmin from './pages/admin/Pages/Promo';
+import CategoryAdmin from './pages/admin/Pages/Category';
+import AddCompanyAdmin from './pages/admin/Pages/AddCompany';
+import CarAdmin from './pages/admin/Pages/Car';
+import ReviewAdmin from './pages/admin/Pages/Review';
 
 function App() {
   return (
@@ -40,18 +35,14 @@ function App() {
 
       <Route path='admin'>
         <Route index element={<AdminDashboard/>} />
-        <Route path='user' element={<User/>} />
-        <Route path= 'category' element={<Category />} />
-        <Route path= 'company' element={<Company />} />
-        <Route path= 'new-company' element={<CompanyForm />} />
-        <Route path= 'employee' element={<EmployeeTable />} />
-        <Route path= 'new-employee' element = {<EmployeeForm />}/>
-        <Route path= 'promo' element={<PromoTable />} />
-        <Route path= 'offer' element={<OfferTable />} />
-        <Route path= 'car-rent' element={<CarRent />} />
-        <Route path= 'car-rent/car-details/:id' element={<CarDetails />} />
-        <Route path= 'booking' element={<BookingTable />} />
-        <Route path= 'notification' element={<NotificationTable />} />
+        <Route path='user-page' element={<User/>} />
+        <Route path='company-page' element={<CompanyAdmin />} />
+        <Route path='company-page/create' element={<AddCompanyAdmin />} />
+        <Route path='promo-page' element={<PromoAdmin />} />
+        <Route path='category-page' element={<CategoryAdmin />} />
+        <Route path='car-page' element={<CarAdmin />} />
+        <Route path='review-page' element={<ReviewAdmin />} />
+
       </Route>
 
       <Route path='employee'>

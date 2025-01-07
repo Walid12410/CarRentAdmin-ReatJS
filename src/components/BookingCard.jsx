@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { FaTelegramPlane } from 'react-icons/fa'; // Import edit and delete icons
+import { FaCalendarTimes } from 'react-icons/fa'; // Import a small icon for the end date
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { sendNotificationForSpecificUser } from '../redux/api/notificationApiCall';
+import { updateBooking } from '../redux/api/bookingApiCall';
 
 const BookingCard = ({ booking }) => {
 
@@ -11,13 +13,13 @@ const BookingCard = ({ booking }) => {
     const [isModalOpen, setModalOpen] = useState(false);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const {isNotificationSend, loadingSendNotification } = useSelector(state => state.notification);
-
+    const { isNotificationSend, loadingSendNotification } = useSelector(state => state.notification);
+    const [isDelivered, setIsDelivered] = useState(booking?.isDelivered || false);
 
     const notificationSubmitHandler = () => {
-        if(loadingSendNotification) return;
+        if (loadingSendNotification) return;
 
-        if(title.trim() === '' || description.trim() === '') {
+        if (title.trim() === '' || description.trim() === '') {
             return toast.error("title or description can not be empty!");
         }
 
@@ -25,13 +27,27 @@ const BookingCard = ({ booking }) => {
         dispatch(sendNotificationForSpecificUser(title, description, booking?.user?._id));
     }
 
-    useEffect(()=> {
-        if(isNotificationSend) {
+    useEffect(() => {
+        if (isNotificationSend) {
             setModalOpen(false);
             setTitle('');
             setDescription('');
         }
-    },[isNotificationSend]);
+    }, [isNotificationSend]);
+
+    const handleChange = (event) => {
+        const value = event.target.value === "true"; // Convert string to boolean
+        setIsDelivered(value);
+
+        const data = {
+            "isDelivered": value
+        }
+
+        dispatch(updateBooking(booking._id, data));
+    };
+
+    // Function to check if the booking has ended
+    const isBookingEnded = new Date(booking?.endDate) < new Date();
 
     return (
         <div className="w-full max-w-5xl bg-white p-6 rounded-lg shadow-lg flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-6">
@@ -48,7 +64,12 @@ const BookingCard = ({ booking }) => {
             <div className="flex flex-col space-y-3 flex-grow text-center">
                 <p className="text-2xl font-semibold">{booking?.car?.carModel}</p>
                 <p className="text-gray-700">Start Date: <span className="font-medium">{new Date(booking?.startDate).toLocaleDateString()}</span></p>
-                <p className="text-gray-700">End Date: <span className="font-medium">{new Date(booking?.endDate).toLocaleDateString()}</span></p>
+
+                {/* Conditionally render the end date and icon */}
+                <p className="text-gray-700">End Date:
+                    <span className="font-medium">{new Date(booking?.endDate).toLocaleDateString()}</span>
+                    {isBookingEnded && <FaCalendarTimes className="inline-block ml-2 text-red-500" title="Booking Ended" />}
+                </p>
                 <p className="text-gray-700">Main Car Price: <span className="font-medium">{booking?.mainCarPrice} $</span></p>
                 <p className="text-gray-700">Total Rent Price <span className="font-medium">{booking?.totalRentPrice} $</span></p>
                 <p className="text-gray-700">Days Rent: <span className="font-medium">{booking?.daysRent}</span></p>
@@ -69,12 +90,25 @@ const BookingCard = ({ booking }) => {
                 <p className="text-xl font-semibold flex items-center gap-2">
                     {booking?.user?.firstName} {booking?.user?.lastName}
                     <FaTelegramPlane
-                    onClick={() => setModalOpen(true)}
-                    className="text-yellow-500 cursor-pointer" title="Send Notification"  />
+                        onClick={() => setModalOpen(true)}
+                        className="text-yellow-500 cursor-pointer" title="Send Notification" />
                 </p>
                 <p className="text-gray-700">Email: <span className="font-medium">{booking?.user?.email}</span></p>
                 <p className="text-gray-700">Phone: <span className="font-medium">{booking?.user?.phoneNumber}</span></p>
                 <p className="text-gray-700">Location: <span className="font-medium">{booking?.user?.locationName}</span></p>
+
+                {/* Direct Location Link */}
+                {booking?.user?.latitude && booking?.user?.longitude && (
+                    <a
+                        href={`https://www.google.com/maps?q=${booking?.user?.latitude},${booking?.user?.longitude}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-500 mt-2"
+                    >
+                        View Location on Map
+                    </a>
+                )}
+
             </div>
 
             {/* Delivered Status */}
@@ -82,13 +116,14 @@ const BookingCard = ({ booking }) => {
                 <label htmlFor="isDelivered" className="text-gray-600">Delivered Status</label>
                 <select
                     id="isDelivered"
+                    value={isDelivered}
+                    onChange={handleChange}
                     className="bg-gray-100 p-2 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
-                    <option value="false" selected>Undelivered</option>
-                    <option value="true">Delivered</option>
+                    <option value={false}>Undelivered</option>
+                    <option value={true}>Delivered</option>
                 </select>
             </div>
-
 
             {/* Modal */}
             {isModalOpen && (

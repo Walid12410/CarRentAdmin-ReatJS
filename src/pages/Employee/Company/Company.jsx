@@ -120,7 +120,6 @@ const CompanyPage = () => {
 
                 {loadingOneCompany ? (
                     <div className="loading-spinner">
-                        loading...
                     </div>
                 ) : company === null ? (
                     <div className="error-message"> Error fetching company data</div>

@@ -38,3 +38,41 @@ export function fetchCompanyReviewCount() {
         }
     }
 }
+
+
+//fetch review count
+export function fetchReviewCount() {
+    return async (dispatch,getState) => {
+        try {
+            const { data } = await request.get(`/api/review/car-review/count`,{
+                headers : {
+                    'Authorization' : "Bearer " + getState().auth.user.token
+                }
+            });
+            dispatch(reviewAction.setCountReview(data));
+        } catch (error) {
+            const errorMessage = error.response?.data.message || "Error fetch review count";
+            toast.error(errorMessage);
+        }
+    }
+}
+
+
+// fetch review
+export function fetchReview(pageNumber){
+    return async (dispatch , getState) => {
+        try {
+            dispatch(reviewAction.setLoadingReview());
+            const { data } = await request.get(`/api/review/car-review?pageNumber=${pageNumber}&limitPage=6`,{
+                headers : {
+                    'Authorization' : "Bearer " + getState().auth.user.token
+                }
+            });
+            dispatch(reviewAction.setReviews(data));
+        } catch (error) {
+            const errorMessage = error.response?.data.message || "Error fetch review";
+            toast.error(errorMessage);
+            dispatch(reviewAction.setErrorReview(errorMessage));
+        }
+    }
+}

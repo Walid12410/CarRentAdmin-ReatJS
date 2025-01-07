@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as StarIcon } from '../assets/admin-icon/star.svg';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa'; // Import edit and delete icons
 
-const CarCard = ({ car }) => {
+const CarCard = ({ car , isAdmin }) => {
     return (
         <div
             key={car.id}
@@ -36,7 +36,8 @@ const CarCard = ({ car }) => {
                         {car?.reviewCount} ({car?.averageRating} reviews)
                     </div>
                 </div>
-                <div className="flex items-center space-x-3">
+                {!isAdmin && (
+                    <div className="flex items-center space-x-3">
                     <Link
                         to={`/employee/car-page/edit-car/${car?._id}`}
                         state={{car}}
@@ -50,6 +51,7 @@ const CarCard = ({ car }) => {
                         <FaTrashAlt className="w-5 h-5" />
                     </Link>
                 </div>
+                )}
             </div>
         </div>
     );

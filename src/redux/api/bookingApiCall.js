@@ -34,7 +34,26 @@ export function countCompanyBooking() {
             });
             dispatch(bookingAction.setCompanyBookingCount(data));
         } catch (error) {
-            const errorMessage = error.response?.data?.message || "Error count booking"
+            const errorMessage = error.response?.data?.message || "Error count booking";
+            toast.error(errorMessage);
+        }
+    }
+}
+
+
+// update booking
+export function updateBooking( id, updatedBooking) {
+    return async (dispatch, getState) => {
+        try {
+            await request.put(`/api/booking/${id}`,updatedBooking,{
+                headers : {
+                    "Content-Type": "application/json",
+                     Authorization: `Bearer ${getState().auth.employee.token}`
+                }
+            });
+            toast.success("Booking updated successfully!");
+        } catch (error) {
+            const errorMessage = error.response?.data?.message || "Error updating booking";
             toast.error(errorMessage);
         }
     }

@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
-import { ReactComponent as BuildingIcon } from '../../../../../assets/admin-icon/building.svg';
-import { ReactComponent as CarIcon } from '../../../../../assets/admin-icon/car-front-fill.svg';
-import { ReactComponent as PersonIcon } from '../../../../../assets/admin-icon/person-circle.svg';
-import { ReactComponent as BookingIcon } from '../../../../../assets/admin-icon/booking-icon.svg';
-import "../admin-main.css";
+import { ReactComponent as BuildingIcon } from '../../../assets/admin-icon/building.svg';
+import { ReactComponent as CarIcon } from '../../../assets/admin-icon/car-front-fill.svg';
+import { ReactComponent as PersonIcon } from '../../../assets/admin-icon/person-circle.svg';
+import { ReactComponent as BookingIcon } from '../../../assets/admin-icon/booking-icon.svg'
 
 
 const AdminDashBoardCard = () => {

@@ -1,14 +1,19 @@
-import AdminSideBar from "../../../components/Admin-Components/sideBar/SideBar";
-import "../admin.css";
-import AdminMain from "../AdminDashBoard/AdminMain/main-dashboard/AdminMainPage";
+import { useState } from "react";
+import AdminSideBar from "../../../components/Admin-Components/AdminSideBar";
+import AdminMain from "../AdminDashBoard/AdminMainPage";
 
 
 const AdminDashboard = () => {
-    return ( 
-        <section className="admin-dashboard">
-            <AdminSideBar/>
-            <AdminMain />
-        </section>
+    const [sidebarToggle, setSidebarToggle] = useState(false);
+
+    return (
+        <div className="flex">
+            <AdminSideBar sidebarToggle={sidebarToggle} />
+            {/* <AdminMain
+                sidebarToggle={sidebarToggle}
+                setSidebarToggle={setSidebarToggle}
+            /> */}
+        </div>
     );
 }
  

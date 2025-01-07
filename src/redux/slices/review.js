@@ -8,7 +8,13 @@ const reviewSlice = createSlice({
     loadingCompanyReview: false,
     errorCompanyReview : null,
     // company review count
-    companyReviewCount : null
+    companyReviewCount : null,
+    // get all review
+    reviews : [],
+    loading : false,
+    error : null,
+    // count review,
+    countReview : null
   },
   reducers: { 
     //  company review
@@ -26,6 +32,23 @@ const reviewSlice = createSlice({
     // comapny review count 
     setCompanyReviewCount : (state , action) => {
       state.companyReviewCount = action.payload;
+    },
+    // count review 
+    setCountReview : (state,action) => {
+      state.countReview = action.payload;
+    },
+    // get all review
+    setReviews : (state, action) => {
+      state.reviews = action.payload;
+      state.loading = false;
+    },
+    setLoadingReview : (state) => {
+      state.loading = true;
+    },
+    setErrorReview : (state , action) => {
+      state.loading = false;
+      state.error = action.payload;
+      state.reviews = null;
     }
   },
 });
