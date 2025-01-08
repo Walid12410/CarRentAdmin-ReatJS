@@ -32,7 +32,6 @@ export function createEmployee(newEmployee) {
             await request.post(`/api/auth-employee/register`,newEmployee , {
                 headers :{
                     Authorization : "Bearer " + getState().auth.user.token,
-                    "Content-Type" : "application/json"
                 }
             });
             dispatch(employeeAction.setIsEmoloyeeCreated());

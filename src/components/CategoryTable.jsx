@@ -1,13 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaEdit, FaTrashAlt } from "react-icons/fa"; // Importing the icons
+import { useDispatch, useSelector } from "react-redux";
+import { updateCategory } from "../redux/api/categoryApiCall";
+import { toast } from "react-toastify";
 
 const CategoryTable = ({ categories }) => {
+
+
+    const dispatch = useDispatch();
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState(null);
+    const { loadingUpdateCategorty, isCategoryUpdated } = useSelector(state => state.category);
 
     const handleEdit = (category) => {
         setSelectedCategory(category); // Set the selected category
         setIsDialogOpen(true); // Open the dialog
+
     };
 
     const handleCloseDialog = () => {
@@ -16,12 +24,21 @@ const CategoryTable = ({ categories }) => {
     };
 
     const handleSaveChanges = () => {
-        // Add logic to save changes (e.g., API call)
-        console.log("Updated category:", selectedCategory);
+        if (loadingUpdateCategorty) return;
 
-        // Close the dialog after saving changes
-        setIsDialogOpen(false);
+        if (selectedCategory.categoryName === "") return toast.error("Category name required!");
+
+        const data = {
+            'categoryName': selectedCategory.categoryName
+        }
+        dispatch(updateCategory(selectedCategory._id, data))
     };
+
+    useEffect(() => {
+        if (isCategoryUpdated) {
+            setIsDialogOpen(false);
+        }
+    }, [isCategoryUpdated]);
 
     return (
         <div className="mt-4">
@@ -91,7 +108,7 @@ const CategoryTable = ({ categories }) => {
                                     onClick={handleSaveChanges}
                                     className="px-4 py-2 bg-blue-500 text-white rounded-md"
                                 >
-                                    Save Changes
+                                    {loadingUpdateCategorty ? "Saving..." : "Save Changes"}
                                 </button>
                             </div>
                         </form>

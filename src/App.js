@@ -24,6 +24,8 @@ import CategoryAdmin from './pages/admin/Pages/Category';
 import AddCompanyAdmin from './pages/admin/Pages/AddCompany';
 import CarAdmin from './pages/admin/Pages/Car';
 import ReviewAdmin from './pages/admin/Pages/Review';
+import EmployeeAdmin from './pages/admin/Pages/Employee';
+import AddEmployeeAdmin from './pages/admin/Pages/AddEmployee';
 
 function App() {
   return (
@@ -42,6 +44,8 @@ function App() {
         <Route path='category-page' element={<CategoryAdmin />} />
         <Route path='car-page' element={<CarAdmin />} />
         <Route path='review-page' element={<ReviewAdmin />} />
+        <Route path='employee-page' element={<EmployeeAdmin />} />
+        <Route path='employee-page/create' element={<AddEmployeeAdmin />} />
 
       </Route>
 

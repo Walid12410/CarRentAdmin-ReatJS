@@ -11,7 +11,7 @@ const CategoryAdmin = () => {
     const [sidebarToggle, setSidebarToggle] = useState(false);
     const [dialogOpen, setDialogOpen] = useState(false); // State to toggle dialog
     const [categoryName, setCategoryName] = useState(""); // State for category name
-    const { categories, loading, error, loadingCreateCategory, isCategoryCreated } = useSelector((state) => state.category);
+    const { categories, loading, error, loadingCreateCategory, isCategoryCreated, isCategoryUpdated } = useSelector((state) => state.category);
 
     useEffect(() => {
         dispatch(fetchCategory());
@@ -46,6 +46,13 @@ const CategoryAdmin = () => {
             dispatch(fetchCategory()); // Refresh categories after adding
         }
     }, [isCategoryCreated]);
+
+
+    useEffect(() => {
+        if (isCategoryUpdated) {
+            dispatch(fetchCategory()); // Refresh categories after adding
+        }
+    }, [isCategoryUpdated]);
 
     return (
         <div className="flex">

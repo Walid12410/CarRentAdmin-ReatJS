@@ -8,6 +8,9 @@ const categorySlice = createSlice({
     error: null,
     loadingCreateCategory : false,
     isCategoryCreated : false,
+    // update category
+    isCategoryUpdated : false,
+    loadingUpdateCategorty : false
   },
   reducers: { 
     setCategory: (state, action) => {
@@ -32,6 +35,18 @@ const categorySlice = createSlice({
     setClearCategoryCreated : (state) => {
       state.isCategoryCreated = false;
       state.loadingCreateCategory = false;
+    },
+    // update category
+    setLoadingUpdatedCategory : (state) => {
+      state.loadingUpdateCategorty = true;
+    },
+    setIsCategoryUpdated : (state) => {
+      state.loadingUpdateCategorty = false;
+      state.isCategoryUpdated = true;
+    },
+    setClearUpdateCategory : (state) => {
+      state.loadingUpdateCategorty = false;
+      state.isCategoryUpdated = false;
     }
   },
 });

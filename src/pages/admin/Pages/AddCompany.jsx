@@ -1,11 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AdminSideBar from "../../../components/Admin-Components/AdminSideBar";
 import AdminHeader from "../../../components/Admin-Components/HeaderAdmin";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { createCompany } from "../../../redux/api/companyApiCall";
 
 const AddCompanyAdmin = () => {
     const [sidebarToggle, setSidebarToggle] = useState(false);
 
-    // Individual states for each input
+    const {isCompanyCreated,loadingCreateCompany} = useSelector(state => state.company);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+
+    // States for the form
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [number, setNumber] = useState("");
@@ -18,23 +26,49 @@ const AddCompanyAdmin = () => {
     const [image2, setImage2] = useState(null);
     const [isDefaultImage, setIsDefaultImage] = useState("image1");
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const formData = {
-            name,
-            email,
-            number,
-            country,
-            address,
-            city,
-            longitude,
-            latitude,
-            image1,
-            image2,
-            isDefaultImage,
-        };
-        console.log("Form Data:", formData);
+
+    // Validation function
+    const validateForm = () => {
+        if (!name || !email || !number || !country || !address || !city || !longitude || !latitude || !image1) {
+            alert("All fields are required, including the images.");
+            return false;
+        }
+        return true;
     };
+
+    // Handle form submission
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if(loadingCreateCompany) return;
+
+        if (!validateForm()) {
+            return; // If validation fails, stop form submission
+        }
+
+
+        const companyData = {
+            'companyName': name,
+            'companyEmail': email,
+            'companyPhoneNumber': number,
+            'country': country,
+            'address': address,
+            'city': city,
+            'longitude': longitude,
+            'latitude': latitude,
+        };
+
+        // Dispatch the createCompany action
+        dispatch(createCompany(companyData, image1, image2));
+
+    };
+
+
+    useEffect(()=>{
+        if(isCompanyCreated){
+            navigate('/admin/company-page');
+        }
+    },[isCompanyCreated]);
 
     return (
         <div className="flex">
@@ -204,9 +238,9 @@ const AddCompanyAdmin = () => {
                         <div className="flex items-center justify-between">
                             <button
                                 type="submit"
-                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none"
+                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                             >
-                                Submit
+                                {loadingCreateCompany ? "Adding..." : "Add Company" }
                             </button>
                         </div>
                     </form>

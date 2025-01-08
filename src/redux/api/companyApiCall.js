@@ -20,25 +20,55 @@ export function fetchAllCompany(){
 
 
 // Create new company
-export function createCompany(newCompany) {
-    return async (dispatch , getState) => {
+export function createCompany(newCompany, image1, image2) {
+    return async (dispatch, getState) => {
         try {
             dispatch(companyAction.setLoadingCreateCompany());
-             await request.post(`/api/company/list`, newCompany , {
-                headers : {
-                    Authorization : "Bearer " + getState().auth.user.token,
-                    "Content-Type": "application/json"
-                }
+
+            // First API call: Create the company
+            const companyResponse = await request.post(`/api/company/list`, newCompany, {
+                headers: {
+                    Authorization: "Bearer " + getState().auth.user.token,
+                    "Content-Type": "application/json",
+                },
             });
+
+            const companyId = companyResponse.data.companyId;
+
+            // Prepare FormData for image1 and image2
+            const formData1 = new FormData();
+            formData1.append("image", image1);
+
+            const formData2 = new FormData();
+            formData2.append("image", image2);
+
+            // Upload image1
+            await request.post(`/api/company/upload-company-image/${companyId}`, formData1, {
+                headers: {
+                    Authorization: "Bearer " + getState().auth.user.token,
+                    // "Content-Type" is not needed here, axios will set it for FormData
+                },
+            });
+
+            // Upload image2
+            await request.post(`/api/company/upload-company-image/${companyId}`, formData2, {
+                headers: {
+                    Authorization: "Bearer " + getState().auth.user.token,
+                    // "Content-Type" is not needed here, axios will set it for FormData
+                },
+            });
+
             dispatch(companyAction.setCompanyCreated());
-            setTimeout(()=> dispatch(companyAction.setClearCompanyCreated()));
+            setTimeout(() => dispatch(companyAction.setClearCompanyCreated()), 2000);
+
         } catch (error) {
-            const errorMessage = error.response?.data?.message || "Error create new company";
+            const errorMessage = error.response?.data?.message || "Error creating new company";
             toast.error(errorMessage);
             dispatch(companyAction.setClearLoading());
         }
-    }
+    };
 }
+
 
 
 // Delete company

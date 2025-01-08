@@ -38,3 +38,24 @@ export function createCategory(categoryName) {
     }
   }
 }
+
+// update category
+export function updateCategory(categoryId ,categoryName) {
+  return async (dispatch , getState) => {
+    try {
+      dispatch(categoryAction.setLoadingUpdatedCategory());
+      await request.put(`/api/category/${categoryId}`, categoryName , {
+        headers : {
+          Authorization : "Bearer " + getState().auth.user.token,
+          "Content-Type" : "application/json"
+        }
+      });
+      dispatch(categoryAction.setIsCategoryUpdated());
+      setTimeout(()=> dispatch(categoryAction.setClearUpdateCategory()));
+    } catch (error) {
+      const erroMessage = error.response?.data?.message || "Error create category";
+      toast.error(erroMessage);
+      dispatch(categoryAction.setClearUpdateCategory());
+    }
+  }
+}
