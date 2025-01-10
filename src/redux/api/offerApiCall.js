@@ -3,22 +3,6 @@ import { toast } from "react-toastify";
 import { offerAction } from "../slices/offer";
 
 
-// fetch latest offer
-export function fetchLatestOffer() {
-    return async (dispatch) => {
-        try {
-            dispatch(offerAction.setLoadingLatestOffer());
-            const { data } = await request.get(`/api/offer/all-offer?top=3`);
-            dispatch(offerAction.setLatestOffer(data));
-        } catch (error) {
-            const errorMessage = error.response?.data?.message || "Error fetching latest offer";
-            dispatch(offerAction.setErrorLatestOffer(errorMessage));
-            toast.error(errorMessage);
-        }
-    }
-}
-
-
 // count offer company
 export function countCompanyOffers() {
     return async (dispatch, getState) => {
@@ -111,6 +95,37 @@ export function deleteOffer(offerId) {
             const errorMessage = error.response?.data?.message || "Error deleting offer";
             toast.error(errorMessage);
             dispatch(offerAction.setClearOfferDeleted());
+        }
+    }
+}
+
+
+// count offers
+export function countOffers() {
+    return async (dispatch) => {
+        try {
+            const { data } = await request.get(`/api/offer/count`);
+            dispatch(offerAction.setCountOffers(data));
+        } catch (error) {
+            const errorMessage = error.response?.data?.message || "Error count offers";
+            toast.error(errorMessage);
+        }
+    }
+}
+
+
+// get all offers
+export function fetchAllOffers(pageNumber) {
+    return async (dispatch) => {
+        try {
+            const currentTime = new Date().toISOString().slice(0, 19);
+            dispatch(offerAction.setLoadingOffers());
+            const { data } = await request.get(`/api/offer?currentTime=${currentTime}&page=${pageNumber}&limit=6`);
+            dispatch(offerAction.setOffers(data));
+        } catch (error) {
+            const errorMessage = error.response?.data?.message || "Error count offers";
+            toast.error(errorMessage);
+            dispatch(offerAction.setErrorOffers(errorMessage));
         }
     }
 }

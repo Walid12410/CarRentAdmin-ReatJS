@@ -20,7 +20,7 @@ export function fetchAllCompany(){
 
 
 // Create new company
-export function createCompany(newCompany, image1, image2) {
+export function createCompany(newCompany, image1, image2,isDefaultImage) {
     return async (dispatch, getState) => {
         try {
             dispatch(companyAction.setLoadingCreateCompany());
@@ -42,6 +42,12 @@ export function createCompany(newCompany, image1, image2) {
             const formData2 = new FormData();
             formData2.append("image", image2);
 
+            if(isDefaultImage === "image1"){
+                formData1.append("isDefaultImage",true);
+            }else{
+                formData2.append("isDefaultImage",true);
+            }
+            
             // Upload image1
             await request.post(`/api/company/upload-company-image/${companyId}`, formData1, {
                 headers: {

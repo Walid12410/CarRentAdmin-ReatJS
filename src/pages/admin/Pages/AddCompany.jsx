@@ -59,7 +59,7 @@ const AddCompanyAdmin = () => {
         };
 
         // Dispatch the createCompany action
-        dispatch(createCompany(companyData, image1, image2));
+        dispatch(createCompany(companyData, image1, image2,isDefaultImage));
 
     };
 

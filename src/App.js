@@ -26,6 +26,7 @@ import CarAdmin from './pages/admin/Pages/Car';
 import ReviewAdmin from './pages/admin/Pages/Review';
 import EmployeeAdmin from './pages/admin/Pages/Employee';
 import AddEmployeeAdmin from './pages/admin/Pages/AddEmployee';
+import OfferAdmin from './pages/admin/Pages/Offer';
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
         <Route path='review-page' element={<ReviewAdmin />} />
         <Route path='employee-page' element={<EmployeeAdmin />} />
         <Route path='employee-page/create' element={<AddEmployeeAdmin />} />
+        <Route path='offer-page' element={<OfferAdmin />} />
 
       </Route>
 

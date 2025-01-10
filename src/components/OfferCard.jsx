@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import swal from 'sweetalert';
 
-const OfferCard = ({ offer }) => {
+const OfferCard = ({ offer, isAdmin }) => {
 
     const dispatch = useDispatch();
     const isEnded = new Date(offer?.endDate) < new Date();
@@ -53,18 +53,20 @@ const OfferCard = ({ offer }) => {
             <div className="p-4">
                 <div className="flex justify-between items-center">
                     <h3 className="text-xl font-semibold text-gray-800 mb-3">{offer?.offerTitle}</h3>
-                    <div className="flex space-x-2 text-gray-600">
-                        <Link
-                            to={`/employee/offer-page/edit-offer/${offer?._id}`}
-                            state={{ offer }}
-                            className="text-blue-500 hover:text-blue-700"
-                        >
-                            <FaEdit className="cursor-pointer hover:text-blue-500" title="Edit" />
-                        </Link>
-                        <FaTrash className="cursor-pointer hover:text-red-500"
-                            onClick={deleteOfferHandler}
-                            title="Delete" />
-                    </div>
+                    {!isAdmin && (
+                        <div className="flex space-x-2 text-gray-600">
+                            <Link
+                                to={`/employee/offer-page/edit-offer/${offer?._id}`}
+                                state={{ offer }}
+                                className="text-blue-500 hover:text-blue-700"
+                            >
+                                <FaEdit className="cursor-pointer hover:text-blue-500" title="Edit" />
+                            </Link>
+                            <FaTrash className="cursor-pointer hover:text-red-500"
+                                onClick={deleteOfferHandler}
+                                title="Delete" />
+                        </div>
+                    )}
                 </div>
                 <div className="text-sm text-gray-600">
                     <p>Start Date: <span className="font-medium"> {new Date(offer?.startDate).toDateString()}</span></p>

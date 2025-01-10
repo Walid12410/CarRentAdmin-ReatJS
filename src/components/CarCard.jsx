@@ -33,7 +33,7 @@ const CarCard = ({ car , isAdmin }) => {
                 <div className="flex items-center">
                     <StarIcon className="w-5 h-5 text-yellow-500" />
                     <div className="ml-2">
-                        {car?.reviewCount} ({car?.averageRating} reviews)
+                      {car?.averageRating} ({car?.reviewCount} reviews)
                     </div>
                 </div>
                 {!isAdmin && (

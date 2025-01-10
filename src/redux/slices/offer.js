@@ -3,9 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 const offerSlice = createSlice({
   name: "offer",
   initialState: {
-    latestOffer: [],
-    loadingLatestOffer: false,
-    errorLatestOffer: null,
     // Get Offer of company
     companyOffers: [],
     loadingCompanyOffer : false,
@@ -21,20 +18,14 @@ const offerSlice = createSlice({
     // delte offer
     isOfferDeleted : false,
     loadingDeleteOffer : false,
+    // Get all offer
+    offers: [],
+    loadingOffers : false,
+    errorOffers : false,
+    // count all offers 
+    offersCount : null
   },
   reducers: { 
-    setLatestOffer: (state, action) => {
-      state.latestOffer = action.payload;
-      state.loadingLatestOffer = false;
-      state.errorLatestOffer = null;
-    },
-    setLoadingLatestOffer: (state) => {
-      state.loadingLatestOffer = true;
-    },
-    setErrorLatestOffer: (state, action) => {
-      state.loadingLatestOffer = false;
-      state.errorLatestOffer = action.payload;
-    },
     // Get Offers of company
     setCompanyOffer : (state, action) => {
       state.companyOffers = action.payload;
@@ -87,6 +78,22 @@ const offerSlice = createSlice({
     setClearOfferDeleted: (state) => {
       state.loadingDeleteOffer = false;
       state.isOfferDeleted = false;
+    },
+    // get all offers
+    setOffers : (state,action) =>{
+      state.offers = action.payload;
+      state.loadingOffers = false;
+    },
+    setLoadingOffers : (state) =>{
+      state.loadingOffers = true;
+    },
+    setErrorOffers : (state , action ) => {
+      state.loadingOffers = false;
+      state.errorOffers = action.payload;
+    },
+    // count all ofers
+    setCountOffers : (state,action) => {
+      state.offersCount = action.payload;
     }
   },
 });
